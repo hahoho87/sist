@@ -18,11 +18,13 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.net.ConnectException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
+import java.util.StringTokenizer;
 
 public class JavaChat {
 	private String serverIP = "localhost";
@@ -132,6 +134,8 @@ public class JavaChat {
 			}
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
+		} catch (ConnectException e) {
+			System.err.println("서버에 연결되지 않았습니다.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -179,9 +183,9 @@ public class JavaChat {
 			// 대화 내용을 입력하고 엔터키를 치면
 			// 대화 내용을 서버에 전송하고
 			// 내용 지우기
-			if (e.getKeyCode() == KeyEvent.VK_ENTER ) {
+			if (e.getKeyCode() == KeyEvent.VK_ENTER) {
 				String msg = tf.getText();
-				if (msg != null || msg.length() > 0)	{
+				if (msg != null || msg.length() > 0) {
 					pw.println(getTime() + nickname + "#" + msg);
 					pw.flush();
 					tf.setText(""); // tf의 text를 지운다.
@@ -209,40 +213,31 @@ public class JavaChat {
 				// saveBtn에 액션 리스너 추가
 				// ta의 내용을 파일로 저장
 				// 파일명은 중복되지 않도록 하고, 확장자는 txt로 지정
-				
+
 				FileDialog fd = new FileDialog(f, "파일 저장", FileDialog.SAVE);
-				File file = new File(path + "\\" + filename);
-				path = ".";
-				Long now = System.currentTimeMillis();
-				filename = String.valueOf(now) + ".txt";
-				System.out.println(filename);
-				String input;
-				
+				fd.setVisible(true);
+				String filepath = fd.getDirectory() + fd.getFile();
+				BufferedWriter bw = null;
 				try {
-					msg = br.readLine();
-				} catch (IOException e2) {
-					// TODO Auto-generated catch block
-					e2.printStackTrace();
-				}
-				try {
-					reader = new BufferedReader(new FileReader(file));
-				} catch (FileNotFoundException e1) {
-					e1.printStackTrace();
-				}
-				try {
-					while ((input = reader.readLine()) != null) {
-						bw.write(input);
+					bw = new BufferedWriter(new FileWriter(filepath));
+					StringTokenizer st = new StringTokenizer(ta.getText(), "\n");
+					while (st.hasMoreTokens()) {
+						bw.write(st.nextToken());
 						bw.newLine();
 					}
+					bw.flush();
 				} catch (IOException e1) {
+					// TODO Auto-generated catch block
 					e1.printStackTrace();
+				} finally {
+					try {
+						if (bw != null)
+							bw.close();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 				}
-				try {
-					reader.close();
-				} catch (IOException e1) {
-					e1.printStackTrace();
-				}
-				
 
 			} else if (e.getSource().equals(clearBtn)) {
 				// clearBtn에 액션 리스너 추가
