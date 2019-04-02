@@ -1,5 +1,18 @@
 package exercise.net;
 
+import java.awt.BorderLayout;
+import java.awt.Button;
+import java.awt.Frame;
+import java.awt.Label;
+import java.awt.Panel;
+import java.awt.TextArea;
+import java.awt.TextField;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -10,16 +23,16 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Scanner;
 
-public class ChatClient {
+public class ChatClientFrame {
 	private String serverIP = "localhost";
-	private int serverPort = 5000;
+	private int serverPort = 4000;
 	private BufferedReader br;
 	private PrintWriter pw;
 	private Socket socket;
 	private Scanner scan;
 	private String nickname = "abc";
 
-	public ChatClient() {
+	public ChatClientFrame() {
 		// 키보드로 입력한 대화 내용을 서버로 전송하고
 		// 서버에서 보내 온 내용을 화면에 출력
 		// 단, "서버로 전송 시간#닉네임#대화내용"의 형태로 전송
@@ -31,6 +44,8 @@ public class ChatClient {
 		// [00:00:00] 닉네임 > 대화내용
 		// >> 입력(채팅 종료는 /q) :
 
+		
+
 		System.out.println("=== CLIENT CHAT ===");
 		SimpleDateFormat today = new SimpleDateFormat("[YY-MM-DD]");
 		System.out.println(today.format(new Date()));
@@ -41,6 +56,7 @@ public class ChatClient {
 			br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 			pw = new PrintWriter(socket.getOutputStream());
 			scan = new Scanner(System.in);
+			// 스캐너가 아니라 tf에 입력된 값을 받아옴
 
 			while (true) {
 				System.out.print(">> 입력(종료는 /q) : ");
@@ -74,8 +90,8 @@ public class ChatClient {
 			}
 		} // END try
 	}// END 생성자
-	
-	//시간 설정 메소드
+
+	// 시간 설정 메소드
 	public String getTime() {
 		SimpleDateFormat simpleDate = new SimpleDateFormat("[hh:mm:ss]#");
 		return simpleDate.format(new Date());
