@@ -20,6 +20,7 @@ import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.ConnectException;
 import java.net.Socket;
+import java.net.SocketException;
 import java.net.UnknownHostException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -127,15 +128,15 @@ public class JavaChat {
 				msg = br.readLine();
 				if (msg != null || msg.length() > 0) {
 					ta.append(msg + "\n");
-				} else {
-					ta.append("메시지를 입력해주세요.");
-				}
+				} 
 				// 서버 메시지 수신
 			}
 		} catch (UnknownHostException e) {
 			e.printStackTrace();
 		} catch (ConnectException e) {
 			System.err.println("서버에 연결되지 않았습니다.");
+		} catch (SocketException e) {
+			System.err.println("서버와의 연결이 종료되었습니다.");
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -218,9 +219,14 @@ public class JavaChat {
 				fd.setVisible(true);
 				String filepath = fd.getDirectory() + fd.getFile();
 				BufferedWriter bw = null;
+				SimpleDateFormat now = new SimpleDateFormat("yyyy.MM.dd a hh:mm:ss");
+				
 				try {
 					bw = new BufferedWriter(new FileWriter(filepath));
 					StringTokenizer st = new StringTokenizer(ta.getText(), "\n");
+					bw.write("--- " + now.format(new Date()) + "의 대화 내용 ---");
+					bw.newLine();
+					
 					while (st.hasMoreTokens()) {
 						bw.write(st.nextToken());
 						bw.newLine();
@@ -238,7 +244,6 @@ public class JavaChat {
 						e1.printStackTrace();
 					}
 				}
-
 			} else if (e.getSource().equals(clearBtn)) {
 				// clearBtn에 액션 리스너 추가
 				// ta의 내용을 지우기
