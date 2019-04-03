@@ -85,14 +85,13 @@ public class RegionsDAO {
 			String query = "select * from regions";
 			rs = stmt.executeQuery(query); // 쿼리 실행
 
-			while (rs.next()) { // 읽어 올 값이 있으면
+			while (rs.next()) { // 읽어 올 값이 없을 때 까지
 				// Regions 클래스의 객체에 저장
 				Regions r = new Regions();
-				list.add(r);
-				while(rs.next());
 				r.setRegionID(rs.getInt("region_id"));
 				r.setRegionName(rs.getString("region_name"));
-				System.out.println();
+				list.add(r);
+				System.out.println(r);
 			}
 
 		} catch (ClassNotFoundException e) {
