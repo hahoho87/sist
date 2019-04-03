@@ -72,18 +72,17 @@ public class MultiServer {
 				br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
 				nickname = br.readLine();
 				broadcast(nickname + "님이 접속하셨습니다.");
-
 				// 닉네임을 키로, pw를 값으로 맵에 클라이언트 저장
 				clientMap.put(nickname, pw);
-
-				System.out.println(clientMap.size());
 				// 클라이언트 입장 안내 메시지 출력
 				// 클라이언트의 데이터를 읽어서
 				// 전체 클라이언트에게 전송
 				// 클라이언트 퇴장 안내 메시지 출력
 				String line = null;
 				while ((line = br.readLine()) != null) {
-					broadcast(nickname + " : " + line);
+					String[] msgs = line.split("#");
+//					broadcast(nickname + " : " + line);
+					broadcast(getTime() + " " + msgs[1] + " > " + msgs[2]);
 				}
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
@@ -105,7 +104,7 @@ public class MultiServer {
 	public void broadcast(String msg) { // 전체 발송 메시지
 		synchronized (clientMap) {
 			Collection<PrintWriter> collection = clientMap.values();
-			Iterator<?> iter = collection.iterator();
+			Iterator iter = collection.iterator();
 			while (iter.hasNext()) {
 				PrintWriter pw = (PrintWriter) iter.next();
 				pw.println(msg);

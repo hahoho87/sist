@@ -230,7 +230,7 @@ public class MultiClient {
 	}// END getTime()
 
 	public static void main(String[] args) {
-		new MultiClient("bb");
+		new MultiClient("bbbbb");
 	}
 
 }
