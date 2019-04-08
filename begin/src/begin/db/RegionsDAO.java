@@ -77,21 +77,20 @@ public class RegionsDAO {
 		Connection con = null; // DB 연결 객체
 		Statement stmt = null; // SQL 수행을 위한 객체
 		ResultSet rs = null;
-
+		Regions r = null;
 		try {
 			Class.forName(driver); // JDBC 드라이버 로드
 			con = DriverManager.getConnection(url, user, pwd);
 			stmt = con.createStatement();
 			String query = "select * from regions";
 			rs = stmt.executeQuery(query); // 쿼리 실행
-
+			
 			while (rs.next()) { // 읽어 올 값이 없을 때 까지
 				// Regions 클래스의 객체에 저장
-				Regions r = new Regions();
+				r = new Regions();
 				r.setRegionID(rs.getInt("region_id"));
 				r.setRegionName(rs.getString("region_name"));
 				list.add(r);
-				System.out.println(r);
 			}
 
 		} catch (ClassNotFoundException e) {

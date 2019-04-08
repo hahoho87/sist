@@ -34,9 +34,16 @@ public class UserMain {
 		loginChk = true; // 로그인 완료 상태로 설정
 //		delete();
 //		login();
-		select();
+//		select();
 //		insert();
 //		selectAll();
+		close();
+	}
+
+	public void close() {
+		edao.close();
+		scan.close();
+		System.out.println(">>시스템 종료");
 	}
 
 	public void selectAll() {

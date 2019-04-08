@@ -137,6 +137,7 @@ public class EmpDAO {
 				evo.setHireDate(rs.getDate("hire_date"));
 				evo.setJobId(rs.getString("job_id"));
 				empList.add(evo);
+				System.out.println(empList.get(0));
 			}
 		} catch (SQLSyntaxErrorException e) {
 			System.err.println("입력값에 오류가 있습니다.");
@@ -171,5 +172,23 @@ public class EmpDAO {
 		}
 		return evo;
 	}// end select
+	
+	public void close()	{
+			try {
+				if(rs != null)
+				rs.close();
+				if(pstmt != null)
+					pstmt.close();
+				if(stmt != null)
+					stmt.close();
+				if(con != null)
+					con.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	}
+	
+	
 
 }
