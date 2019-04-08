@@ -15,11 +15,11 @@ public class DBmain {
 		
 		int input = 2;
 		
-		if (input == 2) {
+		if (input == 1) {
 			Regions region = rdao.selectOne(4);
 			System.out.println("region id : " + region.getRegionID());
 			System.out.print("region name : " + region.getRegionName());
-		} else if (input == 1) {
+		} else if (input == 2) {
 			List<Regions> r = rdao.selectAll();
 			System.out.println(r);
 		}

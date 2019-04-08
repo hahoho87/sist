@@ -2,24 +2,32 @@ package edu.practice.vo;
 
 import java.util.Date;
 
-public class EmpVo {
-	private int employeeID;
+public class EmpVO {
+	private int employeeId;
 	private String firstName;
 	private String lastName;
 	private String email;
 	private String phoneNum;
 	private Date hireDate;
-	private String jobID;
+	private String jobId;
 	private int salary;
 	private int commissionPCT;
 	private int managerID;
 	
+	public EmpVO() { }
 	
-	public int getEmployeeID() {
-		return employeeID;
+	public EmpVO(int id, String lastName, String firstName, String email, String jobId) {
+		this.employeeId = id;
+		this.lastName = lastName;
+		this.firstName = firstName;
+		this.email = email;
+		this.jobId = jobId;
 	}
-	public void setEmployeeID(int employeeID) {
-		this.employeeID = employeeID;
+	public int getEmployeeId() {
+		return employeeId;
+	}
+	public void setEmployeeId(int employeeID) {
+		this.employeeId = employeeID;
 	}
 	public String getFirstName() {
 		return firstName;
@@ -51,11 +59,11 @@ public class EmpVo {
 	public void setHireDate(Date hireDate) {
 		this.hireDate = hireDate;
 	}
-	public String getJobID() {
-		return jobID;
+	public String getJobId() {
+		return jobId;
 	}
-	public void setJobID(String jobID) {
-		this.jobID = jobID;
+	public void setJobId(String jobID) {
+		this.jobId = jobID;
 	}
 	public int getSalary() {
 		return salary;
