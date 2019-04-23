@@ -22,9 +22,9 @@ public class EmpDAO {
 	// 기본 생성자
 	public EmpDAO() {
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
-		String user = "hr";
-		String pwd = "1111";
+		String url = "jdbc:oracle:thin:@localhost:1522:xe";
+		String user = "dev";
+		String pwd = "qwerty123";
 
 		try {
 			Class.forName(driver); // JDBC 드라이버 로드

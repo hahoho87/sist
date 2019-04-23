@@ -3,11 +3,13 @@ package edu.practice.view;
 import java.util.List;
 import java.util.Scanner;
 
+import edu.practice.common.DBconnect;
 import edu.practice.dao.EmpDAO;
 import edu.practice.vo.EmpVO;
 
 public class UserMain {
 	private EmpDAO edao;
+	private DBconnect dbcon;
 	private Scanner scan;
 	private boolean loginChk; // 로그인 여부 확인
 
@@ -29,15 +31,15 @@ public class UserMain {
 		System.out.println("4.사원 삭제");
 		System.out.println("5.사원 목록");
 		System.out.println("6.종료");
-		System.out.println(">>선택 : 2");
+		System.out.println(">>선택 : ");
 
 		loginChk = true; // 로그인 완료 상태로 설정
 //		delete();
-//		login();
+		login();
 //		select();
 //		insert();
 //		selectAll();
-		close();
+//		close();
 	}
 
 	public void close() {
@@ -149,6 +151,7 @@ public class UserMain {
 	}
 
 	public void login() {
+		
 		System.out.print("  id   : ");
 		String id = scan.nextLine();
 
