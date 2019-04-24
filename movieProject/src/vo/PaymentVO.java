@@ -8,6 +8,13 @@ public class PaymentVO {
 	private Date bookingDate;
 	private String paymentConfirm;
 	
+	public PaymentVO() {}
+	
+	public PaymentVO(int bookingNo, String paymentConfirm) {
+		this.bookingNo = bookingNo;
+		this.paymentConfirm = paymentConfirm;
+	}
+	
 	
 	public int getBookingNo() {
 		return bookingNo;

@@ -1,22 +1,21 @@
 package view;
 
-import java.util.List;
 import java.util.Scanner;
 
-import common.DBconnect;
 import dao.AdminDAO;
-import vo.CustomerVO;
+import dao.MovieManageDAO;
+import dao.BillingDAO;
+import dao.MovieScheduleDAO;
 
 public class AdminMenu {
 	private AdminDAO adminDAO;
 	private Scanner scan;
-	private boolean loginChk;
-	private DBconnect dbcon;
+	private MovieManageDAO movieManageDAO;
 
 	public AdminMenu() {
 		adminDAO = new AdminDAO();
+		movieManageDAO = new MovieManageDAO();
 		scan = new Scanner(System.in);
-//		dbcon = new DBconnect();
 	}
 
 	public static void main(String[] args) {
@@ -34,10 +33,10 @@ public class AdminMenu {
 		boolean result = adminDAO.login(id, pw);
 		if (result == true) { // 로그인 성공
 			System.out.println("로그인 성공");
-			loginChk = true; // 로그인 완료 설정
 			menu();
 		} else { // 로그인 실패
 			System.out.println("아이디 또는 비밀번호 불일치 또는 미등록 ");
+			login();
 		}
 	}
 
@@ -54,16 +53,16 @@ public class AdminMenu {
 
 		switch (input) {
 		case 1:
-			membershipManagement();
+			MembershipManageView.main(null);
 			break;
 		case 2:
-			movieManagement();
+			MovieManagementView.main(null);
 			break;
 		case 3:
-			scheduleManagement();
+			ScheduleManagementView.main(null);
 			break;
 		case 4:
-			billingManagement();
+			BillingManagementView.main(null);
 			break;
 		default:
 			System.out.println("1 - 4 까지의 숫자를 입력하세요.");
@@ -71,45 +70,6 @@ public class AdminMenu {
 		}
 	}
 
-	public void membershipManagement() {
-		System.out.println();
-		System.out.println("         ------ 회원 관리 ------");
-		List<CustomerVO> customerList = adminDAO.customerAll();
-		System.out.println("회원번호\t아이디\t이름\t전화번호\t\t생년월일");
-		for (CustomerVO customerVO : customerList) {
-			System.out.print(customerVO.getCustomerNo());
-			System.out.print("\t" + customerVO.getCustomerID());
-			System.out.print("\t" + customerVO.getCustomerName());
-			System.out.print("\t" + customerVO.getCustomerPhone());
-			System.out.print("\t" + customerVO.getCustomerBirth());
-			System.out.println();
-		}
-		System.out.println("상위메뉴로 이동하시겠습니까??");
-		System.out.println("(N 선택시 시스템 종료)");
-		System.out.print(">> 선택 ( Y  /  N ) : ");
-		String input = scan.nextLine();
-
-		if (input == "Y" || input == "y") {
-			menu();
-		} if (input == "N" || input == "n")	{
-//			exit();
-		}
-
-	}
-
-	public void movieManagement() {
-		System.out.println("------ 영화 관리 ------");
-
-	}
-
-	public void scheduleManagement() {
-		System.out.println("------ 상영 정보 관리 ------");
-
-	}
-
-	public void billingManagement() {
-		System.out.println("------ 예매 관리 ------");
-
-	}
+	
 
 }

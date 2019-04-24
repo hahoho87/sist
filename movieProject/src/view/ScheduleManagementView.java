@@ -2,7 +2,7 @@ package view;
 
 import java.util.Scanner;
 
-public class scheduleManagement {
+public class ScheduleManagementView {
 
 	Scanner scan = new Scanner(System.in);
 
@@ -40,6 +40,13 @@ public class scheduleManagement {
 
 	public void scheduleRegister() {
 		
+	}
+	
+	
+	public static void main(String[] args) {
+		ScheduleManagementView scheduleManagementView
+				= new ScheduleManagementView();
+		scheduleManagementView.menu();
 	}
 
 }

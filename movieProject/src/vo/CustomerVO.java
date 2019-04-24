@@ -25,6 +25,17 @@ public class CustomerVO {
 		this.customerBirth = customerBirth;
 
 	}
+	
+	public CustomerVO(String customerID, String customerPW, String customerName, String customerPhone,
+			Date customerBirth) {
+		
+		this.customerID = customerID;
+		this.customerPW = customerPW;
+		this.customerName = customerName;
+		this.customerPhone = customerPhone;
+		this.customerBirth = customerBirth;
+
+	}
 
 	public int getCustomerNo() {
 		return customerNo;

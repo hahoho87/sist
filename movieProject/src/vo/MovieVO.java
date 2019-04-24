@@ -1,6 +1,6 @@
 package vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class MovieVO {
 	
@@ -9,14 +9,14 @@ public class MovieVO {
 	private String movieDirector;
 	private String movieActor;
 	private int movieAge;
-	private Date movieOpenday;
+	private String movieOpenday;
 	private int movieRunningTime;
 	private String movieSummary;
 	
 	public MovieVO() {}
 	
 	public MovieVO(int movieID, String movieTitle, String movieDirector,
-				   String movieActor, int movieAge, Date movieOpenday,
+				   String movieActor, int movieAge, String movieOpenday,
 				   int movieRunningTime, String movieSummary) {
 		this.movieID = movieID;
 		this.movieTitle = movieTitle;
@@ -28,6 +28,20 @@ public class MovieVO {
 		this.movieSummary = movieSummary;
 		
 	}
+	
+	public MovieVO(String movieTitle, String movieDirector,
+			   String movieActor, int movieAge, String movieOpenday,
+			   int movieRunningTime, String movieSummary) {
+
+	this.movieTitle = movieTitle;
+	this.movieDirector = movieDirector;
+	this.movieActor = movieActor;
+	this.movieAge = movieAge;
+	this.movieOpenday = movieOpenday;
+	this.movieRunningTime = movieRunningTime;
+	this.movieSummary = movieSummary;
+	
+}
 
 	public int getMovieID() {
 		return movieID;
@@ -69,11 +83,11 @@ public class MovieVO {
 		this.movieAge = movieAge;
 	}
 
-	public Date getMovieOpenday() {
+	public String getMovieOpenday() {
 		return movieOpenday;
 	}
 
-	public void setMovieOpenday(Date movieOpenday) {
+	public void setMovieOpenday(String movieOpenday) {
 		this.movieOpenday = movieOpenday;
 	}
 

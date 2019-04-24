@@ -35,8 +35,8 @@ public class UserMain {
 
 		loginChk = true; // 로그인 완료 상태로 설정
 //		delete();
-		login();
-//		select();
+//		login();
+		select();
 //		insert();
 //		selectAll();
 //		close();
@@ -84,9 +84,10 @@ public class UserMain {
 			} else if (input == 2) {
 				System.out.println(">>시스템 종료");
 				// EmpDAO의 close 메서드 호출
+
+			} else { // 조회 실패
+				System.out.println("아이디가 없거나 또는 미등록 아이디입니다.");
 			}
-		} else { // 조회 실패
-			System.out.println("아이디가 없거나 또는 미등록 아이디입니다.");
 		}
 	}
 
@@ -151,7 +152,7 @@ public class UserMain {
 	}
 
 	public void login() {
-		
+
 		System.out.print("  id   : ");
 		String id = scan.nextLine();
 
