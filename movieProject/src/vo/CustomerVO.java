@@ -1,6 +1,6 @@
 package vo;
 
-import java.util.Date;
+import java.sql.Date;
 
 public class CustomerVO {
 
@@ -9,13 +9,13 @@ public class CustomerVO {
 	private String customerPW;
 	private String customerName;
 	private String customerPhone;
-	private Date customerBirth;
+	private String customerBirth;
 
 	public CustomerVO() {
 	}
 
 	public CustomerVO(int customerNo, String customerID, String customerPW, String customerName, String customerPhone,
-			Date customerBirth) {
+			String customerBirth) {
 		
 		this.customerNo = customerNo;
 		this.customerID = customerID;
@@ -27,7 +27,7 @@ public class CustomerVO {
 	}
 	
 	public CustomerVO(String customerID, String customerPW, String customerName, String customerPhone,
-			Date customerBirth) {
+			String customerBirth) {
 		
 		this.customerID = customerID;
 		this.customerPW = customerPW;
@@ -77,11 +77,11 @@ public class CustomerVO {
 		this.customerPhone = customerPhone;
 	}
 
-	public Date getCustomerBirth() {
+	public String getCustomerBirth() {
 		return customerBirth;
 	}
 
-	public void setCustomerBirth(Date customerBirth) {
+	public void setCustomerBirth(String customerBirth) {
 		this.customerBirth = customerBirth;
 	}
 

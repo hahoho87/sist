@@ -11,7 +11,7 @@ import vo.CustomerVO;
 import vo.MovieVO;
 import vo.PaymentVO;
 
-public class BillingDAO {
+public class BillingManageDAO {
 
 	Statement stmt; // SQL 수행을 위한 객체
 	ResultSet rs;
@@ -19,7 +19,7 @@ public class BillingDAO {
 	CustomerVO cvo = null;
 	MovieVO mvo = null;
 
-	public BillingDAO() {
+	public BillingManageDAO() {
 		try {
 			stmt = DBconnect.getConnection().createStatement();
 		} catch (SQLException e) {
@@ -34,8 +34,8 @@ public class BillingDAO {
 		try {
 			pstmt = DBconnect.getConnection().prepareStatement(query);
 			pstmt.setInt(1, bookingNo);
-
 			rs = pstmt.executeQuery();
+			
 			if (rs.next()) { 
 				pvo = new PaymentVO(); 
 				pvo.setBookingNo(rs.getInt("booking_no"));
@@ -53,8 +53,11 @@ public class BillingDAO {
 
 	public boolean billingManagement(int bookingNo, String paymentConfirm) {
 		String query = "UPDATE payment SET payment_confirm = ? " + "WHERE booking_no = ?";
+		
 		try {
 			pstmt = DBconnect.getConnection().prepareStatement(query);
+			
+			pstmt.setInt(2, bookingNo);
 			pstmt.setString(1, paymentConfirm);
 
 			int result = pstmt.executeUpdate();

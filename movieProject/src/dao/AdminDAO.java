@@ -59,7 +59,7 @@ public class AdminDAO {
 				cvo.setCustomerID(rs.getString("customer_id"));
 				cvo.setCustomerName(rs.getString("customer_name"));
 				cvo.setCustomerPhone(rs.getString("customer_phone_no"));
-				cvo.setCustomerBirth(rs.getDate("customer_birth"));
+				cvo.setCustomerBirth(rs.getString("customer_birth"));
 				empList.add(cvo);
 			}
 		} catch (SQLSyntaxErrorException e) {

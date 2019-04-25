@@ -3,6 +3,7 @@ package dao;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.sql.SQLSyntaxErrorException;
 import java.sql.Statement;
 import java.util.ArrayList;
@@ -105,9 +106,7 @@ public class MovieManageDAO {
 	}// end movieRegist
 
 	public boolean movieDelete(int movieID) {
-		System.out.println("ㅎㅁㄴㅇㄹ");
 		String query = "DELETE FROM movie WHERE movie_id = " + movieID;
-		System.out.println(query);
 		try {
 			int result = stmt.executeUpdate(query);
 			System.out.println(result);
@@ -115,9 +114,11 @@ public class MovieManageDAO {
 				DBconnect.getConnection().commit();// db에 반영
 				return true; // true값 반환
 			} else {
-				System.out.println("delete fail!");
 				DBconnect.getConnection().rollback(); // 쿼리 실행 취소
 			}
+		} catch (SQLIntegrityConstraintViolationException e) {
+			System.out.println("현재 상영중인 영화는 삭제가 불가능합니다.");
+			System.out.println();
 		} catch (SQLSyntaxErrorException e) {
 			System.out.println("입력값에 오류가 있습니다.");
 		} catch (SQLException e) {
@@ -128,8 +129,7 @@ public class MovieManageDAO {
 
 	public boolean movieUpdate(int movieNo) {
 		String query = "UPDATE movie SET movie_title = ?, movie_director = ?, "
-				+ "movie_actor = ?, movie_age = ?, movie_openday = ?, "
-				+ "movie_running_time = ?, movie_summary = ? ";
+				+ "movie_actor = ?, movie_age = ?, movie_openday = ?, " + "movie_running_time = ?, movie_summary = ? ";
 		try {
 			pstmt = DBconnect.getConnection().prepareStatement(query); // 미리 쿼리를 설정
 			pstmt.setString(1, mvo.getMovieTitle()); // 첫번째 물음표를 1로 설정하고 email을 받음

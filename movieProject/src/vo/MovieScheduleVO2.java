@@ -1,29 +1,34 @@
 package vo;
 
-import java.sql.Date;
+import java.util.Date;
 import java.sql.Time;
 
-public class MovieScheduleVO {
+public class MovieScheduleVO2 {
 
 	private int screenNo;
-	private Date screenDate;
-	private Date screenTime;
+	private String screenDate;
+	private String screenTime;
 	private int movieID;
 
-	public MovieScheduleVO() {
+	public MovieScheduleVO2() {
 	}
 
-	public MovieScheduleVO(int screenNo, Date screenDate, Date screenTime, int movieID) {
+	public MovieScheduleVO2(int screenNo, String screenDate, String screenTime, int movieID) {
 		this.screenNo = screenNo;
 		this.screenDate = screenDate;
 		this.screenTime = screenTime;
 		this.movieID = movieID;
 	}
 	
-	public MovieScheduleVO(Date screenDate, Date screenTime, int movieID) {
+	public MovieScheduleVO2(String screenDate, String screenTime, int movieID) {
 		this.screenDate = screenDate;
 		this.screenTime = screenTime;
 		this.movieID = movieID;
+	}
+	
+	public MovieScheduleVO2(String screenDate, String screenTime) {
+		this.screenDate = screenDate;
+		this.screenTime = screenTime;
 	}
 	
 
@@ -35,19 +40,19 @@ public class MovieScheduleVO {
 		this.screenNo = screenNo;
 	}
 
-	public Date getScreenDate() {
+	public String getScreenDate() {
 		return screenDate;
 	}
 
-	public void setScreenDate(Date screenDate) {
+	public void setScreenDate(String screenDate) {
 		this.screenDate = screenDate;
 	}
 
-	public Date getScreenTime() {
+	public String getScreenTime() {
 		return screenTime;
 	}
 
-	public void setScreenTime(Date screenTime) {
+	public void setScreenTime(String screenTime) {
 		this.screenTime = screenTime;
 	}
 

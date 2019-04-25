@@ -3,16 +3,15 @@ package view;
 import java.util.List;
 import java.util.Scanner;
 
+import common.Exit;
 import dao.AdminDAO;
 import vo.CustomerVO;
-
 
 public class MembershipManageView {
 	Scanner scan = new Scanner(System.in);
 	AdminDAO adminDAO = new AdminDAO();
 	AdminMenu adminMenu = new AdminMenu();
 
-	
 	public void membershipManagement() {
 		System.out.println();
 		System.out.println("         ------ 회원 관리 ------");
@@ -35,10 +34,9 @@ public class MembershipManageView {
 			adminMenu.menu();
 		}
 		if (input.equals("N") || input.equals("n")) {
-//			exit();
+			Exit.exit();
 		}
 	}
-	
 	
 	public static void main(String[] args) {
 		MembershipManageView mmv = new MembershipManageView();

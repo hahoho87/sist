@@ -80,7 +80,7 @@ public class MovieManagementView {
 	}// end movieSearchList
 
 	public void movieSelect() {
-
+		System.out.println();
 		System.out.println("영화의 id를 입력하세요.");
 		System.out.print(">> ");
 		int movieID = scan.nextInt();
@@ -88,6 +88,7 @@ public class MovieManagementView {
 		MovieVO mvo = movieManageDAO.movieSelect(movieID);
 
 		if (mvo != null) {
+			System.out.println();
 			System.out.println("ID\t영화 제목\t감독\t배우\t상영등급\t개봉일\t러닝타임\t줄거리");
 			System.out.println(
 					"-------------------------------------------------------------------------------------------");
@@ -132,16 +133,41 @@ public class MovieManagementView {
 
 	public void movieDelete(int movieID) {
 		boolean result = movieManageDAO.movieDelete(movieID);
-		if (result == true) { // 삭제 성공
+		
+		if (result == true) {
 			System.out.println("삭제 완료");
-		} else { // 삭제 실패
-			System.out.println("삭제 실패 ");
+			System.out.println("상위메뉴로 이동하시겠습니까?");
+			System.out.println("( N 선택시 프로그램 종료 )");
+			System.out.println(">> 선택 ( Y  /  N ) : ");
+			String input = scan.nextLine();
+			if (input.equals("Y") || input.equals("y")) {
+				movieManagement();
+			} else if (input.equals("N") || input.equals("n")) {
+				Exit.exit();
+			} else {
+				System.out.println("알맞은 값을 입력하세요.");
+				movieSelect();
+			}
+
+		} else {
+			System.out.println("상위메뉴로 이동하시겠습니까?");
+			System.out.println("( N 선택시 프로그램 종료 )");
+			System.out.println(">> 선택 ( Y  /  N ) : ");
+			String input = scan.nextLine();
+			if (input.equals("Y") || input.equals("y")) {
+				movieManagement();
+			} else if (input.equals("N") || input.equals("n")) {
+				Exit.exit();
+			} else {
+				System.out.println("알맞은 값을 입력하세요.");
+				movieSelect();
+			}
 		}
 	}
 
 	public void movieUpdate(int movieID) {
 		boolean result = movieManageDAO.movieDelete(movieID);
-		if (result == true) { // 삭제 성공
+		if (result == true) {
 			System.out.println("------ 영화 변경 ------");
 			System.out.print("  제목   : ");
 			String title = scan.nextLine();
@@ -178,6 +204,9 @@ public class MovieManagementView {
 					}
 				}
 			}
+		} else {
+			System.out.println("등록 실패");
+			System.out.println();
 		}
 	}
 

@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 import dao.AdminDAO;
 import dao.MovieManageDAO;
-import dao.BillingDAO;
+import dao.BillingManageDAO;
 import dao.MovieScheduleDAO;
 
 public class AdminMenu {
