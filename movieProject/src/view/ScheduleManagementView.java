@@ -1,6 +1,6 @@
 package view;
 
-import java.util.Date;
+import java.sql.Date;
 import java.sql.Time;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -79,21 +79,22 @@ public class ScheduleManagementView {
 	}
 
 	public void movieScheduleUpdate() {
-		System.out.println("변경을 원하는 상영 일정 번호를 입력하세요.");
-		System.out.print(">> ");
-		int movieNo = scan.nextInt();
-		scan.nextLine();
-		System.out.println("변경할 상영 일자를 입력하세요.(YYMMDD)");
-		System.out.print(">> ");
-		String date = scan.nextLine();
-		System.out.println("변경할 상영 일시를 입력하세요.(HH24:MI)");
-		System.out.print(">> ");
-		String time = scan.nextLine();
-		MovieScheduleVO2 msvo2 = new MovieScheduleVO2(date, time);
-		boolean result = scheduleManagementDAO.movieScheduleUpdate(movieNo);
-		
+		int screenNo = 0;
+		boolean result = scheduleManagementDAO.movieScheduleUpdate(screenNo);
 		if (result == true) {
-			scheduleManagementDAO.movieScheduleUpdate(movieNo);
+			System.out.println("변경을 원하는 상영 일정 번호를 입력하세요.");
+			System.out.print(">> ");
+			screenNo = scan.nextInt();
+			scan.nextLine();
+			System.out.println("변경할 상영 일자를 입력하세요.(YYMMDD)");
+			System.out.print(">> ");
+			String date = scan.nextLine();
+			System.out.println("변경할 상영 일시를 입력하세요.(HH24:MI)");
+			System.out.print(">> ");
+			String time = scan.nextLine();
+			MovieScheduleVO2 msvo2 = new MovieScheduleVO2(date, time, screenNo);
+			
+			scheduleManagementDAO.movieScheduleUpdate(screenNo);
 			System.out.println("변경 완료");
 			System.out.println("상위메뉴로 이동하시겠습니까?");
 			System.out.println("( N 선택시 프로그램 종료 )");
@@ -190,6 +191,7 @@ public class ScheduleManagementView {
 					movieScheduleList();
 					break;
 				case 2:
+					movieScheduleSelect();
 					break;
 				default:
 					System.out.println("올바른 값을 입력하세요.");
@@ -221,11 +223,40 @@ public class ScheduleManagementView {
 	
 
 	public void movieScheduleSelect() {
-		
+		System.out.println();
+		System.out.println("영화의 id를 입력하세요.");
+		System.out.print(">> ");
+		int movieID = scan.nextInt();
+		scan.nextLine();
+		MovieVO mvo = movieManageDAO.movieSelect(movieID);
+		if (mvo != null) {
+			System.out.println();
+			System.out.println("ID\t영화 제목\t감독\t배우\t상영등급\t개봉일\t러닝타임\t줄거리");
+			System.out.println(
+					"-------------------------------------------------------------------------------------------");
+			System.out.print(mvo.getMovieID());
+			System.out.print("\t" + mvo.getMovieTitle());
+			System.out.print("\t" + mvo.getMovieDirector());
+			System.out.print("\t" + mvo.getMovieActor());
+			System.out.print("\t" + mvo.getMovieAge());
+			System.out.print("\t" + mvo.getMovieOpenday().substring(0, 10));
+			System.out.print("\t" + mvo.getMovieRunningTime());
+			System.out.print("\t" + mvo.getMovieSummary());
+			System.out.println();
+			System.out.println("상영 일정에 등록하시겠습니까??");
+			System.out.println("(N 선택시 상위메뉴로 이동)");
+			System.out.print(">> 선택 ( Y  /  N ) : ");
+			String yes = scan.nextLine();
+			if (yes.equals("Y") || yes.equals("y")) {
+				scheduleRegister(movieID);
+			} else if (yes.equals("N") || yes.equals("n")) {
+				Exit.exit();
+			} else {
+				System.out.println("알맞은 값을 입력하세요.");
+			}
+		}
 	}
 	
-	
-
 	public void movieScheduleList() {
 		System.out.println();
 		System.out.println("----------------------------- 상영 일정 -----------------------------");
@@ -253,18 +284,18 @@ public class ScheduleManagementView {
 		System.out.print(">> ");
 		String time = scan.nextLine();
 		
-		SimpleDateFormat dateFormat = new SimpleDateFormat("YY/MM/DD");
-		SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH24:MI");
-		Date date2 = null;
-		Date time2 = null;
-		try {
-		    //Parsing the String
-		    date2 = dateFormat.parse(date);
-		    time2 = dateFormat2.parse(time);
-		} catch (ParseException e) {
-		    // TODO Auto-generated catch block
-		    e.printStackTrace();
-		}
+//		SimpleDateFormat dateFormat = new SimpleDateFormat("YY/MM/DD");
+//		SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH24:MI");
+//		Date date2 = null;
+//		Date time2 = null;
+//		try {
+//		    //Parsing the String
+//		    date2 = dateFormat.parse(date);
+//		    time2 = dateFormat2.parse(time);
+//		} catch (ParseException e) {
+//		    // TODO Auto-generated catch block
+//		    e.printStackTrace();
+//		}
 		
 		MovieScheduleVO2 msvo2 = new MovieScheduleVO2(date, time, movieID);
 		

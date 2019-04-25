@@ -91,12 +91,14 @@ public class ScheduleManagementDAO {
 
 	public boolean scheduleResister(MovieScheduleVO2 msvo2) {
 		String query = "INSERT INTO movie_schedule " 
-					 + "Values(movie_schedule_seq.nextval, ?, ?, ?)";
+					 + "Values(movie_schedule_seq.nextval, "
+					 + "TO_DATE(?,'YY/MM/DD), TO_DATE(?, 'HH24:MI'), ?)";
+		System.out.println(query);
 		try {
 			pstmt = DBconnect.getConnection().prepareStatement(query); // 미리 쿼리를 설정
-			pstmt.setDate(1, msvo.getScreenDate());
-			pstmt.setDate(2, msvo.getScreenTime());
-			pstmt.setInt(3, msvo.getMovieID());
+			pstmt.setString(1, msvo2.getScreenDate());
+			pstmt.setString(2, msvo2.getScreenTime());
+			pstmt.setInt(3, msvo2.getMovieID());
 
 			int result = pstmt.executeUpdate(); // 쿼리 실행 (미리 설정해 놓은 pstmt로 쿼리 실행)
 			if (result == 1) { // 변경 성공
@@ -118,12 +120,13 @@ public class ScheduleManagementDAO {
 	                 + "SET screen_date = TO_DATE(? , 'YY/MM/DD'), "
 	                 + "screen_time = TO_DATE(?, 'HH24:MI) "
 	                 + "WHERE screen_no = " + movieNo;
+		msvo2 = new MovieScheduleVO2();
 		
 		try {
-			msvo2 = new MovieScheduleVO2();
 			pstmt = DBconnect.getConnection().prepareStatement(query); // 미리 쿼리를 설정
 			pstmt.setString(1, msvo2.getScreenDate());
 			pstmt.setString(2, msvo2.getScreenTime());
+			
 			System.out.println(query);
 			int result = pstmt.executeUpdate(); // 쿼리 실행 (미리 설정해 놓은 pstmt로 쿼리 실행)
 			if (result == 1) { // 변경 성공
