@@ -62,21 +62,19 @@ public class MovieScheduleDAO {
 		
 		String query = "select screen_time from (select * from movie_schedule where movie_id = ?) "
 											   + "where screen_date = ?";
-//		MovieScheduleVO msvo = null;
+
 		List<MovieScheduleVO> mslist = new ArrayList<MovieScheduleVO>(); // 객체 생성
 		try {
 			pstmt = DBconnect.getConnection().prepareStatement(query);
 			pstmt.setInt(1, movieID);
 			pstmt.setString(2, input);
 
-			rs = pstmt.executeQuery(); // 쿼리 실행
+			rs = pstmt.executeQuery(); 
 			
-			while (rs.next()) { // 쿼리 실행 결과가 있으면
+			while (rs.next()) { 
 				MovieScheduleVO msvo = new MovieScheduleVO();
-				// rs의 값을 msvo에 저장
-				msvo.setScreenTime(rs.getTime("Screen_time"));
-//				System.out.println("rsok");
-				
+				msvo.setScreenTime(rs.getDate("Screen_time"));
+
 				mslist.add(msvo);
 				
 			}

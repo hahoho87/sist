@@ -14,6 +14,7 @@ public class MovieManagementView {
 	MovieManageDAO movieManageDAO = new MovieManageDAO();
 
 	public void movieManagement() {
+		System.out.println();
 		System.out.println("------ 영화 관리 ------");
 		System.out.println(" 1. 영화 조회");
 		System.out.println(" 2. 영화 등록");
@@ -38,7 +39,7 @@ public class MovieManagementView {
 	}// end movieManagement
 
 	public void movieSearchList() {
-
+		System.out.println();
 		System.out.println("찾으실 영화의 제목을 입력하세요.");
 		System.out.print(">> ");
 		String title = scan.nextLine();
@@ -94,7 +95,7 @@ public class MovieManagementView {
 					"-------------------------------------------------------------------------------------------");
 			System.out.print(mvo.getMovieID());
 			System.out.print("\t" + mvo.getMovieTitle());
-			System.out.print("\t" + mvo.getMovieDirector());
+			System.out.print("\t\t" + mvo.getMovieDirector());
 			System.out.print("\t" + mvo.getMovieActor());
 			System.out.print("\t" + mvo.getMovieAge());
 			System.out.print("\t" + mvo.getMovieOpenday().substring(0, 10));
@@ -136,9 +137,10 @@ public class MovieManagementView {
 		
 		if (result == true) {
 			System.out.println("삭제 완료");
+			System.out.println();
 			System.out.println("상위메뉴로 이동하시겠습니까?");
 			System.out.println("( N 선택시 프로그램 종료 )");
-			System.out.println(">> 선택 ( Y  /  N ) : ");
+			System.out.print(">> 선택 ( Y  /  N ) : ");
 			String input = scan.nextLine();
 			if (input.equals("Y") || input.equals("y")) {
 				movieManagement();
@@ -150,9 +152,10 @@ public class MovieManagementView {
 			}
 
 		} else {
+			System.out.println();
 			System.out.println("상위메뉴로 이동하시겠습니까?");
 			System.out.println("( N 선택시 프로그램 종료 )");
-			System.out.println(">> 선택 ( Y  /  N ) : ");
+			System.out.print(">> 선택 ( Y  /  N ) : ");
 			String input = scan.nextLine();
 			if (input.equals("Y") || input.equals("y")) {
 				movieManagement();
@@ -166,39 +169,39 @@ public class MovieManagementView {
 	}
 
 	public void movieUpdate(int movieID) {
-		boolean result = movieManageDAO.movieDelete(movieID);
+		System.out.println();
+		System.out.println("------ 영화 변경 ------");
+		System.out.print("  제목   : ");
+		String title = scan.nextLine();
+		System.out.print("  감독   : ");
+		String director = scan.nextLine();
+		System.out.print("  주연   : ");
+		String actor = scan.nextLine();
+		System.out.print("  관람 등급   : ");
+		int age = scan.nextInt();
+		scan.nextLine();
+		System.out.print("  개봉일(숫자만 입력)   : ");
+		String openday = scan.nextLine();
+		System.out.print("  러닝타임(분)   : ");
+		int runningTime = scan.nextInt();
+		scan.nextLine();
+		System.out.print("  줄거리 (500자 이내)  : ");
+		String summary = scan.nextLine();
+		MovieVO mvo = new MovieVO(movieID, title, director, actor, age, openday, runningTime, summary);
+		boolean result = movieManageDAO.movieUpdate(mvo);
 		if (result == true) {
-			System.out.println("------ 영화 변경 ------");
-			System.out.print("  제목   : ");
-			String title = scan.nextLine();
-			System.out.print("  감독   : ");
-			String director = scan.nextLine();
-			System.out.print("  주연   : ");
-			String actor = scan.nextLine();
-			System.out.print("  관람 등급   : ");
-			int age = scan.nextInt();
-			scan.nextLine();
-			System.out.print("  개봉일(숫자만 입력)   : ");
-			String openday = scan.nextLine();
-			System.out.print("  러닝타임(분)   : ");
-			int runningTime = scan.nextInt();
-			scan.nextLine();
-			System.out.print("  줄거리 (500자 이내)  : ");
-			String summary = scan.nextLine();
-			MovieVO mvo = new MovieVO(title, director, actor, age, openday, runningTime, summary);
-
-			movieManageDAO.movieRegist(mvo);
+			movieManageDAO.movieUpdate(mvo);
 			if (mvo != null) { // 등록 성공
 				System.out.println("변경이 완료되었습니다.");
-				System.out.println("종료 하시겠습니까?");
-				System.out.println("( N 선택시 상위메뉴로 이동");
+				System.out.println("상위메뉴로 이동하시겠습니까?");
+				System.out.println("( N 선택시 프로그램 종료 )");
 				System.out.print(">> 선택 ( Y  /  N ) : ");
 				String input = scan.nextLine();
 				while (true) {
 					if (input.equals("Y") || input.equals("y")) {
-						Exit.exit();
-					} else if (input.equals("N") || input.equals("n")) {
 						movieManagement();
+					} else if (input.equals("N") || input.equals("n")) {
+						Exit.exit();
 					} else {
 						System.out.println("Y 혹은 N 을 입력해주세요.");
 					}

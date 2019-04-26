@@ -1,22 +1,13 @@
 package view;
 
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Scanner;
 
-import common.DBconnect;
-import dao.AdminDAO;
-import dao.CustomerDAO;
-
+import common.Exit;
 
 public class Main {
-	private AdminDAO admindao;
 	private Scanner scan;
-	private boolean loginChk;
-	private DBconnect dbcon;
 
 	public Main() {
-		admindao = new AdminDAO();
 		scan = new Scanner(System.in);
 	}
 
@@ -29,24 +20,26 @@ public class Main {
 		CustomerLogin customerlogin = new CustomerLogin();
 		AdminMenu adminmenu = new AdminMenu();
 		
-		System.out.println("-----------------------------");
+		System.out.println("--------------------------------------");
 		System.out.println("     ※ 쌍용영화관에 오신 것을 환영합니다 ※ ");
-		System.out.println("-----------------------------");
+		System.out.println("--------------------------------------");
 //		System.out.println("(관리자이시면 관리자 로그인을, \n  회원이시면 회원 로그인을 선택해주세요.)");
 		System.out.println("1.관리자 로그인   2.회원 로그인  3.종료 ");
-		System.out.println("-----------------------------");
+		System.out.println("--------------------------------------");
 		System.out.print(">> 선택 : ");
 		int input = scan.nextInt();
 
 		switch (input) {
-		case 1 : adminmenu.login(); 
+		
+		case 1 : 
+			adminmenu.login(); 
 			break;
 		case 2 :
 			customerlogin.select();
 			break;
 		case 3 :
 			System.out.println(">> 프로그램 종료");
-			System.exit(0);
+			Exit.exit();
 		default:
 			System.out.println("1 - 3 까지의 숫자를 입력하세요.");
 			UserSelect();

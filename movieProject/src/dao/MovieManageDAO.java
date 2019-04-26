@@ -109,7 +109,6 @@ public class MovieManageDAO {
 		String query = "DELETE FROM movie WHERE movie_id = " + movieID;
 		try {
 			int result = stmt.executeUpdate(query);
-			System.out.println(result);
 			if (result == 1) { // 잘 삭제가 되었으면
 				DBconnect.getConnection().commit();// db에 반영
 				return true; // true값 반환
@@ -127,9 +126,11 @@ public class MovieManageDAO {
 		return false;
 	}// end delete
 
-	public boolean movieUpdate(int movieNo) {
+	public boolean movieUpdate(MovieVO mvo) {
 		String query = "UPDATE movie SET movie_title = ?, movie_director = ?, "
-				+ "movie_actor = ?, movie_age = ?, movie_openday = ?, " + "movie_running_time = ?, movie_summary = ? ";
+				+ "movie_actor = ?, movie_age = ?, movie_openday = ?, " 
+				+ "movie_running_time = ?, movie_summary = ? "
+				+ "WHERE movie_id = ?";
 		try {
 			pstmt = DBconnect.getConnection().prepareStatement(query); // 미리 쿼리를 설정
 			pstmt.setString(1, mvo.getMovieTitle()); // 첫번째 물음표를 1로 설정하고 email을 받음
@@ -139,7 +140,7 @@ public class MovieManageDAO {
 			pstmt.setString(5, mvo.getMovieOpenday());
 			pstmt.setInt(6, mvo.getMovieRunningTime());
 			pstmt.setString(7, mvo.getMovieSummary());
-
+			pstmt.setInt(8, mvo.getMovieID());
 			int result = pstmt.executeUpdate(); // 쿼리 실행 (미리 설정해 놓은 pstmt로 쿼리 실행)
 			if (result == 1) { // 변경 성공
 				DBconnect.getConnection().commit();

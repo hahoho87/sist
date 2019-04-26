@@ -31,6 +31,12 @@ public class MovieScheduleVO2 {
 		this.screenTime = screenTime;
 	}
 	
+	public MovieScheduleVO2(int screenNo, String screenDate, String screenTime) {
+		this.screenNo = screenNo;
+		this.screenDate = screenDate;
+		this.screenTime = screenTime;
+	}
+	
 
 	public int getScreenNo() {
 		return screenNo;

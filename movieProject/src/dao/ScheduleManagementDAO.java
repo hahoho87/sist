@@ -18,7 +18,7 @@ import vo.MovieScheduleVO2;
 import dao.MovieManageDAO;
 
 public class ScheduleManagementDAO {
-	Statement stmt; // SQL 수행을 위한 객체
+	Statement stmt; 
 	ResultSet rs;
 	PreparedStatement pstmt;
 	CustomerVO cvo = null;
@@ -61,10 +61,11 @@ public class ScheduleManagementDAO {
 	}
 
 	public List<MovieScheduleListVO> movieScheduleList() {
-		String query = "SELECT ms.screen_no, ms.screen_date, ms.screen_time, "
-				+ "(ms.screen_time+(m.movie_running_time/1440)), " + "m.movie_id, m.movie_title "
-				+ "FROM movie_schedule ms, movie m " + "WHERE ms.movie_id = m.movie_id "
-				+ "ORDER BY 2";
+		String query = "SELECT ms.screen_no, ms.screen_date, "
+				     + "ms.screen_time, "
+				     + "(ms.screen_time+(m.movie_running_time/1440)), " + "m.movie_id, m.movie_title "
+				     + "FROM movie_schedule ms, movie m " + "WHERE ms.movie_id = m.movie_id "
+				     + "ORDER BY 2";
 
 		List<MovieScheduleListVO> scheduleList = new ArrayList<MovieScheduleListVO>();
 		mslvo = new MovieScheduleListVO();
@@ -91,19 +92,17 @@ public class ScheduleManagementDAO {
 
 	public boolean scheduleResister(MovieScheduleVO2 msvo2) {
 		String query = "INSERT INTO movie_schedule " 
-					 + "Values(movie_schedule_seq.nextval, "
-					 + "TO_DATE(?,'YY/MM/DD), TO_DATE(?, 'HH24:MI'), ?)";
-		System.out.println(query);
-		try {
-			pstmt = DBconnect.getConnection().prepareStatement(query); // 미리 쿼리를 설정
+					 + "VALUES(movie_schedule_seq.nextval, "
+					 + "TO_DATE(?,'YY/MM/DD'), TO_DATE(?, 'HH24:MI'), ?)";
+			try {
+			pstmt = DBconnect.getConnection().prepareStatement(query);
 			pstmt.setString(1, msvo2.getScreenDate());
 			pstmt.setString(2, msvo2.getScreenTime());
 			pstmt.setInt(3, msvo2.getMovieID());
-
-			int result = pstmt.executeUpdate(); // 쿼리 실행 (미리 설정해 놓은 pstmt로 쿼리 실행)
-			if (result == 1) { // 변경 성공
+			int result = pstmt.executeUpdate(); 
+			if (result == 1) { 
 				DBconnect.getConnection().commit();
-				return true; // true값 반환
+				return true; 
 			} else {
 				DBconnect.getConnection().rollback();
 			}
@@ -115,20 +114,17 @@ public class ScheduleManagementDAO {
 		return false;
 	}
 
-	public boolean movieScheduleUpdate(int movieNo) {
+	public boolean movieScheduleUpdate(MovieScheduleVO2 msvo2) {
 		String query = "UPDATE MOVIE_SCHEDULE "
-	                 + "SET screen_date = TO_DATE(? , 'YY/MM/DD'), "
-	                 + "screen_time = TO_DATE(?, 'HH24:MI) "
-	                 + "WHERE screen_no = " + movieNo;
-		msvo2 = new MovieScheduleVO2();
-		
+	                 + "SET screen_date = TO_DATE( ? , 'YY/MM/DD'), "
+	                 + "screen_time = TO_DATE( ?, 'HH24:MI') "
+	                 + "WHERE screen_no = ? ";		
 		try {
 			pstmt = DBconnect.getConnection().prepareStatement(query); // 미리 쿼리를 설정
 			pstmt.setString(1, msvo2.getScreenDate());
 			pstmt.setString(2, msvo2.getScreenTime());
-			
-			System.out.println(query);
-			int result = pstmt.executeUpdate(); // 쿼리 실행 (미리 설정해 놓은 pstmt로 쿼리 실행)
+			pstmt.setInt(3, msvo2.getScreenNo());
+			int result = pstmt.executeUpdate(); 
 			if (result == 1) { // 변경 성공
 				DBconnect.getConnection().commit();
 				return true; // true값 반환
@@ -147,12 +143,11 @@ public class ScheduleManagementDAO {
 		String query = "DELETE FROM movie_schedule WHERE screen_no = " + screenNo;
 		try {
 			int result = stmt.executeUpdate(query);
-			System.out.println(result);
-			if (result == 1) { // 잘 삭제가 되었으면
-				DBconnect.getConnection().commit();// db에 반영
-				return true; // true값 반환
+			if (result == 1) { 
+				DBconnect.getConnection().commit();
+				return true; 
 			} else {
-				DBconnect.getConnection().rollback(); // 쿼리 실행 취소
+				DBconnect.getConnection().rollback(); 
 			}
 		} catch (SQLIntegrityConstraintViolationException e) {
 			System.out.println("예매가 완료된 영화는 상영 취소가 불가능합니다.");

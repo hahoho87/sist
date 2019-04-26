@@ -1,24 +1,25 @@
 package vo;
 
-public class NowTicketVO {
+import java.util.List;
+
+public class MovieCancleVO {
 
 	private String movieTitle;
 	private String screenDate;
-	private String seatNo;
-	private int screenNo;
+	private int movieID;
+	private int bookingNO;
 	
-	
-	public String getSeatNo() {
-		return seatNo;
+	public int getBookingNO() {
+		return bookingNO;
 	}
-	public void setSeatNo(String seatNo) {
-		this.seatNo = seatNo;
+	public void setBookingNO(int bookingNO) {
+		this.bookingNO = bookingNO;
 	}
-	public int getScreenNo() {
-		return screenNo;
+	public int getMovieID() {
+		return movieID;
 	}
-	public void setScreenNo(int screenNo) {
-		this.screenNo = screenNo;
+	public void setMovieID(int movieID) {
+		this.movieID = movieID;
 	}
 	public String getMovieTitle() {
 		return movieTitle;
@@ -32,5 +33,6 @@ public class NowTicketVO {
 	public void setScreenDate(String screenDate) {
 		this.screenDate = screenDate;
 	}
+
 	
 }

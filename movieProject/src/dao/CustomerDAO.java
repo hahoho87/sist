@@ -1,8 +1,5 @@
 package dao;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -14,15 +11,14 @@ import vo.CustomerVO;
 
 public class CustomerDAO {
 
-	Statement stmt; // SQL 수행을 위한 객체
-	ResultSet rs;	//SELECT 결과 저장 객체
-	PreparedStatement pstmt;	//SQL 수행을 위한 객체
+	Statement stmt; 
+	ResultSet rs;	
+	PreparedStatement pstmt;
 
 	public CustomerDAO() {
 		try {
 			stmt = DBconnect.getConnection().createStatement();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}// end 생성자
@@ -30,8 +26,8 @@ public class CustomerDAO {
 	public boolean login(String id, String pw) {
 		String query = "SELECT * FROM customers " + "WHERE customer_id = '" + id + "' AND customer_pw = '" + pw + "'";
 		try {
-			rs = stmt.executeQuery(query); // 쿼리 실행
-			if (rs.next()) { // 읽어 올 값이 있으면(로그인이 성공하면)
+			rs = stmt.executeQuery(query); 
+			if (rs.next()) {
 				return true;
 			} else {
 				return false;
@@ -58,8 +54,8 @@ public class CustomerDAO {
 	         pstmt.setString(3, cvo.getCustomerName());
 	         pstmt.setString(4, cvo.getCustomerPhone());
 	         pstmt.setString(5, cvo.getCustomerBirth());
-	         int result = pstmt.executeUpdate(); //쿼리 실행
-	         if(result == 1) {   //등록 성공
+	         int result = pstmt.executeUpdate(); 
+	         if(result == 1) {   
 	        	 DBconnect.getConnection().commit();
 	            return true;      
 	         } else {
@@ -71,10 +67,7 @@ public class CustomerDAO {
 	         e.printStackTrace();
 	      }
 	      return false;
-	   }
-	   
-
-
+	   }//end insert
 }
 
 

@@ -33,6 +33,7 @@ public class BillingManagementView {
 	}
 
 	public void paymentConfirm(int bookingNo) {
+		System.out.println();
 		System.out.println("결제 완료 상태로 변경하시겠습니까?");
 		System.out.print(">> ( Y  /  N ) : ");
 		String yes = scan.nextLine();
@@ -74,5 +75,4 @@ public class BillingManagementView {
 		BillingManagementView billingManageView = new BillingManagementView();
 		billingManageView.searchBookingNumber();
 	}
-
 }

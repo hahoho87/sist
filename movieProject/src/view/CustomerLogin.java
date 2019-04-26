@@ -114,8 +114,9 @@ public class CustomerLogin {
 //		common.DBconnect.getConnection();
 
 		switch (input) {
-		case 1:
+		case 1:MovieCheck.main();
 //			예매 내역 확인();
+		
 			break;
 		case 2:
 //			영화 예매();

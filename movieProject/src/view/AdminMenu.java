@@ -3,18 +3,13 @@ package view;
 import java.util.Scanner;
 
 import dao.AdminDAO;
-import dao.MovieManageDAO;
-import dao.BillingManageDAO;
-import dao.MovieScheduleDAO;
 
 public class AdminMenu {
 	private AdminDAO adminDAO;
 	private Scanner scan;
-	private MovieManageDAO movieManageDAO;
 
 	public AdminMenu() {
 		adminDAO = new AdminDAO();
-		movieManageDAO = new MovieManageDAO();
 		scan = new Scanner(System.in);
 	}
 
@@ -24,6 +19,7 @@ public class AdminMenu {
 	}
 
 	public void login() {
+		System.out.println();
 		System.out.println("---- Admin Login ----");
 		System.out.print("  id   : ");
 		String id = scan.nextLine();
@@ -41,12 +37,12 @@ public class AdminMenu {
 	}
 
 	public void menu() {
+		System.out.println();
 		System.out.println(" --- Admin Menu ---");
 		System.out.println(" 1. 회원 관리");
 		System.out.println(" 2. 영화 관리");
 		System.out.println(" 3. 상영 정보 관리");
 		System.out.println(" 4. 예매 관리");
-		System.out.println();
 		System.out.print(">> 선택 : ");
 		int input = scan.nextInt();
 		common.DBconnect.getConnection();
@@ -69,7 +65,4 @@ public class AdminMenu {
 			menu();
 		}
 	}
-
-	
-
 }

@@ -30,7 +30,8 @@ public class NowTicketDAO {
            "select a.movie_title, to_date(b.screen_date, 'YY/MM/DD') "
            + "from movie a, movie_schedule b"
            + " where a.movie_id = b.movie_id"
-           + " and screen_date >= '19/04/24' ";
+           + " and screen_date > sysdate ";
+         
          
          
       

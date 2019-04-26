@@ -1,35 +1,30 @@
 package view;
 
-import java.sql.Date;
-import java.sql.Time;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Scanner;
 
 import common.Exit;
-import vo.MovieVO;
 import dao.AdminDAO;
 import dao.MovieManageDAO;
-import dao.MovieScheduleDAO;
 import dao.ScheduleManagementDAO;
 import vo.MovieScheduleListVO;
-import vo.MovieScheduleVO;
 import vo.MovieScheduleVO2;
+import vo.MovieVO;
 
 public class ScheduleManagementView {
 	AdminDAO adminDAO = new AdminDAO();
 	MovieManageDAO movieManageDAO = new MovieManageDAO();
 	ScheduleManagementDAO scheduleManagementDAO = new ScheduleManagementDAO();
 	MovieManagementView movieManage = new MovieManagementView();
-
+	MovieScheduleVO2 msvo2 = new MovieScheduleVO2();
+	
 	Scanner scan = new Scanner(System.in);
 
 	public void menu() {
+		System.out.println();
 		System.out.println("------ 상영 정보 관리 ------");
 		System.out.println(" 1. 상영 영화 조회");
 		System.out.println(" 2. 상영 영화 등록");
-		System.out.println();
 		System.out.print(" >> 선택 : ");
 		int input = scan.nextInt();
 		scan.nextLine();
@@ -78,24 +73,23 @@ public class ScheduleManagementView {
 		}
 	}
 
-	public void movieScheduleUpdate() {
-		int screenNo = 0;
-		boolean result = scheduleManagementDAO.movieScheduleUpdate(screenNo);
-		if (result == true) {
-			System.out.println("변경을 원하는 상영 일정 번호를 입력하세요.");
-			System.out.print(">> ");
-			screenNo = scan.nextInt();
-			scan.nextLine();
-			System.out.println("변경할 상영 일자를 입력하세요.(YYMMDD)");
-			System.out.print(">> ");
-			String date = scan.nextLine();
-			System.out.println("변경할 상영 일시를 입력하세요.(HH24:MI)");
-			System.out.print(">> ");
-			String time = scan.nextLine();
-			MovieScheduleVO2 msvo2 = new MovieScheduleVO2(date, time, screenNo);
-			
-			scheduleManagementDAO.movieScheduleUpdate(screenNo);
-			System.out.println("변경 완료");
+	public void movieScheduleUpdate() {		
+		System.out.println();
+		System.out.println("변경을 원하는 상영 일정 번호를 입력하세요.");
+		System.out.print(">> ");
+		int screenNo = scan.nextInt();
+		scan.nextLine();
+		System.out.println("변경할 상영 일자를 입력하세요.(YYMMDD)");
+		System.out.print(">> ");
+		String date = scan.nextLine();
+		System.out.println("변경할 상영 일시를 입력하세요.(HH24:MI)");
+		System.out.print(">> ");
+		String time = scan.nextLine();
+		msvo2 = new MovieScheduleVO2(screenNo, date, time);		
+		boolean result = scheduleManagementDAO.movieScheduleUpdate(msvo2);
+		if (result == true) {		
+			System.out.println();
+			System.out.println("변경이 완료되었습니다.");
 			System.out.println("상위메뉴로 이동하시겠습니까?");
 			System.out.println("( N 선택시 프로그램 종료 )");
 			System.out.println(">> 선택 ( Y  /  N ) : ");
@@ -133,9 +127,10 @@ public class ScheduleManagementView {
 		boolean result = scheduleManagementDAO.scheduleDelete(input);
 		if (result == true) {
 			System.out.println("삭제 완료");
+			System.out.println();
 			System.out.println("상위메뉴로 이동하시겠습니까?");
 			System.out.println("( N 선택시 프로그램 종료 )");
-			System.out.println(">> 선택 ( Y  /  N ) : ");
+			System.out.print(">> 선택 ( Y  /  N ) : ");
 			String yes = scan.nextLine();
 			if (yes.equals("Y") || yes.equals("y")) {
 				menu();
@@ -149,7 +144,7 @@ public class ScheduleManagementView {
 		} else {  
 			System.out.println("상위메뉴로 이동하시겠습니까?");
 			System.out.println("( N 선택시 프로그램 종료 )");
-			System.out.println(">> 선택 ( Y  /  N ) : ");
+			System.out.print(">> 선택 ( Y  /  N ) : ");
 			String yes = scan.nextLine();
 			if (yes.equals("Y") || yes.equals("y")) {
 				menu();
@@ -163,7 +158,8 @@ public class ScheduleManagementView {
 	}
 
 	public void movieSchedulRegistList() {
-		System.out.println("------ 상영 영화 조회 ------");
+		System.out.println();
+		System.out.println("------ 상영 영화 등록 ------");
 		System.out.println("영화의 제목을 입력하세요. ");
 		System.out.print(">> ");
 		String title = scan.nextLine();
@@ -181,22 +177,11 @@ public class ScheduleManagementView {
 				System.out.println();
 
 				System.out.println();
-				System.out.println("1. 상영 일정 목록     2. 등록");
+				System.out.println("등록할 영화의 ID를 입력하세요.");
 				System.out.print(">> 선택 : ");
-				int input = scan.nextInt();
+				int movieID = scan.nextInt();
 				scan.nextLine();
-
-				switch (input) {
-				case 1:
-					movieScheduleList();
-					break;
-				case 2:
-					movieScheduleSelect();
-					break;
-				default:
-					System.out.println("올바른 값을 입력하세요.");
-					movieSchedulRegistList();
-				}
+				scheduleRegister(movieID);	
 			}
 		} else {
 			System.out.println("DB에 해당 영화가 존재하지 않습니다.");
@@ -220,46 +205,10 @@ public class ScheduleManagementView {
 			}
 		}
 	}// end movieSchedulRegistList
-	
-
-	public void movieScheduleSelect() {
-		System.out.println();
-		System.out.println("영화의 id를 입력하세요.");
-		System.out.print(">> ");
-		int movieID = scan.nextInt();
-		scan.nextLine();
-		MovieVO mvo = movieManageDAO.movieSelect(movieID);
-		if (mvo != null) {
-			System.out.println();
-			System.out.println("ID\t영화 제목\t감독\t배우\t상영등급\t개봉일\t러닝타임\t줄거리");
-			System.out.println(
-					"-------------------------------------------------------------------------------------------");
-			System.out.print(mvo.getMovieID());
-			System.out.print("\t" + mvo.getMovieTitle());
-			System.out.print("\t" + mvo.getMovieDirector());
-			System.out.print("\t" + mvo.getMovieActor());
-			System.out.print("\t" + mvo.getMovieAge());
-			System.out.print("\t" + mvo.getMovieOpenday().substring(0, 10));
-			System.out.print("\t" + mvo.getMovieRunningTime());
-			System.out.print("\t" + mvo.getMovieSummary());
-			System.out.println();
-			System.out.println("상영 일정에 등록하시겠습니까??");
-			System.out.println("(N 선택시 상위메뉴로 이동)");
-			System.out.print(">> 선택 ( Y  /  N ) : ");
-			String yes = scan.nextLine();
-			if (yes.equals("Y") || yes.equals("y")) {
-				scheduleRegister(movieID);
-			} else if (yes.equals("N") || yes.equals("n")) {
-				Exit.exit();
-			} else {
-				System.out.println("알맞은 값을 입력하세요.");
-			}
-		}
-	}
-	
+		
 	public void movieScheduleList() {
 		System.out.println();
-		System.out.println("----------------------------- 상영 일정 -----------------------------");
+		System.out.println("-------- 상영 일정 ------------------------------------------------------------");
 		List<MovieScheduleListVO> scheduleList = scheduleManagementDAO.movieScheduleList();
 
 		System.out.println("상영일정번호\t상영일자\t\t시작시간\t\t종료시간\t\t영화ID\t영화제목");
@@ -276,6 +225,9 @@ public class ScheduleManagementView {
 	}
 	
 	public void scheduleRegister(int movieID) {
+		System.out.println();
+		movieScheduleList();
+		System.out.println();
 		System.out.println("------ 상영 등록 ------");
 		System.out.println("상영 일자를 입력하세요.(YYMMDD)");
 		System.out.print(">> ");
@@ -283,26 +235,12 @@ public class ScheduleManagementView {
 		System.out.println("상영 일시를 입력하세요.(HH24:MI)");
 		System.out.print(">> ");
 		String time = scan.nextLine();
-		
-//		SimpleDateFormat dateFormat = new SimpleDateFormat("YY/MM/DD");
-//		SimpleDateFormat dateFormat2 = new SimpleDateFormat("HH24:MI");
-//		Date date2 = null;
-//		Date time2 = null;
-//		try {
-//		    //Parsing the String
-//		    date2 = dateFormat.parse(date);
-//		    time2 = dateFormat2.parse(time);
-//		} catch (ParseException e) {
-//		    // TODO Auto-generated catch block
-//		    e.printStackTrace();
-//		}
-		
 		MovieScheduleVO2 msvo2 = new MovieScheduleVO2(date, time, movieID);
-		
 		scheduleManagementDAO.scheduleResister(msvo2);
 
 		if (msvo2 != null) { // 등록 성공
 			System.out.println("등록이 완료되었습니다.");
+			System.out.println();
 			System.out.println("상위메뉴로 이동하시겠습니까?");
 			System.out.println("( N 선택시 종료 )");
 			System.out.print(">> 선택 ( Y  /  N ) : ");

@@ -14,7 +14,7 @@ public class MembershipManageView {
 
 	public void membershipManagement() {
 		System.out.println();
-		System.out.println("         ------ 회원 관리 ------");
+		System.out.println("------- 회원 관리 -----------------------------------");
 		List<CustomerVO> customerList = adminDAO.customerAll();
 		System.out.println("회원번호\t아이디\t이름\t전화번호\t\t생년월일");
 		for (CustomerVO customerVO : customerList) {

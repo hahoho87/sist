@@ -11,7 +11,7 @@ public class MyMovie {
    public static void main() {
 	   HistoryDAO hdao = new HistoryDAO();
 	   List<HistoryVO> historyList = hdao.historylist();
-      System.out.println("=== 2.내가 본 영화 ===");
+      System.out.println("==== 2.내가 본 영화 ====");
       
       for (HistoryVO historyVO : historyList) {
     	  System.out.print("영화 제목 : ");

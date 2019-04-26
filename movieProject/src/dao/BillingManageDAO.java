@@ -56,10 +56,9 @@ public class BillingManageDAO {
 		
 		try {
 			pstmt = DBconnect.getConnection().prepareStatement(query);
-			
 			pstmt.setInt(2, bookingNo);
 			pstmt.setString(1, paymentConfirm);
-
+			
 			int result = pstmt.executeUpdate();
 			if (result == 1) { // 변경 성공
 				DBconnect.getConnection().commit();

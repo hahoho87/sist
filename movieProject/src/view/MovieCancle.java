@@ -1,30 +1,47 @@
 package view;
 
+import java.util.List;
 import java.util.Scanner;
 
-public class MovieCancle {
 
+import vo.MovieCancleVO;
+import dao.MovieCancleDAO;
+
+public class MovieCancle {
+	
+	
 	public static void main() {
-		System.out.println("=== 3.예매 취소 ===");
-		System.out.println("현재 예매한 영화");
+		
 		//현재 예매한 영화목록 출력
 		
-		System.out.println("취소할 영화의 번호를 선택해주세요.");
-		//취소번호 입력받기
-		System.out.println("---취소가 완료되었습니다.---");
+		MovieCancleDAO cdao = new MovieCancleDAO();
+		List<MovieCancleVO> moviecancleList = cdao.moviecancleList();
 		
-		Scanner sc = new Scanner(System.in);
+		System.out.println("======= 3.예매 취소 =======");
+		System.out.println(" -----예매 취소 가능 영화-----");
 		
-		System.out.println("원하는 번호를 눌러주세요.");
-		System.out.println("1. 예매 내역 확인메뉴로 돌아가기");
-		System.out.println("2. 예매하기");
-		System.out.println("3. 시스템 종료");
-		switch(sc.nextLine()) {
-		case "1" : MovieCheck.main(); break;
-		case "2" : MovieSelect.main();
-		case "3" : System.out.println("프로그램 종료"); System.exit(0);
-		default : break;
+		for(MovieCancleVO moviecancleVO : moviecancleList) {
+			
+			System.out.print("예매 번호 : ");
+			System.out.println(moviecancleVO.getBookingNO());
+			System.out.print("영화 제목 : ");
+			System.out.println(moviecancleVO.getMovieTitle());
+			System.out.print("관람예정일 : ");
+			System.out.println(moviecancleVO.getScreenDate());
+			System.out.println("------------------------");
 		}
-	}
+		System.out.print("취소를 진행하시겠습니까? (Y/N) ");
+		System.out.println("(N은 상위화면으로 이동)");
+		System.out.println(" >> 입력 : ");
+			
+		Scanner scan = new Scanner(System.in);
+		  String input = scan.nextLine();
+	         if (input.equals("Y") || input.equals("y")) {
+	            MovieCancle2.main();
+	         } else if (input.equals("N") || input.equals("n")) {
+	           MovieCheck.main();
 
+		
+	}
+}
 }

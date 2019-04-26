@@ -10,29 +10,21 @@ public class NowTicket {
 
 	public static void main() {
 		
+		
 		NowTicketDAO ndao = new NowTicketDAO();
 		List<NowTicketVO> nowticketList = ndao.nowticketlist();
 		
 		
 		System.out.println("=== 1.예매 현황 ====");
 		for(NowTicketVO nowticketVO : nowticketList) {
-			
-	
+		
 			System.out.print("영화 제목 : ");
 			System.out.println(nowticketVO.getMovieTitle());
 			System.out.print("관람예정일 : ");
 			System.out.println(nowticketVO.getScreenDate());
 			
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("===================");
