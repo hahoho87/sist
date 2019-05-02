@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Sign up</title>
+</head>
+
+<body>
+    <h3>---------------------------------------------<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;회원가입<br>
+        ---------------------------------------------</h3>
+    <form action="resultTest.html" method="get">
+        <ul>
+            <li>아이디&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:
+                <input type="text" name="id" maxlength="20" autofocus autocomplete="off">
+            </li>
+            <li>비밀번호 &nbsp;&nbsp;&nbsp;&nbsp;:
+                <input type="password" name="password" maxlength="20">
+            </li>
+            <li>이름 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: <input type="text" name="name" maxlength="20" autocomplete="off">
+            </li>
+            <li>핸드폰 번호 :
+                <select name="localNum">
+                    <option value="010" selected>010</option>
+                    <option value="011">011</option>
+                    <option value="017">017</option>
+                    <option value="018">018</option>
+                    <option value="019">019</option>
+                </select>
+                -
+                <input type="tel" name="midNumber" maxlength="4" size="3" autocomplete="off"> -
+                <input type="tel" name="lastNumber" maxlength="4" size="3" autocomplete="off">
+            </li>
+            <li>생년월일 &nbsp;&nbsp;&nbsp;&nbsp;:
+                <input type="date" name="birth" value="1990-01-01">
+            </li>
+        </ul>
+        <blockquote>
+            <button type="submit">가입</button>
+            <button type="reset">다시 작성</button>
+            <button type="button" onclick="location.href='mainMenu.html'">초기 메뉴</button>
+        </blockquote>
+    </form>
+</body></html>

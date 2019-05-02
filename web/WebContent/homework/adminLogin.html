@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
 </head>
+
 <body>
-	<h3>
-		<strong>------ Admin Login ------</strong>
-	</h3>
-	<br> 관리자 전용 ID / PW를 입력해주세요.
-</body>
-</html>
+    <h3>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+        <strong>------ Admin Login ------</strong>
+    </h3>
+    <br> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;관리자 전용 ID / PW를 입력해주세요.
+    <form action="resultTest.html">
+        <ul>
+            <li>아이디 &nbsp;&nbsp;&nbsp;:
+                <input type="text" name="adminId" autofocus>
+            </li>
+            <li>비밀번호 :
+                <input type="password" name="adminPw" maxlength="20">
+            </li>
+            <button type="submit">로그인</button>
+            <button type="button" onclick="location.href='mainMenu.html'">초기메뉴</button>
+        </ul>
+        
+    </form>
+</body></html>
