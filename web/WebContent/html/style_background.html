@@ -1,0 +1,60 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>style_background.html</title>
+    <style>
+        body {
+            background-color: silver;
+            background-image: url("../images/hehe.jpg");
+            background-repeat: no-repeat;
+            background-size: 50%;
+            background-position: top right;
+        }
+        
+        h3 {
+            background-color: white;
+            padding: 10px;
+        }
+        
+        div {
+            margin-bottom: 10px;
+        }
+        #box1 {
+            background-color: rgba(0, 255, 255, 0.5);
+            padding: 10px;
+            border: 5px dotted red;
+            background-clip: border-box;
+        }
+        #box2 {
+            background-color: rgba(0, 255, 255, 0.5);
+            padding: 20px;
+            border: 5px dotted red;
+            background-image: url("../images/haha.jpg");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: contain;
+            background-origin: padding-box;
+            background-attachment: fixed;
+        }
+        #box3 {
+            background-color: rgba(0, 255, 255, 0.5);
+            padding: 10px;
+            border: 5px dotted red;
+            background-clip: content-box;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>background</h3>
+    <div id="box1">
+        color
+    </div>
+    <div id="box2">
+        color
+    </div>
+    <div id="box3">
+        color
+    </div>
+</body></html>
