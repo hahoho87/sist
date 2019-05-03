@@ -80,16 +80,61 @@
         #lowercase {
             text-transform: lowercase;
         }
-        
+
+        #space {
+            color: black;
+            font-weight: bold;
+            width: 100px;
+            background-color: gray;
+            padding-left: 10px;
+            white-space: pre;
+        }
+
+        #space2 {
+            color: white;
+            font-weight: bold;
+            width: 100px;
+            background-color: navy;
+            padding-left: 10px;
+            white-space: pre-line;
+        }
+
+        #space3 {
+            color: white;
+            font-weight: bold;
+            width: 100px;
+            background-color: firebrick;
+            padding-left: 10px;
+            white-space: pre-wrap;
+            word-spacing: 3px;
+        }
+
+        #space4 {
+            color: white;
+            font-weight: bold;
+            width: 100px;
+            background-color: forestgreen;
+            padding-left: 10px;
+            white-space: normal;
+            direction: rtl;
+        }
+
         .shadow {
             font-weight: bold;
             text-shadow: 3px 3px 3px gray;
         }
-        
+
         .shadow2 {
-            text-shadow: -1px -1px -1px gray;
+            font-weight: bold;
+            text-shadow: -1px -1px 1px gray;
         }
         
+        #align {
+            width: 100px;
+            background-color: maroon;
+            color: white;
+            padding-left: 10px;
+        }
     </style>
 </head>
 
@@ -112,12 +157,18 @@
             <span id="uppercase">uppercase</span>
             <span id="lowercase">LOWERCASE</span>
         </li>
+        <li id="space">white  -  space white-space white-space<br></li>
+        <li id="space2">white  -  space white-space white -s p a c e<br></li>
+        <li id="space3">white  -  space white-space white -s p a c e<br></li>
+        <li id="space4">white  -  space white-space white-space<br>
+        </li>
         <li class="shadow">
             text-shadow<br>
         </li>
         <li class="shadow2">
             text-shadow2<br>
         </li>
+        <li id="align">text-align left right center justify</li>
     </ol>
 
     <p class="size1">p 태그 - 구글 폰트 적용</p>
