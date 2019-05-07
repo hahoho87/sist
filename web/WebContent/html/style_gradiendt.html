@@ -1,0 +1,102 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>style_gradient.html</title>
+    <style>
+        div {
+            width: 300px;
+            height: 200px;
+            border: 1px solid gray;
+            margin: 10px;
+            color: white;
+            font-weight: bold;
+            padding: 10px;
+        }
+
+        .linear1 {
+            background: linear-gradient(blue, white);
+        }
+
+        .linear2 {
+            background: linear-gradient(to right bottom, blue, white);
+        }
+
+        .linear3 {
+            background: linear-gradient(45deg, blue, white);
+        }
+
+        .linear4 {
+            background: linear-gradient(to bottom, blue, white 30%, blue);
+        }
+
+        .circle1 {
+            background: radial-gradient(white, blue, navy);
+        }
+
+        .circle2 {
+            background: radial-gradient(circle, white, blue, navy);
+        }
+
+        .circle3 {
+            background: radial-gradient(circle at 10% 10%, white, blue, navy);
+        }
+
+        .circle4 {
+            background: radial-gradient(circle at right top, white, blue, navy);
+        }
+
+        .circle5 {
+            background: radial-gradient(circle closest-side, white, blue, navy);
+        }
+
+
+        .circle6 {
+            background: radial-gradient(circle closest-corner, white, blue, navy);
+        }
+
+        .circle7 {
+            background: radial-gradient(circle farthest-side, white, blue, navy);
+        }
+
+        .circle8 {
+            background: radial-gradient(circle farthest-corner, white, blue, navy);
+        }
+
+        .repeat1 {
+            background: repeating-linear-gradient(white, blue, navy);
+        }
+
+        .repeat2 {
+            background: repeating-linear-gradient(white 20px, blue 30px, navy 50px);
+        }
+
+        .repeat3 {
+            background: repeating-radial-gradient(white 20px, blue 30px, navy 50px);
+        }
+
+    </style>
+</head>
+
+<body>
+    <h3>background gradient</h3>
+
+    <div class="linear1">linear1</div>
+    <div class="linear2">linear2</div>
+    <div class="linear3">linear3</div>
+    <div class="linear4">linear4</div>
+    <div class="circle1">circle1</div>
+    <div class="circle2">circle2</div>
+    <div class="circle3">circle3</div>
+    <div class="circle4">circle4</div>
+    <div class="circle5">circle5</div>
+    <div class="circle6">circle6</div>
+    <div class="circle7">circle7</div>
+    <div class="circle8">circle8</div>
+    <div class="repeat1">repeat1</div>
+    <div class="repeat2">repeat2</div>
+    <div class="repeat3">repeat3</div>
+</body>
+
+</html>

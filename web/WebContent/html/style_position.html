@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>style_position.html</title>
+    <style>
+      div {
+        font-weight: bold;
+        width: 200px;
+        height: 50px;
+        margin-bottom: 10px;
+        padding: 10px;
+      }
+
+      #one {
+        background: red;
+      }
+
+      #two {
+        background: orange;
+        position: static;
+      }
+
+      #three {
+        background: yellow;
+        position: relative;
+        left: 20px;
+        top: 20px;
+        z-index: 5;
+      }
+
+      #four {
+        background: green;
+        position: absolute;
+        left: 90px;
+        top: 50px;
+      }
+
+      #five {
+        background: blue;
+        position: fixed;
+        top: 0px;
+        right: 0px;
+      }
+
+      #container {
+        background: navy;
+        position: relative;
+        color: white;
+      }
+
+      #child {
+        background: purple;
+        position: absolute;
+        left: 30px;
+        top: 30px;
+        visibility: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="one">none</div>
+    <div id="two">static</div>
+    <div id="three">relative</div>
+    <div id="four">absolute</div>
+    <div id="five">fixed</div>
+    <div id="container">
+      container - relative
+      <div id="child">child - absolute</div>
+    </div>
+  </body>
+</html>

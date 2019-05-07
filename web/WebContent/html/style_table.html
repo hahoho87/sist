@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>style_table.html</title>
+    <style>
+        table {
+            caption-side: bottom;
+            border: 3px solid gray;
+            border-collapse: collapse;
+        }
+
+        td, th {
+            border: 1px dashed gray;
+        }
+
+        th {
+            border-bottom: 2px solid gray;
+        }
+        
+        #table2 {
+            caption-side: top;
+            margin-top: 20px;
+            border-collapse: separate;
+            border-spacing: 10px;
+            empty-cells: hide;
+            width: 300px;
+            table-layout: fixed;
+        }
+
+        #table2 th {
+            background-color: #ffeecc;
+        }
+        
+        #table2 td {
+            text-align: right;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        #data3 {
+            vertical-align: top;
+        }
+    </style>
+</head>
+
+<body>
+    <table>
+        <caption>
+            <strong>table(caption)</strong>
+        </caption>
+        <thead>
+            <tr>
+                <th>head1</th>
+                <th>head2</th>
+                <th>비고</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>data1</td>
+                <td>data2</td>
+                <td rowspan="3"></td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td>8</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="2">9</td>
+                <td>10</td>
+            </tr>
+        </tfoot>
+    </table>
+
+    <table id="table2">
+        <caption>
+            <strong>table</strong>
+        </caption>
+
+        <thead>
+            <tr>
+                <th>head1</th>
+                <th>head2</th>
+                <th >비고</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>data1</td>
+                <td>data2</td>
+                <td id="data3" rowspan="3">data3</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td>5</td>
+            </tr>
+            <tr>
+                <td>7777777777777</td>
+                <td>8</td>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <td colspan="3"></td>
+            </tr>
+        </tfoot>
+    </table>
+
+</body></html>

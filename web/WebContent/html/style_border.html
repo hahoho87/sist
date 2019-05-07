@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>style_border.html</title>
+    <style>
+        #colors {
+            border-left-color: red;
+            border-top-color: green;
+            border-right-color: blue;
+        }
+
+        #borders {
+            border-left: 1px solid red;
+            border-top: 2px dashed green;
+            border-right: thin dotted blue;
+            border-bottom: thick double pink;
+        }
+
+        div {
+            width: 100px;
+            height: 20px;
+            padding: 5px;
+            margin: 5px;
+            text-align: center;
+            border-width: 5px;
+            border-color: pink;
+            border-style: solid;
+        }
+
+        #radius1 {
+            border-radius: 25px;
+        }
+
+        #radius2 {
+            border-radius: 0px 20px;
+        }
+
+        #radius3 {
+            border-radius: 0px 10px 20px 30px;
+        }
+
+        #bg {
+            width: 100px;
+            height: 90px;
+            background: url("../images/hehe.jpg");
+            background-size: cover;
+            border-radius: 10px;
+            border-style: none;
+            box-shadow: 5px 5px 5px 5px gray;
+            margin-bottom: 20px;
+        }
+
+        #bg1 {
+            width: 100px;
+            height: 90px;
+            background: url("../images/hehe.jpg");
+            background-size: cover;
+            border-radius: 10px;
+            border-style: none;
+            box-shadow: 5px 5px 1px 1px gray;
+            margin-bottom: 20px;
+        }
+
+        #bg2 {
+            width: 100px;
+            height: 90px;
+            background: url("../images/hehe.jpg");
+            background-size: cover;
+            border-radius: 10px;
+            border-style: none;
+            box-shadow: 5px 5px 1px gray;
+            margin-bottom: 20px;
+        }
+
+        #bg3 {
+            width: 100px;
+            height: 90px;
+            background: url("../images/hehe.jpg");
+            background-size: cover;
+            border-radius: 10px;
+            border-style: none;
+            box-shadow: 5px 5px gray;
+            margin-bottom: 20px;
+        }
+
+        #bg4 {
+            width: 100px;
+            height: 90px;
+            background: url("../images/hehe.jpg");
+            background-size: cover;
+            border-radius: 10px;
+            border-style: none;
+            box-shadow: -5px -5px 5px 0px gray;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <h3>border</h3>
+    <div id="bg4"></div>
+    <div id="bg3"></div>
+    <div id="bg2"></div>
+    <div id="bg1"></div>
+    <div id="bg"></div>
+    <div id="radius3">radius3</div>
+    <div id="radius2">radius2</div>
+    <div id="radius1">radius1</div>
+
+
+    <div id="borders">borders</div>
+    <div style="border-style: none;">none</div>
+    <div style="border-style: hidden;">hidden</div>
+    <div style="border-style: dotted;">dotted</div>
+    <div style="border-style: solid; border-width: 5px 10px 15px 20px;">solid</div>
+    <div style="border-style: dashed;" id="colors">dashed</div>
+    <div style="border-style: double; border-width: 5px 10px; ">double</div>
+    <div style="border-style: groove;">groove</div>
+    <div style="border-style: ridge;">ridge</div>
+    <div style="border-style: inset;">inset</div>
+    <div style="border-style: outset;">outset</div>
+</body></html>
+
+
+
+
+
+
+
+
+
+
+
+
