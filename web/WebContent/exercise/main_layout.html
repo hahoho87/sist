@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>main_layout.html</title>
+    <style>
+        body {
+            margin: 10px auto;
+            width: 800px;
+        }
+
+        #head img {
+            float: left;
+        }
+
+        #head {
+            color: gray;
+            vertical-align: middle;
+        }
+        
+        #navi1 {
+            padding: 0;
+            width: 100%;
+            height: 30px;
+            box-sizing: border-box;
+        }
+
+        nav ul {
+            list-style: none;
+            margin: auto;
+            text-align: center;
+        }
+
+        nav ul li {
+            text-align: center;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        #navi1 ul {
+            clear: both;
+            list-style: none;
+            letter-spacing: 5px;
+            border-bottom: 1px solid red;
+        }
+
+        #navi1 ul li {
+            float: left;
+            margin: 20px;
+            font-weight: bold;
+            border-bottom: 1px solid red;
+        }
+
+        #navi1 ul li:hover {
+            border-top: 3px solid red;
+            border-bottom: 3px solid red;
+
+        }
+        #sections {
+            background: purple;
+        }
+
+        #aside1 {
+            clear: both;
+            width: 20%;
+            float: left;
+            margin
+        }
+
+        #aside1 ul {
+            margin:0px;
+            list-style: none;
+        }
+
+        #aside1 ul li {
+            width: 150px;
+            background: #333;
+            color: white;
+            padding: 10px;
+        }
+
+        #aside1 ul li:hover {
+            background: aqua;
+            color: black;
+        }
+
+        #aside1 ul li:first-child {
+            width: 200px;
+            background: white;
+            color: black;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        #section {
+            margin: 0px;
+            float: left;
+            width: 60%;
+            background: acua;
+        }
+
+        #item {
+            list-style: none;
+            margin-left: -40px;
+            background: green;
+        }
+
+        #item li {
+            float: left;
+            width: 98px;
+            height: 80px;
+            border: 1px solid gray;
+        }
+
+        input[type="submit"] {
+            width: 50px;
+            height: 50px;
+            border: 1px solid black;
+        }
+        
+        #aside2{
+            width: 20%;
+            float: right;
+        }
+
+        #aside2 img {
+            width: 100px;
+            height: 500px;
+        }
+
+        footer {
+            clear: both;
+        }
+
+        #id:focus {
+            font-weight: bold;
+        }
+
+        #signUp {
+            font-size: 5px
+        }
+
+        a:link {
+            text-decoration: none;
+            color: gray;
+        }
+
+        #footer {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header id="head">
+        <img src="../images/haha.jpg" width="100px">
+        <h1>DaPanDa#</h1>
+    </header>
+    <div>
+        <nav id="navi1">
+            <ul>
+                <li>ABOUT US</li>
+                <li>NEWS</li>
+                <li>MYPAGE</li>
+                <li>FAQ</li>
+                <li>CONTACTS</li>
+            </ul>
+        </nav>
+    </div>
+    <div id="sections">
+    <aside id="aside1">
+        <nav id="navi2">
+            <ul>
+                <li>Category</li>
+                <li>컴퓨터</li>
+                <li>의류</li>
+                <li>음악</li>
+                <li>영화</li>
+                <li>스포츠/레저</li>
+                <li>가구/인테리어</li>
+                <li>기타</li>
+            </ul>
+        </nav>
+    </aside>
+    <section id="section">
+        <img src="../images/hehe.jpg" width="400" height="300">
+        <article>
+            <ul id="item">
+                <li>item1</li>
+                <li>item2</li>
+                <li>item3</li>
+                <li>item4</li>
+            </ul>
+        </article>
+    </section>
+    <aside id="aside2">
+        <table>
+            <tr>
+                <td>
+                    <input id="id" type="text" autofocus="autofocus" size="10" maxlength="10" placeholder="아이디" name="id" />
+                </td>
+                <td id="loginButton" rowspan="2">
+                    <input type="submit" value="로그인">
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="password" size="10" maxlength="5" placeholder="비밀번호" name="password" />
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+        <div id="signUp">
+            <a href="#">회원가입</a>
+            <a href="#">아이디/비밀번호 찾기</a>
+        </div>
+        <div><img src="../images/svg-logo-v.svg"></div>
+    </aside>
+    </div>
+    <footer id="footer">
+        <br>
+        <hr>Copyright ⓒ 2016 DaPanDa Shop
+    </footer>
+</body></html>

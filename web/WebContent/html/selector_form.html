@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <title>selector_form.html</title>
+    <style>
+        input[type] {
+            border: 1px solid pink;
+            margin-bottom: 5px;
+        }
+
+        input[type="submit"] {
+            border-radius: 10px;
+            width: 100px;
+            border: 1px solid black;
+            box-shadow: 2px 2px 2px 2px gray;
+        }
+
+        [value~="test"] {
+            border-radius: 10px;
+            width: 100px;
+            border-color: gray;
+            box-shadow: 2px 2px 2px 2px gray;
+            margin: 5px;
+        }
+
+        /* ~= value 값을 포함(단어로 일치해야 한다) */
+        [value|="test"] {
+            border-radius: 10px;
+            width: 100px;
+            border-color: gray;
+            box-shadow: 2px 2px 2px 2px gray;
+            margin: 5px;
+        }
+
+        /* value 값을 포함(하이픈 '-' 적용) */
+        [value^="pw"] {
+            border-radius: 10px;
+            width: 100px;
+            border-color: gray;
+            box-shadow: 2px 2px 2px 2px gray;
+            margin: 5px;
+        }
+
+        /* ^= value 값으로 시작 */
+        [value$="test"] {
+            border-radius: 10px;
+            width: 100px;
+            border-color: gray;
+            box-shadow: 2px 2px 2px 2px gray;
+            margin: 5px;
+        }
+
+        /* $= value 값으로 끝남 */
+        [href*="msg"] {
+            background: red;
+            color: white;
+        }
+
+        /* *= value 값을 포함(일부분이어도 포함) */
+        input:checked+span {
+            color: red;
+            font-weight: bold;
+        }
+
+        textarea:disabled {
+            background: white;
+            font-style: italic;
+        }
+
+    </style>
+</head>
+
+<body>
+    <h3>form</h3>
+    <!-- form : 서버로 데이터를 전송하기 위해 사용 -->
+    <ul>
+        <li>
+            input type = text | autofocus
+            <input type="text" autofocus="autofocus" size="10" maxlength="5" value="pw-test" />
+        </li>
+        <li>
+            input type = text | autofocus
+            <input type="text" autofocus="autofocus" size="10" maxlength="5" value="test" />
+        </li>
+        <li>
+            input type = password
+            <input type="password" size="10" maxlength="5" value="test-pw" />
+        </li>
+        <li>
+            input type = hidden
+            <input type="hidden" value="333" />
+        </li>
+        <li>
+            input type = search | placeholder
+            <input type="search" placeholder="검색어를 입력해주세요." />
+        </li>
+        <li>
+            input type = email
+            <input type="email" />
+        </li>
+        <li>
+            input type = url
+            <input type="url" />
+            <!-- http://로 시작하는 값이 입력되어야 한다. -->
+        </li>
+        <li>
+            input type = tel
+            <input type="tel" />
+        </li>
+        <li>
+            input type = number
+            <input type="number" value="0" min="1" max="10" step="2" />
+        </li>
+        <li>
+            input type = range
+            <input type="range" value="0" min="1" max="10" />
+        </li>
+        <li>
+            input type = radio <input type="radio" />radio1
+            <input type="radio" />radio2 <input type="radio" />radio3
+        </li>
+        <li>
+            input type = checkbox <input type="checkbox" checked /><span>checkbox1</span>
+            <input type="checkbox" />checkbox2 <input type="checkbox" />checkbox3
+        </li>
+        <li>
+            input type = color
+            <input type="color" />
+        </li>
+        <li>
+            input type = date
+            <input type="date" value="1990-01-01" />
+        </li>
+        <li>
+            input type = month
+            <input type="month" />
+        </li>
+        <li>
+            input type = week
+            <input type="week" />
+        </li>
+        <li>
+            input type = time
+            <input type="time" value="09:00" />
+        </li>
+        <li>
+            input type = datetime
+            <input type="datetime" />
+        </li>
+        <li>
+            input type = datetime-local
+            <input type="datetime-local" value="2019-05-02T12:03" />
+        </li>
+        <li>
+            input type = file
+            <input type="file" />
+        </li>
+        <li>
+            input type = submit
+            <input type="submit" value="전송" />
+        </li>
+        <li>
+            input type = reset
+            <input type="reset" value="다시 쓰기" />
+        </li>
+        <li>
+            input type = button
+            <input type="button" value="버튼" />
+        </li>
+        <li>
+            input type = image
+            <input type="image" src="../images/icon_login.png" width="80" height="20" />
+        </li>
+        <li>
+            select
+            <select>
+                <option value="java">java</option>
+                <option value="database">database</option>
+                <option value="HTML" selected>HTML</option>
+            </select>
+        </li>
+        <li>
+            select list
+            <select size="3" multiple>
+                <option value="java">java</option>
+                <option value="database">database</option>
+                <option value="HTML" selected>HTML</option>
+            </select>
+        </li>
+        <li>
+            select | optgroup
+            <select>
+                <optgroup label="subject1">
+                    <option value="java">java</option>
+                    <option value="database">database</option>
+                    <option value="HTML" selected>HTML</option>
+                </optgroup>
+                <optgroup label="subject2">
+                    <option value="css">css</option>
+                    <option value="jscript">jscript</option>
+                    <option value="jsp">jsp</option>
+                </optgroup>
+            </select>
+        </li>
+        <li>
+            datalist
+            <input type="text" list="booklist" />
+            <datalist id="booklist">
+                <option value="sql">SQL</option>
+                <option value="oracle" label="ORACLE"></option>
+                <option value="CSS3" selected></option>
+            </datalist>
+        </li>
+        <li>
+            textarea
+            <textarea rows="5" cols="30" disabled>disabled</textarea>
+        </li>
+        <li>
+            button
+            <button type="submit">submit</button>
+            <button type="reset">reset</button>
+            <button type="button">button</button>
+            <button formaction="../index.html" formmethod="post">home</button>
+        </li>
+        <li>
+            progress
+            <progress value="10" max="50"></progress>
+            <progress value="30" max="100"></progress>
+        </li>
+        <li>
+            meter
+            <meter value="0.8"></meter>
+            <meter value="64" min="0" max="100"></meter>
+            <meter min="1024" max="10240" low="2048" high="8192" value="9216"></meter>
+            <meter value="0.4" low="0.1" high="0.8" optimum="0.5"></meter>
+        </li>
+    </ul>
+    <fieldset>
+        <form action="result.html">
+            <input type="text" name="msg" /><br />
+            <input type="text" name="code" />
+            <input type="submit" />
+        </form>
+    </fieldset>
+    <fieldset>
+        <legend>
+            <h4>method = get</h4>
+        </legend>
+        <form action="result.html" method="get">
+            <input type="text" name="msg" id="msgTxt" /><br />
+            <input type="text" name="code" />
+            <input type="hidden" name="numCode" value="999" /><br />
+            <!-- hidden을 사용할 때에는 반드시 name을 사용해야 한다. -->
+            e-mail <input type="email" name="email" /><br />
+            url <input type="url" name="url" /><br />
+            tel <input type="tel" name="tel" /><br />
+            Gender
+            <input type="radio" name="gender" id="genderM" value="m" />
+            <label for="genderM">male</label>
+            <input type="radio" name="gender" id="genderF" value="f" />
+            <label for="genderF">female</label><br />
+            <!-- name을 통일해야 다중선택을 방지한다 -->
+            hobby
+            <input type="checkbox" name="hobby" value="hobby1" checked="checked" />hobby1 <input type="checkbox" name="hobby" value="hobby2" />hobby2
+            <input type="checkbox" name="hobby" value="hobby3" />hobby3<br />
+            <!-- 변수 이름이 같으면 내부적으로 배열이 만들어지고 배열에 데이터가 들어간다.
+            꺼낼 때는 배열을 돌면서 값을 꺼내야 한다. -->
+            hobby2
+            <input type="checkbox" name="hobby4" value="hobby4" />hobby4
+            <input type="checkbox" name="hobby5" value="hobby5" />hobby5
+            <input type="checkbox" name="hobby6" value="hobby6" />hobby6<br />
+            color <input type="color" name="color" /><br />
+            subject
+            <select name="subject">
+                <option value="java">java</option>
+                <option value="database">database</option>
+                <option value="HTML" selected>HTML</option>
+            </select><br />
+            subject2
+            <select name="subject2" size="3" multiple>
+                <option value="css">css</option>
+                <option value="jscript">jscript</option>
+                <option value="jsp" selected>jsp</option>
+            </select><br />
+            <!-- select에 이름을 넣어줘서 서버로 전송, 다중 선택일 경우 배열로 저장 -->
+            <input type="submit" value="send" />
+            <input type="reset" value="rewrite" />
+            <input type="button" value="button" onclick="" />
+            <input type="image" src="../images/icon_login.png" width="80" height="20" />
+            <hr />
+            button
+            <button type="submit">submit</button>
+            <button type="reset">reset</button>
+            <button type="button">button</button>
+            <hr />
+        </form>
+        <a href="result.html?msg=hello">msg = hello</a><br />
+        <a href="result.html?code=1234">code = 1234</a><br />
+        <a href="result.html?msg=hello&code=1234">msg and code</a>
+    </fieldset>
+    <hr />
+    <h4>method = post</h4>
+    <form action="result.html" method="post">
+        <input type="text" name="msg" /><br />
+        <input type="text" name="code" />
+        <input type="submit" />
+    </form>
+</body>
+
+</html>

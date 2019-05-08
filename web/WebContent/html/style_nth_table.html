@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>style_nth_table.html</title>
+    <style>
+      table {
+        border: 1px solid black;
+        border-collapse: collapse;
+        width: 300px;
+        margin: 0px;
+      }
+      caption {
+        text-align: center;
+        margin-bottom: 10px;
+        font-weight: bold;
+      }
+      td,
+      th {
+        border: 1px solid black;
+      }
+      tr:first-child {
+        background: #333;
+        color: white;
+        font-weight: bold;
+        text-align: center;
+      }
+      tr:nth-child(even) {
+        background: lightgray;
+        color: black;
+      }
+      td:first-child {
+          text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <table>
+      <caption>
+        건강에 좋은 식품
+      </caption>
+      <tr>
+        <th>No</th>
+        <th>식품명</th>
+      </tr>
+      <tr>
+        <td>1</td>
+        <td>블루베리</td>
+      </tr>
+      <tr>
+        <td>2</td>
+        <td>귀리</td>
+      </tr>
+      <tr>
+        <td>3</td>
+        <td>토마토</td>
+      </tr>
+      <tr>
+        <td>4</td>
+        <td>시금치</td>
+      </tr>
+      <tr>
+        <td>5</td>
+        <td>적포도주</td>
+      </tr>
+      <tr>
+        <td>6</td>
+        <td>견과류</td>
+      </tr>
+      <tr>
+        <td>7</td>
+        <td>브로콜리</td>
+      </tr>
+      <tr>
+        <td>8</td>
+        <td>연어</td>
+      </tr>
+      <tr>
+        <td>9</td>
+        <td>마늘</td>
+      </tr>
+      <tr>
+        <td>10</td>
+        <td>녹차</td>
+      </tr>
+    </table>
+  </body>
+</html>

@@ -1,38 +1,65 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>list_style.html</title>
     <style>
-        ol {
-            list-style: upper-roman;     
-        }
+      ol {
+        list-style: upper-roman;
+      }
 
-        ul {
-            background-color: yellow;
-            list-style-image: url("../images/icon_doc.png")
-        }
+      ul {
+        background-color: yellow;
+        list-style-image: url("../images/icon_doc.png");
+      }
 
-        ul li {
-            background-color: green;
-        }
+      ul li {
+        background-color: green;
+      }
+
+      #menu {
+        list-style: none;
+      }
+
+      #menu li {
+        float: left;
+        border: 1px solid black;
+        width: 150px;
+        height: 30px;
+        text-align: center;
+        vertical-align: middle;
+        padding-top: 10px;
+        margin: 0px;
+      }
+
+      ol#menu li:first-child {
+        border-radius: 20px 0px 0px 20px;
+        border-right: 0px;
+      }
+
+      #menu li:last-child {
+        border-radius: 0px 20px 20px 0px;
+        border-left: 0px;
+      }
     </style>
+  </head>
 
-</head>
-
-<body>
-
+  <body>
     <h3>list style</h3>
     <ul>
-        <li>aaa</li>
-        <li>bbb</li>
-        <li>ccc</li>
+      <li>aaa</li>
+      <li>bbb</li>
+      <li>ccc</li>
     </ul>
     <ol>
-        <li>ddd</li>
-        <li>eee</li>
-        <li>fff</li>
+      <li>ddd</li>
+      <li>eee</li>
+      <li>fff</li>
     </ol>
-
-</body></html>
+    <ol id="menu">
+      <li>ddd</li>
+      <li>eee</li>
+      <li>fff</li>
+    </ol>
+  </body>
+</html>
