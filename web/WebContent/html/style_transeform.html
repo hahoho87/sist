@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Document</title>
+    <style>
+      body {
+        margin-top: 50px;
+      }
+
+      div {
+        width: 100px;
+        height: 100px;
+        border: 1px solid gray;
+        text-align: center;
+        margin: 20px;
+        padding-top: 10px;
+        box-sizing: border-box;
+        float: left;
+      }
+
+
+      .transx:hover {
+        background: #ccffee;
+        transform: translateX(50px);
+      }
+
+      .transy:hover {
+        background: #ccffee;
+        transform: translateY(50px);
+      }
+
+      .trans:hover {
+        background: #ccffee;
+        transform: translate(50px, 50px);
+      }
+
+      .scaleX:hover {
+        background: #ccffee;
+        transform: scaleX(1.3);
+      }
+
+      .scaleY:hover {
+        background: #ccffee;
+        transform: scaleY(1.3);
+      }
+
+      .scaleZ:hover {
+        background: #ccffee;
+        transform: scaleZ(1.3);
+      }
+
+      .scaleXY1:hover {
+        background: #ccffee;
+        transform: scale3d(1.3, 1.3, 1.3);
+      }
+
+      .scaleXY2:hover {
+        background: #ccffee;
+        transform: scale(1.3, 1.3);
+      }
+
+      .rotateX:hover {
+        background: #ccffee;
+        transform: rotateX(50deg);
+      }
+
+      .rotateY:hover {
+        background: #ccffee;
+        transform: rotateY(50deg);
+      }
+
+      .rotateZ:hover {
+        background: #ccffee;
+        transform: rotateZ(50deg);
+      }
+
+      .rotate3d:hover {
+        background: #ccffee;
+        transform: rotate3d(2, 1, -1.5, 50deg);
+      }
+
+      .skewX:hover {
+        background: #ccffee;
+        transform: skewX(30deg);
+      }
+
+      .skewY:hover {
+        background: #ccffee;
+        transform: skewY(30deg);
+      }
+
+      .skewXY:hover {
+        background: #ccffee;
+        transform: skew(30deg, 30deg);
+      }
+
+      .complex:hover {
+        transform: translate(50px, 0) rotate(30deg) skew(30deg, 10deg)
+          scale(1.2, 1.2);
+      }
+
+      .transe-ori:hover {
+        transform: rotate(30deg);
+        transform-origin: left top;
+      }
+
+      .pers img {
+        transform: rotateX(50deg);
+      }
+
+      .pers:hover {
+        perspective: 50px;
+      }
+
+      .pers-ori img {
+        transform: rotate3d(1, 0, 0, 50deg);
+      }
+
+      .pers-ori:hover {
+        perspective: 50px;
+        perspective-origin: left top;
+      }
+
+      .trans-flat img {
+        transform: rotateY(45deg);
+      }
+
+      .trans-flat:hover {
+        transform: rotateX(45deg);
+      }
+
+      .trans-flat {
+        perspective: 100px;
+        transform-style: flat;
+      }
+
+      .trans-3d img {
+        transform: rotateY(45deg);
+      }
+
+      .trans-3d:hover {
+        transform: rotateX(45deg);
+      }
+
+      .trans-3d {
+        perspective: 100px;
+        transform-style: preserve-3d;
+      }
+
+      .back-show {
+        transform: rotateY(140deg);
+        backface-visibility: visible;
+      }
+
+      .back-hide {
+        transform: rotateY(50deg);
+        backface-visibility: hidden;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="back-hide">BACK visible</div>
+    <div class="back-show">BACK visible</div>
+
+    <div class="trans-3d"><img src="../images/sunset.jpg" width="100px" /></div>
+    <div class="trans-flat">
+      <img src="../images/sunset.jpg" width="100px" />
+    </div>
+
+    <div class="pers-ori">
+      <img src="../images/haha.jpg" width="100px" height="150px" />
+    </div>
+    <div class="pers">
+      <img src="../images/haha.jpg" width="100px" height="150px" />
+    </div>
+
+    <div class="transe-ori">transe-origin</div>
+
+    <div class="complex">complex</div>
+
+    <div class="skewXY">skewX</div>
+    <div class="skewY">skewY</div>
+    <div class="skewX">skewX</div>
+
+    <div class="rotate3d">rotate3d</div>
+    <div class="rotateZ">rotateZ</div>
+    <div class="rotateY">rotateY</div>
+    <div class="rotateX">rotateX</div>
+
+    <div class="scaleXY2">scaleXY2</div>
+    <div class="scaleXY1">scaleXY1</div>
+    <div class="scaleZ">scaleZ</div>
+    <div class="scaleY">scaleY</div>
+    <div class="scaleX">scaleX</div>
+
+    <div class="transx">transx</div>
+    <div class="transy">transy</div>
+    <div class="trans">trans</div>
+  </body>
+</html>

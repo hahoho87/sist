@@ -1,11 +1,12 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>HTML5</title>
+    <title>main.html</title>
     <style>
         body {
             text-align: center;
             width: 900px;
+            margin: auto;
         }
 
         div#wapper {
@@ -27,6 +28,7 @@
         header {
             height: 50px;
             color: gray;
+            text-shadow: 2px 2px 2px 2px black;
         }
 
 
@@ -39,9 +41,10 @@
 
         #nav1 {
             border-bottom: 1px solid red;
-            margin: 5px;
+            margin: 10px;
             text-align: center;
             padding-bottom: 18px;
+            height: 20px;
         }
 
         #nav1 ul {
@@ -65,7 +68,7 @@
         #nav1 ul li:hover {
             border-top: 3px solid red;
             border-bottom: 3px solid red;
-            
+            height: 25px;
         }
 
         #nav2 {
@@ -88,7 +91,7 @@
         }
 
         #nav2 ul li:hover {
-            background: aqua;
+            background: white;
             color: black;
         }
 
@@ -151,20 +154,34 @@
             width: 150px;
             float: right;
             padding-left: -20px;
+            margin-left: -100px;
+        }
 
-            background: pink;
+        #aside2 table {
+            margin-left: -30px;
         }
 
         #aside2 img {
-            width: 100px;
-            height: 500px;
+            width: 155px;
+            height: 400px;
+            margin-left: -30px;
         }
 
-        a:link {
+        #signUp {
+            margin-left: -26px;
+        }
+
+        #signUp a:link {
             text-decoration: none;
             color: gray;
-            font-size: 12px
+            font-size: 8px;
         }
+        
+        #id:focus {
+            font-weight: bold;
+        }
+        
+        
     </style>
 
 </head>
@@ -192,8 +209,7 @@
                 </div>
             </nav>
         </div>
-        <!--sidebar2-->
-        <!--navigation2-->
+        <!--navigation2 == sidebar2-->
         <nav id="nav2">
             <ul>
                 <li>Category</li>
@@ -241,8 +257,12 @@
                 <a href="#">회원가입</a>
                 <a href="#">아이디/비밀번호 찾기</a>
             </div>
+            <div>
+                <img src="../images/black.jpeg" alt="">
+                
+            </div>
         </aside>
-        <!--풋터-->
+        <!--footer-->
         <footer>Copyright c 2016 DaPanDa Shop</footer>
     </div>
 </body></html>

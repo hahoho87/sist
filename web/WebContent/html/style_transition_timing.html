@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta />
+    <title>style_transition_timing.html</title>
+    <style>
+      .all div {
+        width: 100px;
+        height: 100px;
+        border: 1px solid gray;
+        text-align: center;
+        margin: 20px;
+        padding-top: 10px;
+        box-sizing: border-box;
+        transition-duration: 2s, 1s;
+        float: left;
+      }
+      .all:hover div{
+        width: 100px;
+        height: 500px;
+        background: #ccffee;
+      }
+
+      .lenear {
+        transition-timing-function: linear;
+        transition-delay: 3s;
+      }
+
+      .ease {
+        transition-timing-function: ease;
+      }
+
+      .ease-in {
+        transition-timing-function: ease-in;
+      }
+      .ease-out {
+        transition-timing-function: ease-out;
+      }
+      .ease-in-out {
+        transition-timing-function: ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="all">
+      <div class="lenear">lenear</div>
+      <div class="ease">ease</div>
+      <div class="ease-in">ease-in</div>
+      <div class="ease-out">ease-out</div>
+      <div class="ease-in-out">ease-in-out</div>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>join02.html</title>
+    <style>
+        body {
+            margin: 50px auto;
+            width: 800px;
+            text-align: center;
+        }
+
+        header {
+            margin-left: 30px
+        }
+
+        #nav {
+            margin-left: 120px;
+        }
+
+        #nav ul {
+            list-style: none;
+        }
+
+        #nav ul li {
+            float: left;
+            width: 147px;
+            margin-right: px;
+            border-top: 1px solid black;
+            border-left: 1px solid black;
+            border-bottom: 1px solid black;
+            text-align: center;
+            padding: 10px;
+        }
+
+        #signup {
+            background: pink;
+        }
+
+        #nav ul li[id="signup"] {
+            font-weight: bold;
+        }
+
+        #nav ul li[id="signupcomplete"] {
+            border-right: 1px solid black;
+        }
+
+        h,
+        td,
+        tr,
+        input,
+        textarea,
+        select,
+        form {
+            font-size: 1em;
+            border-radius: 5px;
+        }
+
+        fieldset {
+            margin-left: 40px;
+            width: 600px;
+            text-align: left;
+        }
+
+        table,
+        form {
+            border-spacing: 15px;
+        }
+
+        #email input {
+            width: 100px;
+        }
+
+        #birth input {
+            width: 80px;
+        }
+
+    </style>
+
+
+</head>
+
+<body>
+    <header>
+        <h1>회원가입</h1>
+    </header>
+    <section>
+        <nav id="nav">
+            <ul>
+                <li id="agree">약관동의</li>
+                <li id="signup">정보입력</li>
+                <li id="signupcomplete">가입완료</li>
+            </ul>
+        </nav>
+        <center>
+            <fieldset>
+                <legend>
+                    <h3>필수사항</h3>
+                </legend>
+                <table boder="" cellspacing="1">
+                    <form>
+                        <tr>
+                            <td text-align="center">아이디 </td>
+                            <td>
+                                <input type="text" placeholder="10~15자 이내 영문과 숫자로 입력하세요." />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td> 비밀번호 </td>
+                            <td> <input type="password" placeholder="10~20자 이내 영문과 숫자로 입력하세요." /> </td>
+                        </tr>
+                        <tr>
+                            <td> 비밀번호 확인 </td>
+                            <td> <input type="password" placeholder="비밀번호를 다시 입력하세요." /></td>
+                        </tr>
+                        <tr>
+                            <td> 성명 </td>
+                            <td> <input type="text" /> </td>
+                        </tr>
+                        <tr id="email">
+                            <td> 이메일 </td>
+                            <td>
+                                <input type="text" width="50px" /> @ <input type="text" /> &nbsp;&nbsp;
+                                <select>
+                                    <option> 직접입력 </option>
+                                    <option> gmail.com </option>
+                                    <option> hotmail.com </option>
+                                    <option> naver.com </option>
+                                    <option> daum.net </option>
+                                    <option> nate.com </option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="birth">
+                            <td>생년월일</td>
+                            <td><input type="text"> 년 <select>
+                                    <option value="01">1월</option>
+                                    <option value="02">2월</option>
+                                    <option value="03">3월</option>
+                                    <option value="04">4월</option>
+                                    <option value="05">5월</option>
+                                    <option value="06">6월</option>
+                                    <option value="07">7월</option>
+                                    <option value="08">8월</option>
+                                    <option value="09">9월</option>
+                                    <option value="10">10월</option>
+                                    <option value="11">11월</option>
+                                    <option value="12">12월</option>
+                                </select>
+                                <input type="text">일</td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td> 성별 </td>
+                            <td>
+                                <input type="radio" checked> 남자
+                                <input type="radio"> 여자
+                            </td>
+                        </tr>
+                    </form>
+                </table>
+            </fieldset>
+            <br />
+            <form action="join03.html" method="get">
+                <input type="submit" value="가입하기" />
+                <input type="reset" value="다시 입력" />
+            </form>
+        </center>
+    </section>
+</body>
+
+</html>
