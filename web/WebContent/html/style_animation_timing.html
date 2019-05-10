@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>style_animation_timing.html</title>
+    <style>
+        div {
+            position: relative;
+            width: 100px;
+            height: 50px;
+            border: 1px solid black;
+            text-align: center;
+            margin: 20px;
+            padding-top: 10px;
+            box-sizing: border-box;
+            background-color: navy;
+            color: white;
+            font-weight: bold;
+        }
+
+        #linear {
+        animation: move 3s linear;
+        }
+
+        #ease {
+        animation: move 3s ease;    
+        }
+
+        #ease-in {
+        animation: move 3s ease-in;    
+        }
+
+        #ease-out {
+        animation: move 3s ease-out;    
+        }
+
+        #ease-in-out {
+        animation: move 3s ease-in-out;    
+        }
+
+        @keyframes move {
+            from {
+                left: 0px;
+            }
+
+            to {
+                left: 500px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="linear">linear</div>
+    <div id="ease">ease</div>
+    <div id="ease-in">ease-in</div>
+    <div id="ease-out">ease-out</div>
+    <div id="ease-in-out">ease-in-out</div>
+</body></html>

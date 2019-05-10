@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>animation.html</title>
+    <style>
+        .first {
+            position: relative;
+            margin: 40px;
+            animation-name: move;
+            animation-duration: 3s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+
+        .second {
+            position: relative;
+            margin: 40px;
+            animation-name: move2, move3;
+            animation-duration: 3s;
+            animation-iteration-count: infinite;
+            animation-timing-function: linear;
+        }
+        
+        .third {
+            position: relative;
+            margin-top: 500px;
+            animation: move3 5s infinite alternate linear;
+        }
+
+        @keyframes move {
+            from {
+                left: 0px;
+            }
+
+            to {
+                left: 500px;
+            }
+        }
+
+        @keyframes move2 {
+            0% {
+                left: 0px;
+                top: 0px
+            }
+
+            15% {
+                left: 100px;
+                top: 0px;
+            }
+
+            30% {
+                left: 100px;
+                top: 100px;
+            }
+
+            45% {
+                left: 200px;
+                top: 100px;
+            }
+
+            60% {
+                left: 200px;
+                top: 200px;
+            }
+
+            75% {
+                left: 300px;
+                top: 200px;
+            }
+            
+            90% {
+                left: 300px;
+                top: 300px;
+            }
+            
+            100% {
+                left: 400px;
+                top: 300px;
+            }
+        }
+        
+        @keyframes move3 {
+            0% {
+                left: 0px;
+                top: 0px
+            }
+
+            15% {
+                left: 100px;
+                top: 0px;
+            }
+
+            30% {
+                left: 100px;
+                top: -100px;
+            }
+
+            45% {
+                left: 200px;
+                top: -100px;
+            }
+
+            60% {
+                left: 200px;
+                top: -200px;
+            }
+
+            75% {
+                left: 300px;
+                top: -200px;
+            }
+            
+            90% {
+                left: 300px;
+                top: -300px;
+            }
+            
+            100% {
+                left: 400px;
+                top: -300px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="first">
+        <img src="../images/mole.png" width="100px">
+    </div>
+    <div class="second">
+        <img src="../images/mole.png" width="100px">
+    </div>
+    <div class="third">
+        <img src="../images/mole.png" width="100px">
+    </div>
+</body></html>

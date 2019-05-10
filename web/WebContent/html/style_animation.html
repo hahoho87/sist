@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>style_animation.html</title>
+    <style>
+        div {
+            width: 100px;
+            height: 100px;
+            border: 1px solid gray;
+            text-align: center;
+            margin: 20px;
+            padding-top: 10px;
+            box-sizing: border-box;
+            float: left;
+
+        }
+
+        .change {
+            animation-name: changeAni;
+            animation-duration: 3s;
+        }
+
+        .rotate {
+            animation-name: rotateAni;
+            animation-duration: 3s;
+        }
+        
+        .chaRot {
+            animation-name: changeAni, rotateAni;
+            animation-duration: 3s;
+        }
+        
+        .return {
+            animation-name: changeAni, rotateAni;
+            animation-duration: 3s;
+            animation-direction: alternate;
+            animation-iteration-count: infinite;
+        }
+
+        @keyframes changeAni {
+            from {
+                background-color: pink;
+                border: 1px dashed purple;
+            }
+
+            to {
+                border-radius: 50%;
+                background-color: purple;
+                border: 1px dashed pink;
+                color: white;
+            }
+        }
+
+        @keyframes rotateAni {
+            from {
+                border: 1px dashed purple;
+                background-color: navy;
+                color: white;
+            }
+
+            to {
+                transform: rotateZ(180deg);
+                background-color: forestgreen;
+                color: black;
+            }
+        }
+
+    </style>
+</head>
+
+
+<body>
+   <div class="return">return</div>
+    <div class="chaRot">change<br>and<br>rotate </div>
+    <div class="rotate">rotate</div>
+    <div class="change">change</div>
+</body></html>
