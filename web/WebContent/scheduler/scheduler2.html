@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Scheduler2.html</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <style>
+        .top {
+            width: 400px;
+            height: 250px;
+            background-color: #ff7171;
+            color: white;
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
+            box-sizing: border-box;
+/*            border: 1px black solid;*/
+        }
+        
+        .outterTable {
+            width: 400px;
+            height: 200px;
+        }
+
+        .outterTable td {
+            border-collapse: collapse;
+            height: 20px;
+            border: 1px solid black;
+            
+        }
+        
+        .innerTable table {
+            height: 200px;
+        }
+        
+        .bottom {
+            width: 400px;
+            height: 250px;
+            border-bottom-left-radius: 20px;
+            border-bottom-right-radius: 20px;
+            box-sizing: border-box;            
+            border: 1px solid #ff7171;
+        }
+        .bottom table td {
+            
+            border-collapse: collapse;
+            width: 45px;
+            height: 35px;
+            text-align: center;
+            border-radius: 10px;
+            box-sizing: border-box;  
+/*            border: 1px solid black;*/
+        }
+        .bottom table th {
+            
+            border-collapse: collapse;
+            width: 45px;
+            height: 35px;
+            text-align: center;
+            border-radius: 10px;
+            box-sizing: border-box;  
+/*            border: 1px solid black;*/
+        }
+
+        #firstLine {
+            height: 120px;
+        }
+
+        #day {
+            text-align: center;
+            font-size: 90px;
+            box-sizing: content-box;
+            font-weight: bold;
+            padding-top: 11px;
+            width: 170px;
+        }
+
+        #month {
+            text-align: center;
+            font-size: 40px;
+            box-sizing: border-box;
+            font-weight: bold;
+        }
+
+        #schedulList {
+            font-weight: bold;
+            font-size: 18px;
+        }
+        
+
+        #weekdays {
+            color: #ff7171;
+        }
+        
+        .bottom td:hover {
+            background: gray;
+            color:white;
+            font-weight:bold;
+            transition-duration: 0.5s;
+        }
+        
+        .bottom td:active {
+            border: 2px solid #ff7171;
+            background: white;
+            color: black;
+        }
+
+        .weekdays li {
+            float: left;
+            margin: 10px;
+            color: black;
+        }
+        
+        .otherMonth{
+            color: darkgrey;
+        }
+        
+        #today {
+            background-color: #ff7171;
+            color: white;
+            font-weight: bold;
+            
+        }
+        
+        .top i {
+            margin-left: 350px;
+            font-size: 30px;
+            color: white;
+            width: 40px;
+        }
+        .top i a:link {
+            text-decoration: none;
+            color: white;
+        }
+        .top i a:visited {
+            text-decoration: none;
+            color: white;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <center>
+        <div class="all">
+            <div class="top">
+                <table class="outterTable">
+                    <tr id="firstLine">
+                        <td id="day">10</td>
+                        <td id="schedulList" colspan="2" rowspan="2">
+                            <table class="innerTable">
+                                <tr>
+                                    <td>111</td>
+                                    <td>2222</td>
+                                    <td>3333333333</td>
+                                </tr>
+                            </table>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td id="month">MAY</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <a href="addSchdule.html"><i class="far fa-plus-square"></i></a>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+            <div class="bottom">
+                <table>
+                <tr id="weekdays">
+                    <th>Sun</th>
+                    <th>Mon</th>
+                    <th>Tue</th>
+                    <th>Wed</th>
+                    <th>Thu</th>
+                    <th>Fri</th>
+                    <th>Sat</th>
+                </tr>
+                <tr>
+                    <td><span class="otherMonth">28</span></td>
+                    <td><span class="otherMonth">29</span></td>
+                    <td><span class="otherMonth">30</span></td>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td id="today"><span>10</span></td>
+                    <td>11</td>
+                </tr>
+                <tr>
+                    <td>12</td>
+                    <td>13</td>
+                    <td>14</td>
+                    <td>15</td>
+                    <td>16</td>
+                    <td>17</td>
+                    <td>18</td>
+                </tr>
+                <tr>
+                    <td>19</td>
+                    <td>20</td>
+                    <td>21</td>
+                    <td>22</td>
+                    <td>23</td>
+                    <td>24</td>
+                    <td>25</td>
+                </tr>
+                <tr>
+                    <td>26</td>
+                    <td>27</td>
+                    <td>28</td>
+                    <td>29</td>
+                    <td>30</td>
+                    <td>31</td>
+                    <td class="otherMonth">1</td>
+                </tr>
+                
+                </table>
+                
+            </div>
+
+        </div>
+    </center>
+</body></html>
