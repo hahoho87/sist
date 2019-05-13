@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html {
+        font-size: 10px;
+      }
+      div {
+        font-size: 20px;
+      }
+      .emSize {
+        font-size: 2em;
+      }
+      .remSize {
+        font-size: 2rem;
+      }
+
+      .emSize span:first-child {
+        color: red;
+        font-size: 2em;
+      }
+
+      .emSize span:last-child {
+        font-size: 80px;
+      }
+
+      .remSize span:first-child {
+        color: blue;
+        font-size: 2rem;
+      }
+
+      .remSize span:last-child {
+        font-size: 20px;
+      }
+    </style>
+    <title>font_em_rem.html</title>
+  </head>
+  <body>
+    <div>
+      div 20px
+      <p class="emSize">Hello<span> em!~</span><span> 80</span></p>
+      <p class="remSize">Hello<span> rem!~</span><span> 20</span></p>
+      <!-- em은 부모의 크기에 영향을 받기 때문에 
+           부모의 크기가 변경되면 모두 변경되는 단점이 있어서 
+           root의 크기에만 영향을 받는 rem을 많이 사용한다. -->
+    </div>
+  </body>
+</html>

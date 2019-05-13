@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <style>
+      div {
+        width: 200px;
+        border: 1px solid black;
+        background: #eee;
+        padding: 10px;
+        text-align: center;
+      }
+
+      #container1 {
+        width: 500px;
+        height: 200px;
+        border: 1px dashed gray;
+        text-align: center;
+        display: inline-flex;
+        margin: 10px auto;
+        flex-direction: row-reverse;
+      }
+      #container2 {
+        width: 700px;
+        height: 200px;
+        border: 1px dashed gray;
+        margin: 10px auto;
+        display: inline-flex;
+        flex-direction: column;
+      }
+      #container3 {
+        width: 500px;
+        height: 200px;
+        border: 1px dashed gray;
+        margin: 10px auto;
+        display: flex;
+      }
+      #container4 {
+        width: 500px;
+        height: 200px;
+        border: 1px dashed gray;
+        margin: 10px auto;
+        display: inline-flex;
+        flex-wrap: wrap;
+      }
+      #container5 {
+        width: 500px;
+        height: 200px;
+        border: 1px dashed gray;
+        margin: 10px auto;
+        display: inline-flex;
+        flex-wrap: wrap-reverse;
+      }
+      #container6 {
+        width: 500px;
+        height: 200px;
+        border: 1px dashed gray;
+        margin: 10px auto;
+        display: inline-flex;
+        flex-wrap: row-reverse wrap;
+      }
+      .one {
+        order: 2;
+        flex: 1 1 0;
+      }
+      .two {
+        order: 3;
+      }
+      .three {
+        order: 1;
+      }
+    </style>
+    <title>flex.html</title>
+  </head>
+  <body>
+    <div>one</div>
+    <div>two</div>
+    <div>three</div>
+    <section>
+      <article id="container1">
+        <div class="one">one</div>
+        <div class="two">two</div>
+        <div class="three">three</div>
+      </article>
+      <article id="container2">
+        <div class="one">one</div>
+        <div class="two">two</div>
+        <div class="three">three</div>
+      </article>
+      <article id="container3">
+        <div class="one">one</div>
+        <div class="two">two</div>
+        <div class="three">three</div>
+      </article>
+      <article id="container4">
+        <div class="one">one</div>
+        <div class="two">two</div>
+        <div class="three">three</div>
+      </article>
+      <article id="container5">
+        <div class="one">one</div>
+        <div class="two">two</div>
+        <div class="three">three</div>
+      </article>
+      <article id="container6">
+        <div class="one">one</div>
+        <div class="two">two</div>
+        <div class="three">three</div>
+      </article>
+    </section>
+  </body>
+</html>

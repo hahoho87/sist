@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>flex_justify.html</title>
+<style>
+h3 { width:200px; float:left; }
+div { width:100px; 
+	  border:1px solid gray;
+	  background: #eee;
+	  padding:10px; 
+	  text-align: center; }
+article { width:300px; height:130px;
+		  border:1px dashed gray; 
+		  margin:10px auto;
+		  display:flex;
+		  flex-wrap:wrap;   }	 
+#container1 { justify-content: flex-start; }
+#container2 { justify-content: flex-end; }	
+#container3 { justify-content: center; }	
+#container4 { justify-content: space-between; }
+#container5 { justify-content: space-around; }  
+
+#container11 { align-items: stretch; }
+#container22 { align-items: flex-start; }	
+#container33 { align-items: flex-end; }	
+#container44 { align-items: center; }
+#container55 { align-items: baseline; }  
+.two   { font-size: 2em; }
+
+#container111 { align-content: flex-start; }
+#container222 { align-content: flex-end; }	
+#container333 { align-content: center; }	
+#container444 { align-content: space-between; }
+#container555 { align-content: space-around; } 
+</style>
+</head>
+<body>
+<section>
+<h3>555. space-around</h3>
+	<article id="container555">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>444. space-between</h3>
+	<article id="container444">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>333. center</h3>
+	<article id="container333">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>222. flex-end</h3>
+	<article id="container222">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>111. flex-start</h3>
+	<article id="container111">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+
+	<h3>55. baseline</h3>
+	<article id="container55">
+		<div class="one"   style="align-self:auto">auto one</div>
+		<div class="two"   style="align-self:stretch">stretch two</div>
+		<div class="three" style="align-self:flex-start">flex-start three</div>
+	</article>
+	<h3>44. center</h3>
+	<article id="container44">
+		<div class="one"   style="align-self:flex-end">flex-end one</div>
+		<div class="two"   style="align-self:center">center two</div>
+		<div class="three" style="align-self:baseline">baseline three</div>
+	</article>
+	<h3>33. flex-end</h3>
+	<article id="container33">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>22. flex-start</h3>
+	<article id="container22">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>11. stretch</h3>
+	<article id="container11">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	
+	<h3>5. space-around</h3>
+	<article id="container5">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>4. space-between</h3>
+	<article id="container4">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>3. center</h3>
+	<article id="container3">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>2. flex-end</h3>
+	<article id="container2">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+	<h3>1. flex-start</h3>
+	<article id="container1">
+		<div class="one">one</div>
+		<div class="two">two</div>
+		<div class="three">three</div>
+	</article>
+</section>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>fuction.html</title>
+    <script>
+      //내장 함수
+      // alert('출력할 문자열');
+      // > 경고 메시지 출력
+
+      // confirm('출력할 문자열');
+      // > 사용자의 확인을 받기위한 메시지 출력
+      var answer = confirm("정말 삭제하시겠습니까?");
+      console.log(answer);
+
+      //prompt('출력할 문자열', 초기값)
+      // > 사용자에게서 값을 입력받을 수 잇는 대화상자 출력
+      var answer = prompt("이름을 입력하세요", "이름 : ");
+      console.log(name);
+
+      //사용자 정의 함수
+      // fuction 함수이름([매개변수],[...]){
+      //   함수로 처리할 내용
+      //   [return 반환값]
+      //   [return]}
+
+      //화면에 Hello를 출력하는 함수
+      function hello() {
+          alert('Hello~!');
+      }
+
+      //이름을 입력받고 입력받은 값을 화면에 출력하는 함수
+      function hello(name) {
+          document.write(name);
+      }
+    //   JAVA와 같이 같은 이름을 쓰는 다형성은 불가능
+
+    function printname() {
+        var n = prompt('이름을 입력하세요')
+        document.getElementById('name').innerHTML = n;
+    }
+      //한 줄 주석
+
+      /* 
+            여러 줄 주석
+        */
+    </script>
+    <style>
+      /* 스타일 주석 */
+
+    </style>
+  </head>
+  <body>
+    <!-- HTML 주석 -->
+    <button type="button" onclick="hello();">Hello</button>
+    <button type="button" onclick="hello('Kim');">Hello2</button>
+    <button type="button" onclick="printname();">printname</button>
+    <p id="name"></p>
+  </body>
+</html>

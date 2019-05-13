@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1, initial-scale=1.0" />
+    <title>media_query_outside.html</title>
+    <link
+      rel="stylesheet"
+      media="screen and (max-width:1024px)"
+      href="../style/1024.css"
+    />
+    <style>
+      body {
+        background: url("../images/bg0.jpg") no-repeat fixed;
+        background-size: cover;
+      }
+      /* 최대 1024px */
+
+      /* 최대 768px */
+      @import url("../style/768.css") only screen and (max-width: 768px);
+      /* 최대 320px */
+    </style>
+  </head>
+  <body></body>
+</html>
