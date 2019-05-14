@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>function_anonnymous.html</title>
+    <script>
+      window.onload = function() {
+        alert("Hello");
+      };
+
+      var hi = function() {
+        alert("Hi");
+      };
+    </script>
+  </head>
+  <body>
+    <button type="button" onclick="hi()">hi</button>
+    <script>
+      alert("bye");
+    </script>
+    <!-- 순서상으론 Hello가 먼저 출력되어야 하지만 bye가 먼저 출력
+         onload는 화면을 모두 출력한 후에 작동되기 때문 -->
+  </body>
+</html>

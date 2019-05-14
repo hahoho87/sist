@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>function_changeBg.html</title>
+    <script>
+      function changeColor() {
+        var color1 = document.frm.color1.value;
+        var color2 = document.frm.color2.value;
+        var color3 = document.frm.color3.value;
+        //태그의 이름이 body인 노드들을 가져오기
+        var nodes = document.getElementsByTagName("body");
+        nodes[0].style.backgroundColor = color1;
+
+        nodes[0].style.color = color2;
+
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].style.borderColor = color3;
+        }
+
+        //선택된 색 값 표시
+        for (var i = 1; i <= inputs.length; i++) {
+          document.getElementById("color" + i + "Lbl").innerHTML = 'color' + i;
+            // document.frm["color" + i].value;
+        }
+      }
+    </script>
+
+    <style>
+      div {
+        width: 100px;
+        margin: 5px;
+        float: left;
+      }
+
+      input {
+        margin: 5px;
+        border-width: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>CHANGE COLOR</h3>
+    <form name="frm">
+      <div>background</div>
+      <input type="color" name="color1" onchange="changeColor()" />
+      <label for="color1" id="color1Lbl"></label><br />
+      <div>font</div>
+      <input type="color" name="color2" onchange="changeColor()" />
+      <label for="color2" id="color2Lbl"></label><br />
+      <div>border</div>
+      <input type="color" name="color3" onchange="changeColor()" />
+      <label for="color3" id="color3Lbl"></label><br />
+    </form>
+  </body>
+</html>

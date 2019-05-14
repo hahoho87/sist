@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>variable.html</title>
+    <script>
+        var x = 10; //전역변수
+        function printX() {
+            var x = 20;
+            console.log("x : " + x);
+            console.log("this x : " + this.x);
+
+            x = 30;
+            console.log("x : " + x);
+            console.log("this x : " + this.x);
+
+            // var y = 40; //지역 변수
+            y = 50;     //전역 변수
+            // var 로 선언을 하지 않으면 전역변수로 인식이 되니 주의
+        }
+
+        function printXY() {
+            console.log("------------------");
+            console.log("x : " + x);
+            console.log("this.x : " + this.x);
+            console.log("y : " + y);
+        }
+        printX();
+        printXY();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

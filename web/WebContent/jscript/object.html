@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>object.html</title>
+
+    <script>
+      //첫번째 객체 생성 방법
+      var MyCar = {
+        model: "123C", // 모델
+        speed: 0, // 속도
+        color: "", // 색상
+
+        brake: function() {
+          // 브레이크 익명 함수
+          this.speed -= 10;
+        },
+        accel: function() {
+          // 엑셀
+          this.speed += 10;
+        }
+      };
+      
+      MyCar.color = "red";
+      MyCar.accel();
+      document.write(MyCar.color + " : " + MyCar.speed + "<hr>");
+
+      //두번째 객체 생성 방법
+      function TheCar(model, speed, color) {
+        this.model = model;
+        this.speed = speed;
+        this.color = color;
+
+        this.brake = function() {
+          this.speed -= 10;
+        };
+        this.accel = function() {
+          this.speed += 10;
+        };
+      }
+      theCar = new TheCar("456C", 20, "yellow");
+      theCar.accel();
+      document.write(theCar.color + " : " + theCar.speed + "<hr>");
+
+      //세번째 객체 생성 방법
+      var objCar = new Object();
+      objCar.model = "789C";
+      objCar.speed = 30;
+      objCar.color = "blue";
+      objCar.brake = brake;
+      objCar.accel = accel;
+
+      function brake() {
+        this.speed -= 10;
+      }
+      function accel() {
+        this.speed += 10;
+      }
+
+      objCar.accel();
+      document.write(objCar.color + " : " + objCar.speed + "<hr>");
+
+      // MyCar 객체에 door property를 추가하고 start function 추가
+      MyCar.door = 2;
+      MyCar.start = function() {
+        alert(
+          "model : " +
+            this.model +
+            "\n" +
+            "door  : " +
+            this.door +
+            "\n" +
+            "speed : " +
+            this.speed +
+            " start!"
+        );
+      };
+      MyCar.start();
+    </script>
+  </head>
+  <body></body>
+</html>

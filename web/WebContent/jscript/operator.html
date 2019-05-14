@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>operator.html</title>
+    <script>
+      var num = 3;
+      var str = "3";
+      console.log(num == str); //true
+      console.log(num === str); //false
+      console.log(num != str); //false
+      console.log(num !== str); //true
+
+      function cal() {
+        var add = 3 + 4;
+        document.getElementById("result").innerHTML = add;
+      }
+    </script>
+  </head>
+
+  <body>
+    3 + 4 = <span id="result"></span>
+    <button onclick="cal()">계산</button>
+  </body>
+</html>

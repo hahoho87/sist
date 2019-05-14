@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>array.html</title>
+    <script>
+      var fruits = ["apple", "banana", "orange"];
+      var veges = new Array();
+      veges[0] = "carrot";
+      veges[1] = "pumpkin";
+      veges[2] = "tomato";
+      console.log(fruits.length);
+      console.log(veges.length);
+
+      var list = ["Lee", 3.14, true, new Date() ];
+      console.log(list.length);
+
+      for (var i=0; i<list.length; i++){
+          document.write(list[i] + "<br>")
+      }
+      list.sort();  //배열 정렬
+
+      for (var i in list) {
+          document.write(list[i] + " | ")
+      }
+
+      document.write("<hr>")
+
+      var veges2 = new Array();
+      veges2['ca'] = "carrot";
+      veges2['pu'] = "pumpkin";
+      veges2['to'] = "tomato";
+
+      document.write(veges2['ca'] + " | ");
+      document.write(veges2['pu'] + " | ");
+      document.write(veges2['to'] + " | ");
+    </script>
+  </head>
+  <body>
+
+
+  </body>
+</html>
