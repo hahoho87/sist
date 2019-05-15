@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>random_img.html</title>
+    <style>
+      body img {
+        width: 500px;
+      }
+    </style>
+  </head>
+  <body>
+    <img src="../images/bg0.jpg" id="banner" />
+    <script>
+        function randomBanner() {
+          //image array
+          var imgs = [
+            "../images/bg0.jpg",
+            "../images/bg1.jpg",
+            "../images/bg2.jpg"
+          ];
+    
+          var href = [
+            "../images/haha.jpg",
+            "../images/hehe.jpg",
+            "../images/home.jpg"
+          ]
+    
+          //1초마다 이미지가 랜덤하게 바뀌도록 처리
+          var i = Math.floor(Math.random() * imgs.length);
+          document.getElementById('banner').src = imgs[i];
+          //1초마다 randomBanner() 호출 (재귀)
+          setTimeout("randomBanner()", 3000);
+        }
+        randomBanner();
+      </script>
+  </body>
+</html>

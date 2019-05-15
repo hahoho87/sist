@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>digitalClock.html</title>
+    <script>
+      var i = 0;
+      function digitalClock() {
+        var now = new Date();
+        var hour = now.getHours();
+        var min = now.getMinutes();
+        var sec = now.getSeconds();
+        digitHour = digit(hour);
+        digitMin = digit(min);
+        digitSec = digit(sec);
+        document.getElementById("clock").innerHTML =
+          digitHour + ":" + digitMin + ":" + digitSec;
+        setInterval("digitalClock()", 1000);
+      }
+      function digit(i) {
+        if (i < 10) {
+          i = "0" + i;
+        }
+        return i;
+      }
+    </script>
+    <style>
+      #clock {
+        font-weight: bold;
+        text-align: center;
+        background: skyblue;
+        font-size: 80px;
+        width: 400px;
+        height: 100px;
+        padding: 10px;
+        margin: 10px;
+      }
+    </style>
+  </head>
+  <body onload="digitalClock()">
+    <div id="clock"></div>
+  </body>
+</html>
