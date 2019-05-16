@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>todoList.html</title>
+</head>
+<body>
+    <h3>오늘의 할 일</h3>
+    <input type="text" id="toDo">
+    <input type="button" value="add" onclick="addTodo()">
+    <hr>
+    <ul id="list"></ul>
+
+    <script>
+        var toDo = document.getElementById('toDo');
+        toDo.focus();
+
+        function addTodo(){
+            var ul = document.getElementById('list');
+            var li = document.createElement('li');
+            
+            if( toDo.value.trim().length > 0) {
+                li.innerHTML = toDo.value;
+                li.onclick = function(){
+                    var result = confirm('really delete?');
+                    if(result){
+                        this.parentNode.removeChild(this);
+                    }
+                    toDo.focus();
+                }
+                ul.appendChild(li);
+                toDo.value = "";
+                toDo.focus();
+            } 
+
+        }
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

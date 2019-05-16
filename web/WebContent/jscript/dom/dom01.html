@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>dom01.html</title>
+    <script>
+      function checkDom() {
+        var ppp = document.getElementById("ppp");
+        var dp = document.getElementById("dp");
+        ppp.style.borderStyle = "dashed";
+
+        dp.innerHTML =
+          "<p>ppp.id : " +
+          ppp.id +
+          "<br>ppp.tagname : " +
+          ppp.tagname +
+          "<br>ppp.innerHTML : " +
+          ppp.innerHTML +
+          "<br>ppp.style.border : " +
+          ppp.style.border +
+          "<br>ppp.onclick : " +
+          ppp.onclick +
+          "<br>ppp.childElementCount : " +
+          ppp.childElementCount +
+          "<br>ppp.previousElementSibling : " +
+          ppp.previousElementSibling +
+          "<br>ppp.nextElementSibling : " +
+          ppp.nextElementSibling +
+          "<br>ppp.width : " +
+          ppp.offsetWidth +
+          "<br>ppp.height : " +
+          ppp.offsetHeight; + "</p>"
+      }
+    </script>
+
+    <style>
+      #ppp {
+        width: 50%;
+        border: 2px solid navy;
+        text-align: center;
+      }
+      #sp {
+        width: 200px;
+        border: 1px solid black;
+        background: lightpink;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>DOM Object p의 property, style, event 리스너</h3>
+    <hr />
+    <p id="ppp" onclick="checkDom()">
+      P
+      <span id="sp">
+        SPAN
+      </span>
+    </p>
+    <hr />
+    <div id="dp"></div>
+  </body>
+</html>

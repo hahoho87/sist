@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom03.html</title>
+</head>
+<body>
+    <h2>querySelector</h2>
+    <div class="d">one</div>
+    <div class="d">two</div>
+    <div class="d" id="s">three</div>
+    <hr id="h2">
+    <script>
+        var h2 = document.querySelector('h2');
+        h2.style.color = 'red';
+
+        var div = document.querySelectorAll('div');
+        // querySelector는 처음 것만 가져오기 때문에 all로 받아야 하고 
+        // 값은 배열에 저장된다.
+        for(var i=0; i<div.length; i++) {
+            div[i].style.color = 'green';
+        }
+
+        var s = document.querySelector('#s');
+        s.style.color = 'orange';
+    </script>
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>querySelector</title>
+    <script>
+      console.log("0. page loading..... : " + document.readyState);
+
+      window.onload = function() {
+          console.log("1. page loading..... : " + document.readyState);
+      }
+      // 화면이 다 그려지기 전은 loading, 화면이 그려지고 난 후엔 complete
+    </script>
+  </head>
+  <body>
+      문서의 최종 수정일 : <span id="lastModified"></span>
+      <script>
+          document.getElementById('lastModified').innerHTML = document.lastModified;
+      </script>
+  </body>
+</html>

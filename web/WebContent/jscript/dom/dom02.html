@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>dom02.html</title>
+    <script>
+      var res = document.getElementById("result");
+
+      function getDOM() {
+        //find by id
+        var photoLblId = document.getElementById("photoLblId");
+        var photofield = document.getElementById("photofield");
+
+        console.log("1. " + photoLblId.innerHTML);
+        console.log("2. " + photofield.value);
+
+        //find by name I
+        var photofileNm = document.frm.photofileNm;
+        //이름으로 찾을때에는 document부터 찾아들어간다.
+        console.log("3. " + photofileNm.value);
+
+        //find by name II
+        var hobbies = document.getElementsByName("hobby");
+        for (var i in hobbies) {
+          if (hobbies[i].checked) {
+            console.log("hobby " + i + ". " + hobbies[i].value);
+          }
+        }
+
+        //find by tag name I - first ul
+        var uls = document.getElementsByTagName("ul");
+
+        var firstUl = uls[0];
+        var lists = firstUl.getElementsByTagName("li");
+
+        for (var i = 0; i < lists.length; i++) {
+          console.log("4.li " + i + " : " + lists[i].innerHTML);
+        }
+
+        //find by tag name II - second ul
+        var secondUl = document.getElementsByTagName("ul")[1];
+        lists = secondUl.getElementsByTagName("li");
+
+        for (var i = 0; i < lists.length; i++) {
+          console.log("5.li " + i + " : " + lists[i].innerHTML);
+        }
+
+        //find by class
+        var limes = document.getElementsByClassName("lime");
+        for (var i = 0; i < limes.length; i++) {
+          limes[i].style.backgroundColor = "lime";
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <p class="lime">class lime I</p>
+    <ul>
+      <li>one</li>
+      <li>two</li>
+      <li>three</li>
+    </ul>
+
+    <p class="lime">class lime II</p>
+    <ul>
+      <li>four</li>
+      <li>five</li>
+      <li>six</li>
+    </ul>
+
+    <form name="frm" enctype="multipart/form-date">
+      <!-- enctype :  -->
+      hobby <input type="checkbox" name="hobby" value="coding" checked />coding
+      <input type="checkbox" name="hobby" value="fishing" />fishing
+      <input type="checkbox" name="hobby" value="climbing" />climbing
+      <br />
+      <label for="photo" id="photoLblId">photo</label>
+      <input type="file" id="photofield" name="photofileNm" />
+      <input type="button" value="send" onclick="getDOM()" />
+    </form>
+  </body>
+</html>

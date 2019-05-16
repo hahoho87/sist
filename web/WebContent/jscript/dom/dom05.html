@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>dom05.html</title>
+    <script>
+        function addText(text) {
+            if(document.createTextNode) {
+                var node = document.createTextNode(text);
+                document.getElementById('target').appendChild(node);
+            }
+        }
+
+        function createDIV() {
+            var hr = document.createElement('hr');
+            var newDIV = document.createElement('div');
+            
+            newDIV.innerHTML = "new div 클릭하면 사라짐"
+            //속성값을 지정
+            newDIV.setAttribute('id', 'myDiv');
+            newDIV.onclick = function() {
+                // document.getElementsByTagName('body')[0].removeChild(this);
+                this.parentElement.removeChild(this);
+                //나의 부모를 찾고 나를 지워
+            }
+            
+            newDIV.style.background = "yellow"
+
+
+            document.body.appendChild(hr);
+            document.body.appendChild(newDIV);
+            document.getElementsByTagName('a')[0].innerHTML += ' > add';
+        }
+    </script>
+    <style>
+    </style>
+</head>
+<body>
+    div object dynamic add<br> 
+    <a href="javascript:createDIV()">create</a>
+    <div id="target" onclick="addText('동적으로 텍스트 추가')">
+        click me!
+    </div>
+</body>
+</html>

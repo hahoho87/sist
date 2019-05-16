@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>todoList.html</title>
+  </head>
+  <body>
+    <h3>오늘의 할 일</h3>
+    <input type="text" id="toDo" />
+    <input type="button" value="add" onclick="addTodo()" />
+    <hr />
+    <ul id="list"></ul>
+    <script>
+      var toDo = document.getElementById("toDo");
+      toDo.focus();
+
+      function addTodo() {
+        var li = document.createElement("li");
+        var ul = document.getElementById("list");
+        var input = toDo.value;
+
+        if (input.trim() == "") {
+          //trim()으로 공백처리
+          alert("값을 입력하세요");
+        } else {
+          //li 안에 input값을 넣고 ul에 li를 추가
+          li.innerHTML = input;
+          ul.appendChild(li);
+          toDo.value = "";
+          toDo.focus();
+        }
+
+        li.onclick = function() {
+          var result = confirm("정말 삭제하시겠습니까?");
+          if (result == true) {
+            this.parentElement.removeChild(this);
+          } else {
+          }
+          toDo.value = "";
+          toDo.focus();
+        };
+      }
+    </script>
+  </body>
+</html>

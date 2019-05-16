@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>gababo.html</title>
+<style>
+fieldset { width:480px; height:390px; border:5px solid orange; 
+           border-radius: 5%; text-align: center; margin: 0px auto; 
+           position:relative; }
+legend   { text-align: center; padding: 10px 20px ; font-weight : bold; 
+           font-size: 1.5em; }
+#startBtn{ width:60%; height:50%; background: orange; opacity:0.9; 
+           position:absolute; left:100px; top:100px; box-sizing: border-box;
+           border-radius: 15%; padding-top: 50px; font-weight:bold; 
+           font-size:4em; color:white; text-shadow: 5px 5px 5px black; }     
+img { width:150px; height:150px; }  
+.yesNo { visibility: hidden; color:orange; background:white; 
+         padding:3px 10px; border:2px solid orange; 
+         position:absolute;  font-weight:bold; width:80px; 
+         border-radius: 10px; box-shadow: 1px 1px 1px black; }
+.yesNo:hover{ color:white; background: orange; 
+              border:2px solid white; 
+              text-shadow: 1px 1px 1px black;}               
+#yesBtn { left:140px; top:240px; }                 
+#noBtn { left:260px; top:240px; }     
+</style>
+<!--<div id="yesBtn" class="yesNo" onclick="hideBtn(true)">continue</div>
+    <div id="noBtn" class="yesNo" onclick="window.close()">quit</div> -->
+</head>
+<body>
+<fieldset>
+    <legend>가위 바위 보 게임 ver. 0.1</legend>
+    <img src="../images/gababo_ba.PNG" id="comImg">
+    <img src="../images/gababo_vs.PNG">
+    <img src="../images/gababo_question.PNG" id="manImg">
+    <hr>
+    <img src="../images/gababo_ga.PNG" onclick="play(0)">
+    <img src="../images/gababo_ba.PNG" onclick="play(1)">
+    <img src="../images/gababo_bo.PNG" onclick="play(2)">
+    <div id="startBtn" onclick="hideBtn(true)">START</div>
+    <div id="yesBtn" class="yesNo" onclick="hideBtn(true)">continue</div>
+    <div id="noBtn" class="yesNo" onclick="window.close()">quit</div>
+</fieldset>
+
+<script>
+var comImg = document.getElementById('comImg');
+var manImg = document.getElementById('manImg');
+var startBtn = document.getElementById('startBtn');
+var yesBtn = document.getElementById('yesBtn');
+var noBtn = document.getElementById('noBtn');
+
+var gababoImgs = [ '../images/gababo_ga.PNG', 
+                   '../images/gababo_ba.PNG',
+                   '../images/gababo_bo.PNG' ];
+var gameOn = false; 
+var com = "";
+var interval = 300;
+var timer;
+var result; 
+
+function hideBtn(startOn) {
+    gameOn = true;
+    if(startOn){
+        startBtn.style.visibility = 'hidden';
+        yesBtn.style.visibility = 'hidden';
+        noBtn.style.visibility = 'hidden'; 
+        timer = setInterval('changeImg()', interval);
+    } else { 
+        startBtn.style.visibility = "visible";
+        startBtn.innerHTML = result; //'You win';
+        yesBtn.style.visibility = 'visible';
+        noBtn.style.visibility = 'visible';
+        gameOn = false;
+    }
+}
+function play(gababo){
+    if(gameOn){
+        manImg.src = gababoImgs[gababo];
+        //game processing...
+        result = "U win"; //result of the game
+        hideBtn(false);
+        clearInterval(timer);
+    }
+}
+
+function changeImg(){
+    com = Math.floor(Math.random() * gababoImgs.length);
+    comImg.src = gababoImgs[com];
+}
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
