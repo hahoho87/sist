@@ -3,7 +3,60 @@
   <head>
     <meta charset="UTF-8" />
     <title>rockPaperScissors.html</title>
+<<<<<<< HEAD
+=======
+    <script>
+        
+      // START가 눌리면 setInterval 로 움직인다
+      // 사람이 클릭하면 clearInterval 로 멈춘다
+      function startGame() {
+        //게임이 시작되면 시작 버튼 가림
+        document.getElementById("startBtn").style.display = "none";
+        setInterval("randomBanner()", 100);
+      }
+>>>>>>> refs/remotes/origin/master
 
+<<<<<<< HEAD
+=======
+      function resultGame() {
+        // 선택하면 결과 버튼 출력
+        document.getElementById("resultBtn").style.display = "block";
+        // if (user == com) {
+		// 	System.out.println("비겼습니다.");
+		// } else if ((user - com == -2) || (user - com == 1)) {
+		// 	System.out.println("you win!!!");
+		// } else {
+		// 	System.out.println("you lose!!!");
+        // }
+        
+      }
+
+      function play(i) {
+        var imgs = [
+            "../images/rock.png",
+            "../images/paper.png",
+            "../images/scissors.png"
+          ];
+        document.getElementById("myImg").src = imgs[i];
+        resultGame()
+        clearInterval("randomBanner()");
+      }
+
+      function randomBanner() {
+        
+          //image array
+          var imgs = [
+            "../images/rock.png",
+            "../images/paper.png",
+            "../images/scissors.png"
+          ];
+          //1초마다 이미지가 랜덤하게 바뀌도록 처리
+          var i = Math.floor(Math.random() * imgs.length);
+          document.getElementById("comImg").src = imgs[i];
+          //1초마다 randomBanner() 호출 (재귀)
+        }
+    </script>
+>>>>>>> refs/remotes/origin/master
     <style>
       fieldset {
         width: 500px;
