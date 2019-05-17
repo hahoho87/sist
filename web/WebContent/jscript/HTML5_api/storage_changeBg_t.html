@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>function_changeBg.html</title>
+<script>
+var bodyColor;
+var fontColor;
+var borderColor;
+
+var nodes;
+var inputs;
+
+window.onload = function(){
+    nodes = document.getElementsByTagName('body');
+    inputs = document.getElementsByTagName('input');
+
+    //로컬스토리지에서 색 읽어오기
+    bodyColor   = localStorage.getItem('bodyColor');
+    fontColor   = localStorage.getItem('fontColor');
+    borderColor = localStorage.getItem('borderColor');
+    
+    //배경색과 폰트색 변경
+	nodes[0].style.backgroundColor = bodyColor != null ? bodyColor : '#fff';
+	nodes[0].style.color = fontColor != null ? fontColor : '#000';
+
+    //테두리 색  및 굵기 변경
+	for(var i=0 ; i<inputs.length; i++){
+        if(borderColor != null){
+            inputs[i].style.borderColor = borderColor;
+            inputs[i].style.borderWidth = "3px";
+        } else { 
+            inputs[i].style.borderColor = '#000';
+            inputs[i].style.borderWidth = "1px";
+        }
+    }
+	
+	//선택한 색 값 표시
+	for(var i=1 ; i<=inputs.length; i++){
+		document.getElementById('color' + i + 'Lbl')
+				.innerHTML = document.frm['color' + i].value;
+	}
+}
+function changeColor(){
+    //선택한 색상들 저장
+    bodyColor   = document.frm.color1.value;
+    fontColor   = document.frm.color2.value;
+    borderColor = document.frm.color3.value;
+
+    //로컬스토리지에 색 저장
+    localStorage.setItem('bodyColor',   bodyColor);
+    localStorage.setItem('fontColor',   fontColor);
+    localStorage.setItem('borderColor', borderColor);
+
+    //배경색과 폰트색 변경
+	nodes[0].style.backgroundColor = bodyColor;
+	nodes[0].style.color = fontColor;
+
+    //테두리 색  및 굵기 변경
+	for(var i=0 ; i<inputs.length; i++){
+		inputs[i].style.borderColor = borderColor;
+		inputs[i].style.borderWidth = "3px";
+	}
+	
+	//선택한 색 값 표시
+	for(var i=1 ; i<=inputs.length; i++){
+		document.getElementById('color' + i + 'Lbl')
+				.innerHTML = document.frm['color' + i].value;
+	}
+}
+
+</script>
+<style>
+div { width:150px; margin:5px; float:left; }
+input { margin:5px; }
+</style>
+</head>
+<body>
+	<h3>CHANGE COLOR</h3>
+	<form name="frm">
+		<div>background</div>
+		<input name="color1" type="color" onchange="changeColor()">
+		<label for ="color1" id="color1Lbl"></label><br>
+		<div>font</div>
+		<input name="color2" type="color" onchange="changeColor()">
+		<label for ="color2" id="color2Lbl"></label><br>
+		<div>border</div>
+		<input name="color3" type="color" onchange="changeColor()">
+		<label for ="color3" id="color3Lbl"></label><br>
+		<div>ALL COLOR</div>
+		<input type="button" onclick="resetColor()" value="RESET">
+	</form>
+</body>
+</html>
+
+
+
+
+
+
+
+
+

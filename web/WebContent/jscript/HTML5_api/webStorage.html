@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>webStorage.html</title>
+    <script>
+      // 웹 스토리지
+      //웹 스토리지는 웹에 있는 스토리지가 아니라 브라우저의 내부
+      //스토리지를 사용할 수 있게끔 제공하고 있는 기능입니다.
+      //웹 스토리지가 생긴 이유는 쿠키 사용에 대한 불편함과
+      //제약으로 인해 불편함을 해소하고 다양한 기능들을
+      //넣고자 하였기 때문에 HTML5에 WEBStorage라는 기능이 생겼습니다.
+
+      if (typeof Storage !== "undefined") {
+        console.log("storage ok!");
+        // storage 에 값을 저장할 때에는 setItem
+        localStorage.setItem("username", "Han");
+        document.write(
+          "localStorage username : " + localStorage.getItem("username")
+        );
+      } else {
+        console.log("storage not ok");
+      }
+
+      if (typeof Storage !== "undefined") {
+        console.log("storage ok!");
+        // storage 에 값을 저장할 때에는 setItem
+        sessionStorage.setItem("username", "Goo");
+        document.write(
+          "<hr>sessionStorage username : " + sessionStorage.getItem("username")
+        );
+      } else {
+        console.log("storage not ok");
+      }
+
+      function remove() {
+        localStorage.removeItem("username");
+        sessionStorage.removeItem("username");
+      }
+    </script>
+  </head>
+  <body>
+    <br />
+    <button type="button" onclick="remove()">
+      localStorage and sessionStrage Remove
+    </button>
+  </body>
+</html>

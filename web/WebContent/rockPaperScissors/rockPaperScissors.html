@@ -3,65 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <title>rockPaperScissors.html</title>
-<<<<<<< HEAD
-=======
-    <script>
-        
-      // START가 눌리면 setInterval 로 움직인다
-      // 사람이 클릭하면 clearInterval 로 멈춘다
-      function startGame() {
-        //게임이 시작되면 시작 버튼 가림
-        document.getElementById("startBtn").style.display = "none";
-        setInterval("randomBanner()", 100);
-      }
->>>>>>> refs/remotes/origin/master
-
-<<<<<<< HEAD
-=======
-      function resultGame() {
-        // 선택하면 결과 버튼 출력
-        document.getElementById("resultBtn").style.display = "block";
-        // if (user == com) {
-		// 	System.out.println("비겼습니다.");
-		// } else if ((user - com == -2) || (user - com == 1)) {
-		// 	System.out.println("you win!!!");
-		// } else {
-		// 	System.out.println("you lose!!!");
-        // }
-        
-      }
-
-      function play(i) {
-        var imgs = [
-            "../images/rock.png",
-            "../images/paper.png",
-            "../images/scissors.png"
-          ];
-        document.getElementById("myImg").src = imgs[i];
-        resultGame()
-        clearInterval("randomBanner()");
-      }
-
-      function randomBanner() {
-        
-          //image array
-          var imgs = [
-            "../images/rock.png",
-            "../images/paper.png",
-            "../images/scissors.png"
-          ];
-          //1초마다 이미지가 랜덤하게 바뀌도록 처리
-          var i = Math.floor(Math.random() * imgs.length);
-          document.getElementById("comImg").src = imgs[i];
-          //1초마다 randomBanner() 호출 (재귀)
-        }
-    </script>
->>>>>>> refs/remotes/origin/master
     <style>
       fieldset {
         width: 500px;
         border-radius: 20px;
-        border: 5px solid pink;
+        border: 5px solid #066cfa;
         text-align: center;
         margin: 50px auto;
         padding: 30px;
@@ -93,21 +39,7 @@
         box-sizing: border-box;
         padding-top: 40px;
       }
-      #resultBtn {
-        background: pink;
-        position: absolute;
-        top: 150px;
-        left: 130px;
-        opacity: 0.9;
-        border-radius: 40px;
-        color: white;
-        font-size: 80px;
-        width: 300px;
-        height: 200px;
-        box-sizing: border-box;
-        padding-top: 40px;
-        display: none;
-      }
+
       fieldset img {
         width: 150px;
         height: 200px;
@@ -141,12 +73,12 @@
         box-shadow: 1px 1px 1px black;
       }
       #yesBtn {
-        left: 10px;
-        top: 130px;
+        left: 140px;
+        top: 280px;
       }
       #noBtn {
-        left: 150px;
-        top: 130px;
+        left: 280px;
+        top: 280px;
       }
     </style>
   </head>
@@ -161,19 +93,17 @@
       <img src="../images/rock.png" id="rockImg" onclick="play(0)" />
       <img src="../images/paper.png" id="paperImg" onclick="play(1)" />
       <img src="../images/scissors.png" id="scissorImg" onclick="play(2)" />
-      <div id="startBtn" name="startBtn" onclick="hideBtn(true)">START<span id="result"></span></div>
-      <div id="resultBtn">
-        <span id="result"></span>
-        <div id="yesBtn" class="yesNo" onclick="hideBtn(true)">continue</div>
-        <div id="noBtn" class="yesNo" onclick="window.close()">quit</div>
+      <div id="startBtn" name="startBtn" onclick="hideBtn(true)">
+        START
       </div>
+      <div id="yesBtn" class="yesNo" onclick="hideBtn(true)">continue</div>
+      <div id="noBtn" class="yesNo" onclick="window.close()">quit</div>
     </fieldset>
 
     <script>
       var comImg = document.getElementById("comImg");
       var myImg = document.getElementById("myImg");
       var startBtn = document.getElementById("startBtn");
-      // var resultBtn = document.getElementById("resultBtn");
       var yesBtn = document.getElementById("yesBtn");
       var noBtn = document.getElementById("noBtn");
       var result = document.getElementById("result");
@@ -191,18 +121,15 @@
 
       function hideBtn(startOn) {
         gameOn = true;
-        // document.getElementById("startBtn").style.display = "none";
-        // startBtn.style.display = "none;"
         if (startOn == true) {
-          timer = setInterval("changeImg()", interval);
           startBtn.style.visibility = "hidden";
           yesBtn.style.visibility = "hidden";
           noBtn.style.visibility = "hidden";
-          // resultBtn.style.visibility = "hidden";
+          timer = setInterval("changeImg()", interval);
         } else {
-          startBtn.style.visibility = "visible";
           yesBtn.style.visibility = "visible";
           noBtn.style.visibility = "visible";
+          startBtn.style.visibility = "visible";
           gameOn = false;
         }
       }
@@ -216,9 +143,6 @@
         if (gameOn) {
           myImg.src = Imgs[my];
           clearInterval(timer);
-          yesBtn.style.visibility = "visible";
-          noBtn.style.visibility = "visible";
-          resutlBtn.style.visibility = "visible";
           resultGame(my);
           hideBtn(false);
         }
@@ -227,11 +151,11 @@
       function resultGame(my) {
         if (gameOn) {
           if (my == com) {
-            result.innerHTML = "DRAW";
+            startBtn.innerHTML = "DRAW";
           } else if (my - com == -2 || my - com == 1) {
-            result.innerHTML = "WIN!!";
+            startBtn.innerHTML = "WIN!!";
           } else {
-            result.innerHTML = "LOSE";
+            startBtn.innerHTML = "LOSE";
           }
         }
       }

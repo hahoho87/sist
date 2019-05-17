@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>event.html</title>
+    <script>
+      document.oncontextmenu = function() {
+        alert("마우스 오른쪽 클릭 불가");
+        return false;
+      };
+    </script>
+    <style>
+      input {
+        width: 100px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>HTML EVENT</h3>
+    <!-- 1. HTML 내에서 바로 지정 -->
+    <p
+      onmouseover="this.style.backgroundColor='lightgray'"
+      onmouseout="this.style.backgroundColor='white'"
+    >
+      마우스를 올리면 배경색 변경
+    </p>
+
+    <div id="d" style="color: black;">on mouse over : change color</div>
+
+    <div id="d2" onclick="someFunction(event); alert(event.type)">
+      addEventListener
+    </div>
+    <!-- 여러개의 함수를 나열할 때에는 세미콜론으로 구분 -->
+
+    <!-- 눌러도 넘어가지 않게 false값 return -->
+    <a href="http://naver.com" onclick="return false">naver.com return false</a
+    ><br />
+    <!-- event의 preventDefault 함수를 호출해서 이동 방지 -->
+    <a href="http://naver.com" onclick="event.preventDefault()"
+      >naver.com return false</a
+    ><br />
+
+    <h3>연락처</h3>
+    <form action="">
+      <select name="localNum" id="localNum" onchange="phone2.focus()">
+        <option value="">선택</option>
+        <option value="010">010</option>
+        <option value="011">011</option>
+        <option value="017">017</option></select
+      >
+      <input
+        type="text"
+        id="phone2"
+        size="4"
+        maxlength="4"
+        onkeyup="move(this, phone3)"
+      />
+      <input
+        type="text"
+        id="phone3"
+        size="4"
+        maxlength="4"
+        onkeyup="move(this, addBtn)"
+      />
+      <input type="button" id="addBtn" value="추가" />
+      <input type="reset" value="삭제" />
+    </form>
+    <script>
+      // 2. mouseover 메소드로 지정
+      var d = document.getElementById("d");
+      d.onmouseover = function() {
+        d.style.color = "red";
+      };
+
+      d.onmouseout = out;
+
+      function out() {
+        d.style.color = "black";
+      }
+      // 3. EventListener로 지정
+      var d2 = document.getElementById("d2");
+      d2.addEventListener("mouseover", function() {
+        d2.style.backgroundColor = "black";
+        d2.style.color = "white";
+      });
+
+      d2.addEventListener("mouseout", out2);
+
+      function out2() {
+        d2.style.backgroundColor = "white";
+        d2.style.color = "black";
+      }
+
+      function someFunction(e) {
+        console.log("1. e.type : " + e.type);
+      }
+
+      function move(obj, nextObj) {
+        if (obj.value.trim().length === 4) {
+          nextObj.focus();
+        }
+      }
+    </script>
+  </body>
+</html>

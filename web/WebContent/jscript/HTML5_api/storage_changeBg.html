@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>function_changeBg.html</title>
+    <script>
+      var nodes = document.getElementsByTagName("body");
+      function changeBackground() {
+        var color1 = document.frm.color1.value;
+        nodes[0].style.backgroundColor = color1;
+        localStorage.setItem("backgroundColor", color1);
+        text();
+      }
+
+      function changeColor() {
+        var color2 = document.frm.color2.value;
+        nodes[0].style.color = color2;
+        localStorage.setItem("color", color2);
+        text();
+      }
+
+      function changeBorderColor() {
+        var color3 = document.frm.color3.value;
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].style.borderColor = color3;
+        }
+        localStorage.setItem("borderColor", color3);
+        text();
+      }
+
+      function text() {
+        //선택된 색 값 표시
+        var inputs = document.getElementsByTagName("input");
+        for (var i = 1; i <= inputs.length; i++) {
+          document.getElementById("color" + i + "Lbl").innerHTML =
+            document.frm["color" + i].value;
+        }
+      }
+
+      function remove() {
+        var nodes = document.getElementsByTagName("body");
+        var inputs = document.getElementsByTagName("input");
+        nodes[0].style.backgroundColor = "white";
+        nodes[0].style.color = "black";
+        for (var i = 0; i < inputs.length; i++) {
+          inputs[i].style.borderColor = "gray";
+        }
+        localStorage.removeItem('backgroundColor');
+        localStorage.removeItem('color');
+        localStorage.removeItem('borderColor');
+      }
+
+    </script>
+
+    <style>
+      div {
+        width: 100px;
+        margin: 5px;
+        float: left;
+      }
+
+      input {
+        margin: 5px;
+        border-width: 3px;
+      }
+    </style>
+  </head>
+  <body>
+    <h3>CHANGE COLOR</h3>
+    <form name="frm">
+      <div>background</div>
+      <input type="color" name="color1" onchange="changeBackground()" />
+      <label for="color1" id="color1Lbl"></label><br />
+      <div>font</div>
+      <input type="color" name="color2" onchange="changeColor()" />
+      <label for="color2" id="color2Lbl"></label><br />
+      <div>border</div>
+      <input type="color" name="color3" onchange="changeBorderColor()" />
+      <label for="color3" id="color3Lbl"></label><br />
+      <button type="button" onclick="remove()">
+          localStorage and sessionStrage Remove
+        </button>
+    </form>
+    <script>
+      nodes[0].style.backgroundColor = localStorage.getItem("backgroundColor");
+      nodes[0].style.color = localStorage.getItem("color");
+      var inputs = document.getElementsByTagName("input");
+      for (var i = 0; i < inputs.length; i++) {
+        inputs[i].style.borderColor = localStorage.getItem("borderColor");
+      }
+    </script>
+  </body>
+</html>

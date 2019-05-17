@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>geo.html</title>
+  </head>
+  <body>
+    <div id="x"></div>
+    <script>
+      var x = document.getElementById("x");
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(geoSuccess, geoFail);
+        //navigator.geolocation.getCurrentPosition 이 실행되고
+        //성공이라면 geoSuccess, 실패하면 geoFail 콜백함수 호출
+
+        //getCurrentPosition successed
+        function geoSuccess(position) {
+          var lat = position.coords.latitude;
+          var lon = position.coords.longitude;
+          document.write("<H3>CURRENT POSITION</H3>");
+          document.write("<ul><li>위도 : " + lat + "</li>");
+          document.write("<li>경도 : " + lon + "</li>");
+          //http://maps.google.co.kr/?q=위도,경도
+          document.write(
+            "<li><a href='http://maps.google.co.kr/?q=" +
+              lat +
+              "," +
+              lon +
+              "'>지도로 보기</a></li></ul>"
+          );
+        }
+
+        //getCurrentPosition failed
+        function geoFail() {
+          console.log("위치 확인 실패 : " + error.massage);
+          if (error.code == error.TIMEOUT) {
+            alert("제한 시간 초과 - 위치 확인 실패");
+          }
+        }
+      } else {
+        document.write("geolocation no ok");
+      }
+    </script>
+  </body>
+</html>
