@@ -33,8 +33,8 @@ public class TestInitParamServlet extends HttpServlet {
 		out.println("<html>");
 		out.println("<head><title>Test.do</title></head>");
 		out.println("<body><h3>Servlet 초기화 파라미터 값 출력1</h3>");
-		out.println("	<p>manager email : " + servletConfig.getInitParameter("managerEmail") + "</p>");
-		out.println("	<p>admin email : " + servletConfig.getInitParameter("adminEmail") + "</p></body>");
+		out.println("	<p>manager email : " + servletConfig.getInitParameter("managerEmail"));
+		out.println("	<br>admin email : " + servletConfig.getInitParameter("adminEmail") + "</p></body>");
 		// 클라이언트 데이터는 request 객체에 담겨서 온다
 		out.println("</html>");
 	}
