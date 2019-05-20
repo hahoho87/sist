@@ -14,8 +14,9 @@ import javax.servlet.http.HttpServletResponse;
  * Servlet implementation class TestInitParamServlet
  */
 @WebServlet(urlPatterns = { "/Test.do" }, initParams = {
-		@WebInitParam(name = "managerEmail", value = "manager@aaa.com") })
-// 이 서블릿에서만 사용할 initParams 생성
+		@WebInitParam(name = "managerEmail", value = "manager@aaa.com"),
+		@WebInitParam(name = "empEmail", value = "emp@aaa.com")})
+// 특정 서블릿에서만 사용할 initParam 생성
 
 public class TestInitParamServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -34,7 +35,9 @@ public class TestInitParamServlet extends HttpServlet {
 		out.println("<head><title>Test.do</title></head>");
 		out.println("<body><h3>Servlet 초기화 파라미터 값 출력1</h3>");
 		out.println("	<p>manager email : " + servletConfig.getInitParameter("managerEmail"));
-		out.println("	<br>admin email : " + servletConfig.getInitParameter("adminEmail") + "</p></body>");
+		out.println("	<br>admin email : " + this.getInitParameter("adminEmail"));
+		out.println("	<br>emp email : " + getInitParameter("empEmail"));
+		out.println("</p></body>");
 		// 클라이언트 데이터는 request 객체에 담겨서 온다
 		out.println("</html>");
 	}
