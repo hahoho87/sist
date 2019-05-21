@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test.jsp</title>
+<title>footer.jsp</title>
 </head>
 <body>
-    3 + 4 =  <%out.println(3+4);%>
+	<hr>Copyright
 </body>
 </html>

@@ -4,9 +4,15 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-    3 + 4 =  <%out.println(3+4);%>
+	<h3>JSP FILE WRITER</h3>
+	<form action ="">
+	파일명 : 
+	제목 : 
+	내용 : 
+	<input type="submit" value="저장">
+	</form>
 </body>
 </html>

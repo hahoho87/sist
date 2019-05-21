@@ -1,28 +1,44 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns="http://xmlns.jcp.org/xml/ns/javaee"
-	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
-	id="WebApp_ID" version="3.1">
-	<display-name>webex</display-name>
-	<welcome-file-list> 
-	<!-- 서블릿이 시작되면 welcome-file-list에 있는 파일이 가장 먼저 열린다  -->
-		<welcome-file>index.html</welcome-file>
-		<welcome-file>index.htm</welcome-file>
-		<welcome-file>index.jsp</welcome-file>
-		<welcome-file>default.html</welcome-file>
-		<welcome-file>default.htm</welcome-file>
-		<welcome-file>default.jsp</welcome-file>
-	</welcome-file-list>
-	<servlet>
-		<servlet-name>TestInitParamServlet</servlet-name> <!-- 3.실제 서블릿을 찾는다 -->
-		<servlet-class>TestInitParamServlet</servlet-class><!-- 4.해당 서블릿의 클래스 -->
-		<init-param>
-			<param-name>adminEmail</param-name>
-			<param-value>admin@aaa.com</param-value>
-		</init-param>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>TestInitParamServlet</servlet-name><!-- 2. url패턴의 서블릿 이름을 찾는다 -->
-		<url-pattern>/Test.do</url-pattern> <!-- 1.클라이언트의 요청이 들어오면 url 패턴을 찾는다 -->
-	</servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" id="WebApp_ID" version="3.1">
+  <display-name>webex</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+  <context-param>
+    <param-name>database</param-name>
+    <param-value>oracle 11g</param-value>
+  </context-param>
+  <context-param>
+    <param-name>filepath</param-name>
+    <param-value>/upload/</param-value>
+  </context-param>
+  <servlet>
+    <servlet-name>ConfigTest</servlet-name>
+    <jsp-file>/work/test.jsp</jsp-file>
+    <init-param>
+      <param-name>testCode</param-name>
+      <param-value>1234</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ConfigTest</servlet-name>
+    <url-pattern>/work/test.jsp</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>TestInitParamServlet</servlet-name>
+    <servlet-class>TestInitParamServlet</servlet-class>
+    <init-param>
+      <param-name>adminEmail</param-name>
+      <param-value>admin@aaa.com</param-value>
+    </init-param>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TestInitParamServlet</servlet-name>
+    <url-pattern>/Test.do</url-pattern>
+  </servlet-mapping>
 </web-app>

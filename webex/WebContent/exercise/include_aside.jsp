@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test.jsp</title>
+<title>include_aside.jsp</title>
 </head>
 <body>
-    3 + 4 =  <%out.println(3+4);%>
+	<h3>include_aside.jsp</h3>
 </body>
 </html>

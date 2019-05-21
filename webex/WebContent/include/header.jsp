@@ -4,9 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>test.jsp</title>
+<title>header.jsp</title>
 </head>
 <body>
-    3 + 4 =  <%out.println(3+4);%>
+	<h1>MEMBER ONLY</h1>
+	<hr>
 </body>
 </html>
