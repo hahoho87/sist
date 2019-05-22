@@ -1,6 +1,8 @@
 package webex.controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -34,18 +36,25 @@ public class MemberServlet extends HttpServlet {
 		
 		MemberVO mvo = new MemberVO(userId, uesrPw, userNm, email1, email2, 
 				birthDate, gender, regDate, photo);
-		
 		MemberDao mdao = new MemberDao();
+		boolean result = mdao.insert(mvo);	//DB 쿼리 실행 메서드 호출
+		String url = "";
 		
-		if (mdao.insert(mvo) == true) {
+		if (result == false) {
 			//join03.jsp로 이동
 			//회원가입 완료 메시지 -> 로그인
+			url = "member/join03.jsp";
+			request.setAttribute("msg", "회원가입이 완료되었습니다.");
+			
 		} else {
 			//join02.jsp로 이동
 			//회원가입 실패 ->
 			//dispatcher forward
+			url = "member/join02.jsp";
+			request.setAttribute("msg", "회원가입에 실패하였습니다.");
 		}
-				
+		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+		dispatcher.forward(request, response);
 	}
 
 }

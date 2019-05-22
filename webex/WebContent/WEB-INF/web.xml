@@ -9,14 +9,27 @@
     <welcome-file>default.htm</welcome-file>
     <welcome-file>default.jsp</welcome-file>
   </welcome-file-list>
+  
   <context-param>
     <param-name>database</param-name>
     <param-value>oracle 11g</param-value>
   </context-param>
+  
   <context-param>
     <param-name>filepath</param-name>
     <param-value>/upload/</param-value>
   </context-param>
+  
+  <error-page>
+  	<exception-type>java.lang.ArithmeticException</exception-type>
+  	<location>/work/error/exceptionPage.jsp</location>
+  </error-page>
+  
+  <error-page>
+  	<error-code>404</error-code>
+  	<location>/work/error/notFoundPage.jsp</location>
+  </error-page>
+  
   <servlet>
     <servlet-name>ConfigTest</servlet-name>
     <jsp-file>/work/test.jsp</jsp-file>
@@ -25,10 +38,12 @@
       <param-value>1234</param-value>
     </init-param>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>ConfigTest</servlet-name>
     <url-pattern>/work/test.jsp</url-pattern>
   </servlet-mapping>
+  
   <servlet>
     <servlet-name>TestInitParamServlet</servlet-name>
     <servlet-class>TestInitParamServlet</servlet-class>
@@ -37,6 +52,7 @@
       <param-value>admin@aaa.com</param-value>
     </init-param>
   </servlet>
+  
   <servlet-mapping>
     <servlet-name>TestInitParamServlet</servlet-name>
     <url-pattern>/Test.do</url-pattern>

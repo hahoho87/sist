@@ -7,7 +7,7 @@ pageEncoding="UTF-8"%>
     <title>join01.jsp</title>
     <style>
       body {
-        margin: 50px auto;
+        margin: 80% auto;
         width: 800px;
         text-align: center;
       }

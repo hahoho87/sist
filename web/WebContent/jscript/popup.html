@@ -1,29 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>popup.html</title>
-    <script>
-      window.onload = function() {
-        setTimeout("window.close()", 10000);
-        //10초후에 창 닫힘
-      };
-    </script>
-    <style></style>
-  </head>
-  <body onload="setTimeout('window.close()', 3000)">
-    <h3>PopUp.html</h3>
-    <article id="container2">
-      <div>
-        5초 후 창이 닫힙니다<br />
-        <input type="checkbox" /> 오늘 하루 안보기
-        <!-- <button type="button" onclick="window.close()">닫기</button> -->
-        <button type="button" onclick="window.close(setTimeout(5000))">
-          닫기
-        </button>
-      </div>
-    </article>
-  </body>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>popup.html</title>
+<script>
+	window.onload = function() {
+		setTimeout('window.close()', 50000);
+	}
+</script>
+<style>
+#container {
+	margin-top: 100px;
+}
+</style>
+</head>
+<body onload="setTimeout('window.close()', 3000)">
+	<h3>popup.html</h3>
+	<div id="container">
+		<input type="checkbox"> 오늘 하루 안 보기 <input type="button"
+			value="CLOSE" onclick="window.close();">
+	</div>
+</body>
 </html>

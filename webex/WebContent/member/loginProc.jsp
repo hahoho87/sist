@@ -1,8 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<% 
+	pageEncoding="UTF-8"%>
+<%
 	//아이디와 비밀번호를 id, pw 변수에 저장
-	
+
 	boolean result = true;
 	String id = request.getParameter("userId");
 	String pw = request.getParameter("userPw");
@@ -22,9 +22,17 @@
 		request.setAttribute("msgReq", "request login failed");
 		session.setAttribute("msgSess", "session login failed");
 		application.setAttribute("msgApp", " application login failed");
-		
+
+		/* 
 		RequestDispatcher dispatcher = request.getRequestDispatcher("login.jsp");
-		dispatcher.forward(request, response);
-	}
-	
+		dispatcher.forward(request, response); 
+		*/
 %>
+<jsp:forward page="login.jsp"></jsp:forward>
+<%
+	}
+%>
+
+
+
+
