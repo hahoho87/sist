@@ -4,11 +4,12 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>sendData.jsp</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<h3>SEND DATA</h3>
-	<form action="src/webex/controller/Session.java">
+	<h3>SESSION DATA [name : <%=session.getAttribute("name") %>]</h3>
+	}
+	<form action="/webex/Session.do">
 	name : <input type="text" name="name"><br>
 	blood type : <input type="radio" name="bloodType" id="a" value="A"><label for="a">A</label>
 				<input type="radio" name="bloodType" id="b" value="B"><label for="b">B</label>
@@ -17,5 +18,4 @@
 				<hr>
 				<input type="submit" value="send">
 	</form>
-</body>
 </html>

@@ -1,32 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>cookie.html</title>
-    <script>    
-        document.cookie = "username = Lee";
-        
-        //현재 시간에서 1분 동안 유효한 쿠키 생성
-        var now = new Date();
-        now.setTime(now.getTime() + (1000*60));
-        document.cookie = 'username=Lee;expires='+ now;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<title>cookie.html</title>
+<script>
+	document.cookie = "username = Lee";
 
-        window.onload = function(){
-            var cookie = document.cookie.split('=');
-            document.getElementById('cName').innerHTML = cookie[0];
-            document.getElementById('cValue').innerHTML = cookie[1];
+	//현재 시간에서 1분 동안 유효한 쿠키 생성
+	var now = new Date();
+	now.setTime(now.getTime() + (1000 * 60));
+	document.cookie = 'username=Lee;expires=' + now;
 
-            for (var i=0; i<cookie.length; i++){
-                
-            }
-        }
-    </script>
+	window.onload = function() {
+		var cookie = document.cookie.split('=');
+		document.getElementById('cName').innerHTML = cookie[0];
+		document.getElementById('cValue').innerHTML = cookie[1];
+
+		for (var i = 0; i < cookie.length; i++) {
+
+		}
+	}
+</script>
 </head>
 <body>
-    <h3>cookie info</h3>
-    cookie name : <span id="cName"></span><br>
-    cookie value : <span id="cValue"></span> <br>
+	<h3>cookie info</h3>
+	cookie name :
+	<span id="cName"></span>
+	<br> cookie value :
+	<span id="cValue"></span>
+	<br>
 </body>
 </html>

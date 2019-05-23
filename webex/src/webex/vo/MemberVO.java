@@ -2,7 +2,7 @@ package webex.vo;
 
 public class MemberVO {
 	private String userId;
-	private String uesrPw;
+	private String userPw;
 	private String userNm;
 	private String email1;
 	private String email2;
@@ -11,10 +11,10 @@ public class MemberVO {
 	private String photo;
 	private String regDate;
 	
-	public MemberVO(String userId, String uesrPw, String userNm, String email1, String email2, String birthDate,
+	public MemberVO(String userId, String userPw, String userNm, String email1, String email2, String birthDate,
 			String gender, String photo, String regDate) {
 		this.userId = userId;
-		this.uesrPw = uesrPw;
+		this.userPw = userPw;
 		this.userNm = userNm;
 		this.email1 = email1;
 		this.email2 = email2;
@@ -22,6 +22,11 @@ public class MemberVO {
 		this.gender = gender;
 		this.photo = photo;
 		this.regDate = regDate;
+	}
+	
+	public MemberVO(String userId, String userPw) {
+		this.userId = userId;
+		this.userPw = userPw;
 	}
 
 	public String getUserId() {
@@ -32,12 +37,12 @@ public class MemberVO {
 		this.userId = userId;
 	}
 
-	public String getUesrPw() {
-		return uesrPw;
+	public String getUserPw() {
+		return userPw;
 	}
 
-	public void setUesrPw(String uesrPw) {
-		this.uesrPw = uesrPw;
+	public void setUserPw(String userPw) {
+		this.userPw = userPw;
 	}
 
 	public String getUserNm() {
