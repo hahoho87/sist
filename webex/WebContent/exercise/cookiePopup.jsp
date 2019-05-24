@@ -21,7 +21,6 @@
 	   3.쿠키가 없는 경우
 	      팝업창 출력
 	 */
-
 </script>
 </head>
 <body>
@@ -38,19 +37,19 @@
 				out.print("<script>popupOpen()</script>");
 			} else if (id.equals("yes")) { // 쿠키에서 yes를 찾았을 때
 			}
-			} else { // 요청에서 쿠키가 없을때
-				out.print("<script>popupOpen()</script>");
-			}
-		%>
+		} else { // 요청에서 쿠키가 없을때
+			out.print("<script>popupOpen()</script>");
+		}
+	%>
 
-		<%
-			Cookie[] cookies1 = request.getCookies();
-			if (cookies1 != null && cookies1.length > 0) {
-				for (int i = 0; i < cookies1.length; i++) {
-					out.print("쿠키 이름 : " + cookies1[i].getName() + " | 값 : " + cookies1[i].getValue() + "<BR />");
-				}
+	<%
+		Cookie[] cookies1 = request.getCookies();
+		if (cookies1 != null && cookies1.length > 0) {
+			for (int i = 0; i < cookies1.length; i++) {
+				out.print("쿠키 이름 : " + cookies1[i].getName() + " | 값 : " + cookies1[i].getValue() + "<BR />");
 			}
-		%>
-		<h3>COOKIE POPUP</h3>
+		}
+	%>
+	<h3>COOKIE POPUP</h3>
 </body>
 </html>

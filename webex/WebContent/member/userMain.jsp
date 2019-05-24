@@ -4,23 +4,22 @@
 <head>
 <meta charset="UTF-8">
 <title>userMain.jsp</title>
-</head>
-<body>
-	<%
-		if (session.getAttribute("sid") != null) {
-	%>
-	<%=session.getAttribute("sid")%>님 안녕하세요!
-	<br>
-	<jsp:include page="../include/loginChk.jsp"></jsp:include>
-	<%
-		} else {
-	%>
-	<script>
+<script>
+	if (session.getAttribute("sid") == null) {
 		alert("회원 전용 페이지입니다. 로그인 후 이용해주세요.");
 		location.href("join03.jsp");
-	</script>
-	<%
-		}
-	%>
+	}
+</script>
+</head>
+<body>
+	<h3>USER MAIN PAGE</h3>
+	<jsp:include page="../include/loginChk.jsp"></jsp:include>
+	<hr>
+	<ul>
+		<li>
+		<a href="/webex/Member.do?flag=s&userId=<%=session.getAttribute("sid")%>">
+		내 정보 보기</a>
+		</li>
+	</ul>
 </body>
 </html>

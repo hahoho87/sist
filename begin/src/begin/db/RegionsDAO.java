@@ -18,7 +18,7 @@ public class RegionsDAO {
 	public Regions selectOne(int regionId) {
 
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:orcl";
+		String url = "jdbc:oracle:thin:@localhost:1522:xe";
 		String user = "hr";
 		String pwd = "1111";
 

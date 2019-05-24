@@ -23,7 +23,8 @@
 <body>
 	<h3>popup.jsp</h3>
 	<div id="container">
-		<input type="checkbox" id="yesNo" name="yseNo" onclick="cls()" /> 오늘 하루 안 보기 
+		<input type="checkbox" id="yesNo" name="yseNo" onclick="cls()" /> 
+		<label for="yseNo" >오늘 하루 안 보기 </label>
 		<input type="button" value="CLOSE" onclick="self.close();" />
 	</div>
 	<script>

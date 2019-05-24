@@ -20,11 +20,11 @@ public class DBTest {
 		
 		try {
 			Class.forName(driver);	//JDBC 드라이버 로드
-			con = DriverManager.getConnection(url, user, pwd);
-			stmt = con.createStatement();
-			String query = "SELECT * FROM regions WHERE region_id = 1";
-			rs = stmt.executeQuery(query);	//쿼리 실행
-			while (rs.next()) {	//읽어 올 값이 있으면
+			con = DriverManager.getConnection(url, user, pwd);			//데이터베이스 커넥션 구함
+			stmt = con.createStatement();								//쿼리 실행을 위한 Statement 객체 생성
+			String query = "SELECT * FROM regions WHERE region_id = 1"; //쿼리 작성
+			rs = stmt.executeQuery(query);								//쿼리 실행
+			while (rs.next()) {											//읽어 올 값이 있으면
 				int id = rs.getInt("region_id");
 				String name = rs.getString("region_name");
 				System.out.println("id : " + id);
@@ -43,10 +43,10 @@ public class DBTest {
 					rs.close();
 				}
 				if (stmt != null)	{
-					stmt.close();
+					stmt.close();										//Statement 종료
 				}
 				if (con != null)	{
-					con.close();
+					con.close();										//DB connection 종료
 				}
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

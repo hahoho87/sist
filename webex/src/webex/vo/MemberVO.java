@@ -1,5 +1,7 @@
 package webex.vo;
 
+import java.util.Date;
+
 public class MemberVO {
 	private String userId;
 	private String userPw;
@@ -9,10 +11,12 @@ public class MemberVO {
 	private String birthDate;
 	private String gender;
 	private String photo;
-	private String regDate;
+	private Date regDate;
+	
+	public MemberVO() {}
 	
 	public MemberVO(String userId, String userPw, String userNm, String email1, String email2, String birthDate,
-			String gender, String photo, String regDate) {
+			String gender, String photo, Date regDate) {
 		this.userId = userId;
 		this.userPw = userPw;
 		this.userNm = userNm;
@@ -93,14 +97,12 @@ public class MemberVO {
 		this.photo = photo;
 	}
 
-	public String getRegDate() {
+	public Date getRegDate() {
 		return regDate;
 	}
 
-	public void setRegDate(String regDate) {
+	public void setRegDate(Date regDate) {
 		this.regDate = regDate;
 	}
-
-	
 
 }

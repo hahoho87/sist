@@ -25,6 +25,15 @@
     <error-code>404</error-code>
     <location>/work/error/notFoundPage.jsp</location>
   </error-page>
+  
+  <jsp-config>
+  	<jsp-property-group>
+  		<url-pattern>/member/*</url-pattern>
+  		<include-prelude>/include/header.jsp</include-prelude>
+  		<include-coda>/include/footer.jsp</include-coda>
+  	</jsp-property-group>
+  </jsp-config>
+  
   <servlet>
     <servlet-name>ConfigTest</servlet-name>
     <jsp-file>/work/test.jsp</jsp-file>
