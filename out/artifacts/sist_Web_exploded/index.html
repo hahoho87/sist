@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>index.html</title>
+</head>
+<body>
+	<h3>WEBEX index page</h3>
+	<ul>
+		<li><a href="member/join01.jsp">Sign-up</a></li>
+		<li><a href="/HelloServlet.do">HelloServlet</a></li>
+		<li><a href="/webex/HelloServlet.do?usernm=abc">/webex/HelloServlet</a></li>
+		<li><form action="/webex/HelloServlet.do">
+				<!-- method를 안쓰면 get방식 -->
+				<input type="text" name="usernm"> <input type="submit"
+					value="Hello GET">
+			</form></li>
+	</ul>
+	<ul>
+		<li><form method="post" action="/webex/HelloServlet.do">
+				<!-- method="post"라고 지정해줘야 post방식을 전송 -->
+				<input type="text" name="usernm"> <input type="submit"
+					value="Hello POST">
+			</form></li>
+	</ul>
+</body>
+</html>
