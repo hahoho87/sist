@@ -23,6 +23,7 @@ table, th, td{ border: 1px solid gray; border-collapse: collapse; padding: 3px; 
 		<th>이름</th>
 		<th>이메일</th></tr>
 	<%
+	
 		List<MemberVO> memberList 
 			= (List<MemberVO>)request.getAttribute("memberList");
 		int i=1;
@@ -31,13 +32,14 @@ table, th, td{ border: 1px solid gray; border-collapse: collapse; padding: 3px; 
 			<td><%=i++ %></td>
 			<td><%=mvo.getUserId() %></td>
 			<td><%=mvo.getUserNm() %></td>
-			<td><%=mvo.getEmail1() %>@<%=mvo.getEmail1() %></td>
+			<td><%=mvo.getEmail1() %>@<%=mvo.getEmail2() %></td>
 		</tr>
 	<%	}	%>
 	</table>
 	<button type="button">이전으로</button>
 </body>
 </html>
+
 
 
 

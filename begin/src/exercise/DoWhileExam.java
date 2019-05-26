@@ -6,7 +6,7 @@ public class DoWhileExam {
 		
 		
 //		do {
-//			System.out.println("게임을 시작합니다.");
+//			System.out.println("게임을m 시작합니다.");
 //			System.out.println("게임이 종료되었습니다.");
 //			System.out.println("계속하시겠습니까? (y/n)");
 			//그냥 진행하면 무한루프

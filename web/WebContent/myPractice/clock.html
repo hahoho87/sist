@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>clock.html</title>
+    <script>
+
+        function digitalClock() {
+            var now = new Date();
+            var hour = now.getHours();
+            var min = now.getMinutes();
+            var sec = now.getSeconds();
+
+            hour = digit(hour);
+            min = digit(min);
+            sec = digit(sec);
+
+            document.getElementById("js-clock").innerHTML = 
+            hour + ":" + min + ":" + sec;
+
+            setTimeout("digitalClock()", 1000);
+
+        }
+
+        var num = 0;
+        function digit(num) {
+            if (num < 10) {
+                num = "0" + num
+            }
+            return num;
+        }
+    </script>
+    <style>
+        #js-clock {
+            width: 400px;
+            height: 200px;
+            margin: 20px auto;
+            padding: 30px;
+            font-weight: bold;
+            font-size: 50px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body onload="digitalClock()">
+    <div id="js-clock"></div>
+</body>
+
+</html>

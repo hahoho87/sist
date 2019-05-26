@@ -2,6 +2,7 @@
     <wb-module deploy-name="webex">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/WEB-INF/classes" source-path="/"/>
         <property name="context-root" value="webex"/>
         <property name="java-output-path" value="/webex/build/classes"/>
     </wb-module>
