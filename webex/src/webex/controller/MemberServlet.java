@@ -17,7 +17,7 @@ import webex.vo.MemberVO;
 public class MemberServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private String url;		//포워딩 페이지
+	private String url;	//포워딩 페이지
 	private MemberVO mvo;	
 	private MemberDao mdao;
 	
@@ -31,8 +31,7 @@ public class MemberServlet extends HttpServlet {
 		String userId = "";
 		
 		switch (flag) {
-		case "i": //회원가입 메서드 - insert() 호출
-			insert(request);
+		case "i": insert(request);	//회원가입 메서드 - insert() 호출
 			break;
 		case "s": //회원정보 조회 메서드 - select() 호출
 			userId = request.getParameter("userId");
@@ -94,6 +93,7 @@ public class MemberServlet extends HttpServlet {
 	}
 
 }
+
 
 
 

@@ -19,33 +19,27 @@ import webex.vo.MemberVO;
 @WebServlet("/Login.do")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
 		
 		MemberVO mvo = new MemberVO(userId, userPw);
 		MemberDao mdao = new MemberDao();
-		boolean result = mdao.loginChk(mvo);
+		boolean result = mdao.loginChk(mvo);	//DB 쿼리 실행 메서드 호출
 		String url = "";
-		
-		if (result == true) {
+		if(result == true) {	//userMain.jsp로 이동
 			HttpSession session = request.getSession();
 			session.setAttribute("sid", userId);
-			url = "member/userMain.jsp";
-			if (userId.equals("admin")) {
+			url = "member/userMain.jsp";	//url을 userMain.jsp로 지정
+			if(userId.equals("admin")) {
 				url = "member/adminMain.jsp";
-			}	
-		} else {
-			request.setAttribute("msg", "아이디 또는 비밀번호 불일치<br>다시 시도해 주세요.");
-			url = "member/join03.jsp";
+			}
+		} else {				//join03.jsp로 이동
+			request.setAttribute("msg", "아이디 또는 비밀번호 불일치<br>다시 시도해 주세요");
+			url = "member/join03.jsp";	//url을 join03.jsp로 지정
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
-		dispatcher.forward(request, response);
-		//RequestDispatcher을 이용하여 지정된 url로 포워딩
+		dispatcher.forward(request, response); //RequestDispatcher를 이용하여 지정된 url로 포워딩
 	}
-	
-	
 
 }

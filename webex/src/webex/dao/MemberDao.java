@@ -22,58 +22,57 @@ public class MemberDao {
 		String query = "SELECT * FROM t_member";
 		MemberVO mvo = null;
 		List<MemberVO> memberList = new ArrayList<MemberVO>();
-		
 		try {
 			stmt = DBConnect.getConnection().createStatement();
-			rs = stmt.executeQuery(query);	//쿼리 실행
-			while (rs.next()) {				//쿼리 실행 결과가 있으면
-				mvo = new MemberVO();		//객체 생성
+			rs = stmt.executeQuery(query); //쿼리 실행
+			while(rs.next()) {	//쿼리 실행 결과가 있으면
+				mvo = new MemberVO();	//객체 생성
 				//rs의 값을 mvo에 저장
-				mvo.setUserId(rs.getString("user_id"));
-				mvo.setUserNm(rs.getString("user_nm"));
-				mvo.setEmail1(rs.getString("email1"));
-				mvo.setEmail2(rs.getString("email2"));
+				mvo.setUserId(rs.getString("user_id"));	//아이디
+				mvo.setUserNm(rs.getString("user_nm"));	//이름
+				mvo.setEmail1(rs.getString("email1"));	//이메일1
+				mvo.setEmail2(rs.getString("email2"));	//이메일2
 				memberList.add(mvo);
 			}
-		} catch (SQLSyntaxErrorException e) {
+		} catch(SQLSyntaxErrorException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		DBConnect.close(rs, stmt);
+		DBConnect.close(rs, pstmt);
 		return memberList;
-	}//End selectAll()
+	}
+	
 	
 	//회원 정보 조회
 	public MemberVO select(String userId) {
 		String query = "SELECT * FROM t_member " +
-					   "WHERE user_id = ?";
+	                   "WHERE user_id = ?";
 		MemberVO mvo = null;
-		
 		try {
 			pstmt = DBConnect.getConnection().prepareStatement(query);
 			pstmt.setString(1, userId);
 			
-			rs = pstmt.executeQuery();
-			if (rs.next()) { 
-				mvo = new MemberVO();
-				
-				mvo.setUserId(rs.getString("user_id"));
-				mvo.setUserNm(rs.getString("user_nm"));
-				mvo.setEmail1(rs.getString("email1"));
-				mvo.setEmail2(rs.getString("email2"));
-				mvo.setRegDate(rs.getDate("reg_date"));
-				mvo.setBirthDate(rs.getString("birth_date"));
-				mvo.setPhoto(rs.getString("photo"));
+			rs = pstmt.executeQuery(); //쿼리 실행
+			if(rs.next()) {	//쿼리 실행 결과가 있으면
+				mvo = new MemberVO();	//객체 생성
+				//rs의 값을 mvo에 저장
+				mvo.setUserId(rs.getString("user_id"));	//아이디
+				mvo.setUserNm(rs.getString("user_nm"));	//이름
+				mvo.setEmail1(rs.getString("email1"));	//이메일1
+				mvo.setEmail2(rs.getString("email2"));	//이메일2
+				mvo.setRegDate(rs.getDate("reg_date"));	//가입일자
+				mvo.setBirthDate(rs.getString("birth_date"));	//생년월일 
+				mvo.setPhoto(rs.getString("photo"));	//사진 
 			}
-		} catch (SQLSyntaxErrorException e) {
+		} catch(SQLSyntaxErrorException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		DBConnect.close(rs, pstmt);
 		return mvo;
-	}//End select
+	}//END select()
 	
 	
 	//회원 수정
@@ -82,32 +81,38 @@ public class MemberDao {
 	
 	//로그인 처리
 	public boolean loginChk(MemberVO mvo) {
-		String query = "SELECT * FROM t_member " + " WHERE user_id = ? "
-	
-				+ " AND user_pw = ?";
-		 
+		String query = "SELECT * FROM t_member " +
+					   " WHERE user_id = ? " +
+					   " AND user_pw = ?";
 		try {
 			pstmt = DBConnect.getConnection().prepareStatement(query);
 			pstmt.setString(1, mvo.getUserId());
 			pstmt.setString(2, mvo.getUserPw());
-			rs = pstmt.executeQuery();
-			if(rs.next()); {
-				return true;
+			rs = pstmt.executeQuery(); //쿼리 실행
+			if(rs.next()) {	//실행 결과가 있으면
+				return true;//로그인 성공
 			}
-			
-		} catch (SQLSyntaxErrorException e) {
+		} catch(SQLSyntaxErrorException e) {
 			System.err.println("입력값에 오류가 있습니다.");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return false;
 	}
 	
-	
-	//회원 가입
+	//회원가입
 	public boolean insert(MemberVO mvo) {
 		
-		return true;
+		//회원가입 쿼리 실행
 		
+		return true;
 	}
+
 }
+
+
+
+
+
+
