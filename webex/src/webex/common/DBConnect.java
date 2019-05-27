@@ -12,7 +12,7 @@ public class DBConnect {
 	private DBConnect() { }
 	public static Connection getConnection() {
 		String driver = "oracle.jdbc.driver.OracleDriver";
-		String url = "jdbc:oracle:thin:@localhost:1521:xe";
+		String url = "jdbc:oracle:thin:@localhost:1522:xe";
 		String user = "dev";
 		String pwd = "qwerty123";
 		

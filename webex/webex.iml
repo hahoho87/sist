@@ -18,6 +18,9 @@
           <root url="file://$MODULE_DIR$/WebContent" relative="/" />
         </webroots>
       </configuration>
+      <facet type="webservices" name="WebServices">
+        <configuration ws.engine="Apache Axis" />
+      </facet>
     </facet>
   </component>
   <component name="NewModuleRootManager">
@@ -28,9 +31,7 @@
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="jdk" jdkName="1.8" jdkType="JavaSDK" />
-    <orderEntry type="library" name="org.eclipse.jst.server.core.container/org.eclipse.jst.server.tomcat.runtimeTarget/Apache Tomcat v8.5" level="application" />
-    <orderEntry type="library" name="org.eclipse.jst.j2ee.internal.web.container" level="application" />
-    <orderEntry type="library" name="org.eclipse.jst.j2ee.internal.module.container" level="application" />
     <orderEntry type="library" name="annotations-api" level="project" />
+    <orderEntry type="library" name="ojdbc6" level="project" />
   </component>
 </module>
