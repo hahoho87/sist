@@ -15,6 +15,10 @@ public class MemberVO {
 	
 	public MemberVO() {}
 	
+	public MemberVO(String userId) {
+		this.userId = userId;
+	}
+	
 	public MemberVO(String userId, String userPw, String userNm, String email1, String email2, String birthDate,
 			String gender, String photo, Date regDate) {
 		this.userId = userId;

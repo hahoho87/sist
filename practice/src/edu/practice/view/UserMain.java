@@ -3,13 +3,11 @@ package edu.practice.view;
 import java.util.List;
 import java.util.Scanner;
 
-import edu.practice.common.DBconnect;
 import edu.practice.dao.EmpDAO;
 import edu.practice.vo.EmpVO;
 
 public class UserMain {
 	private EmpDAO edao;
-	private DBconnect dbcon;
 	private Scanner scan;
 	private boolean loginChk; // 로그인 여부 확인
 

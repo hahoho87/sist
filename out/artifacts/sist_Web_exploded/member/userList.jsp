@@ -9,6 +9,9 @@
 <style>
 table { width: 500px; margin-bottom: 5px; }
 table, th, td{ border: 1px solid gray; border-collapse: collapse; padding: 3px; }
+#table:hover {
+	color:red;
+}
 </style>
 </head>
 <body>
@@ -28,7 +31,7 @@ table, th, td{ border: 1px solid gray; border-collapse: collapse; padding: 3px; 
 			= (List<MemberVO>)request.getAttribute("memberList");
 		int i=1;
 		for (MemberVO mvo : memberList) {
-	%>	<tr>
+	%>	<tr id="table">
 			<td><%=i++ %></td>
 			<td><%=mvo.getUserId() %></td>
 			<td><%=mvo.getUserNm() %></td>

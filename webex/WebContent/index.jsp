@@ -1,10 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>index.html</title>
+<title>index.jsp</title>
 </head>
 <body>
+	<c:if test="${ !empty msg }">
+		<script>
+			alert('${msg}');
+		</script>
+	</c:if>
+
 	<h3>WEBEX index page</h3>
 	<ul>
 		<li><a href="member/join01.jsp">Sign-up</a></li>
