@@ -33,7 +33,6 @@
 	function deleteChk(gubun) {
 		var result = confirm("정말" + gubun + " 하시겠습니까?")
 		if (result) {
-			location.href="/webex/Member.do?flag=d&userId=${mvo.userId}";
 		}
 	}
 	
@@ -48,10 +47,14 @@
 	
 	
 </script>
-	${ gubun = "탈퇴"; '' }
-	<c:if test="${ sid eq 'admin' }">
+	<c:choose>
+		<c:when test="${sid eq 'admin' }">
 		<c:set var="gubun" value="삭제"/>
-	</c:if>
+		</c:when>
+		<c:otherwise>
+		<c:set var="gubun" value="탈퇴"/>
+		</c:otherwise>
+	</c:choose>
 	<c:url var="modify" value="Member.do">
 		<c:param name="userId" value="${ mvo.userId }"/>
 		<c:param name="flag" value="uf"/>
@@ -59,7 +62,7 @@
  	<button type="button" onclick="history.back()">이전으로</button>
  	<button type="button" onclick="deleteConfirm()">제발</button>
 	<button type="button" onclick="deleteChk(${ gubun })">${ gubun }</button>
-	<button type="button" id="deleteBtn" onclick="location.href='${ modofy }'">수정</button>
+	<button type="button" id="deleteBtn" onclick="location.href='${ modify }'">수정</button>
 
 	<%
 		}

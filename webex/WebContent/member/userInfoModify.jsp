@@ -35,21 +35,19 @@ function setEmail2(email3Obj){
 		<input type="hidden" name="userId" value="${ mvo.userId }">
 	아이디 : ${ mvo.userId }<br> 
 	이름 : ${ mvo.userNm }<br> 
-	이메일 : <input type="text" name="email1" value="${ mvo.email1 }">@
-			<input type="text" name="email2"  value="${ mvo.email2 }"><br> 
-	가입일자 : ${ mvo.regDate }<br> 
-	생년월일 : ${ mov.birthDate }<!-- << 이렇게 쓰거나 --> <br> 
-	사진 : <img src="${ mvo.photo }">
-		 <input type="file" name="photo">
-	<hr>
-	이메일	<input type="text" name="email1">@
-			<input type="text" name="email2">
+	이메일 :	<input type="text" name="email1" value="${ mvo.email1 }">@
+			<input type="text" name="email2" value="${ mvo.email2 }">
 			<select name="email3" onchange="setEmail2(this)">
 				<option value="direct" selected>직접입력</option>
 				<option value="gmail.com">gmail.com</option>
 				<option value="naver.com">naver.com</option>
 				<option value="daum.net">daum.net</option>
 			</select><br>
+	가입일자 : ${ mvo.regDate }<br> 
+	생년월일 : ${ mvo.birthDate }<!-- << 이렇게 쓰거나 --> <br> 
+	사진 : <img src="${ mvo.photo }">
+		  <input type="file" name="photo" value="${ mvo.photo }">
+	<hr>
 	</form>		
 	<script>
 	function modify() {
@@ -58,7 +56,7 @@ function setEmail2(email3Obj){
 </script>
  	<button type="button" onclick="history.back()">이전으로</button>
  	<button type="reset" id="deleteBtn">다시쓰기</button>
-	<button type="submit" onclick="modify()">완료</button>
+	<button type="submit">완료</button>
 
 	<%
 		}
