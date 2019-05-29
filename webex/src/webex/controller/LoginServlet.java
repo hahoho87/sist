@@ -1,8 +1,10 @@
 package webex.controller;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 import javax.servlet.RequestDispatcher;
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -13,9 +15,7 @@ import javax.servlet.http.HttpSession;
 import webex.dao.MemberDao;
 import webex.vo.MemberVO;
 
-/**
- * Servlet implementation class LoginServlet
- */
+
 @WebServlet("/Login.do")
 public class LoginServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -23,8 +23,13 @@ public class LoginServlet extends HttpServlet {
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
 		
+		//리스너 context를 받아서 connection에 적용
+		ServletContext servletContext = getServletContext();
+		Connection con = (Connection) servletContext.getAttribute("con");
+		
 		MemberVO mvo = new MemberVO(userId, userPw);
-		MemberDao mdao = new MemberDao();
+		//con을 MemberDao생성자에 추가
+		MemberDao mdao = new MemberDao(con);
 		boolean result = mdao.loginChk(mvo);	//DB 쿼리 실행 메서드 호출
 		String url = "";
 		if(result == true) {	//userMain.jsp로 이동

@@ -1,5 +1,6 @@
 package webex.dao;
 
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +17,36 @@ public class MemberDao {
 	private PreparedStatement pstmt;
 	private ResultSet rs;
 	private Statement stmt;
+	private Connection con;
+	
+	//기본 생성자 추가
+	public MemberDao() {
+}
+	//loginServlet에서 Connection 객체를 받기위해
+	//Connection 객체를 매개변수로 받아서 초기화하는 생성자 추가
+	public MemberDao(Connection con) {
+		this.con = con;
+	}
 
+	// 로그인 처리
+	public boolean loginChk(MemberVO mvo) {
+		String query = "SELECT * FROM t_member " + " WHERE user_id = ? " + " AND user_pw = ?";
+		try {
+//			pstmt = DBConnect.getConnection().prepareStatement(query);
+			pstmt = con.prepareStatement(query);
+			pstmt.setString(1, mvo.getUserId());
+			pstmt.setString(2, mvo.getUserPw());
+			rs = pstmt.executeQuery(); // 쿼리 실행
+			if (rs.next()) { // 실행 결과가 있으면
+				return true;// 로그인 성공
+			}
+		} catch (SQLSyntaxErrorException e) {
+			System.err.println("입력값에 오류가 있습니다.");
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 	// 회원 목록 출력
 	public List<MemberVO> selectAll() {
 		String query = "SELECT * FROM t_member";
@@ -73,16 +103,16 @@ public class MemberDao {
 	}// END select()
 
 	// 회원 수정
-	public boolean update(String userId, String email1, String email2) {
-		String query = "UPDATE t_member SET email1 = ? " 
-					 + "email2 = ? WHERE userId = ?";
+	public boolean update(MemberVO mvo) {
+		String query = "UPDATE t_member SET email1 = ?, " + "email2 = ?, photo= ? WHERE user_id = ?";
 		try {
 			pstmt = DBConnect.getConnection().prepareStatement(query);
-			pstmt.setString(1, email1); 
-			pstmt.setString(2, email2);
-			pstmt.setString(3, userId);
+			pstmt.setString(1, mvo.getEmail1());
+			pstmt.setString(2, mvo.getEmail2());
+			pstmt.setString(3, mvo.getPhoto());
+			pstmt.setString(4, mvo.getUserId());
 
-			int result = pstmt.executeUpdate(); 
+			int result = pstmt.executeUpdate();
 			if (result == 1) { // 변경 성공
 				DBConnect.getConnection().commit();
 				return true; // true값 반환
@@ -90,12 +120,12 @@ public class MemberDao {
 				DBConnect.getConnection().rollback();
 			}
 		} catch (SQLSyntaxErrorException e) {
-			System.out.println("입력값에 오류가 있습니다.");
+			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return false;
-	}// end update
+	}// end update()
 
 	// 회원 삭제
 	public boolean delete(String userId) {
@@ -117,32 +147,10 @@ public class MemberDao {
 		return false;
 	}// end delete()
 
-	// 로그인 처리
-	public boolean loginChk(MemberVO mvo) {
-		String query = "SELECT * FROM t_member " + 
-					   " WHERE user_id = ? " + " AND user_pw = ?";
-		try {
-			pstmt = DBConnect.getConnection().prepareStatement(query);
-			pstmt.setString(1, mvo.getUserId());
-			pstmt.setString(2, mvo.getUserPw());
-			rs = pstmt.executeQuery(); // 쿼리 실행
-			if (rs.next()) { // 실행 결과가 있으면
-				return true;// 로그인 성공
-			}
-		} catch (SQLSyntaxErrorException e) {
-			System.err.println("입력값에 오류가 있습니다.");
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-
-		return false;
-	}
-
 	// 회원가입
 	public boolean insert(MemberVO mvo) {
 		// 회원가입 쿼리 실행
-		String query = "INSERT INTO t_member " + 
-					   "VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
+		String query = "INSERT INTO t_member " + "VALUES(?, ?, ?, ?, ?, ?, ?, ?, SYSDATE)";
 
 		try {
 			pstmt = DBConnect.getConnection().prepareStatement(query); // 미리 쿼리를 설정
@@ -167,7 +175,6 @@ public class MemberDao {
 			e.printStackTrace();
 		}
 		return false;
-
 	}
 
 }

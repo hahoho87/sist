@@ -5,13 +5,20 @@
 <head>
 <meta charset="UTF-8">
 <title>userInfo.jsp</title>
-
+<style>
+	.msg {
+		color: red;
+	}
+</style>
 </head>
 <body>
 	<h3>
 		USER INFO PAGE
 		<jsp:include page="../include/loginChk.jsp" /></h3>
-	<jsp:useBean id="mvo" class="webex.vo.MemberVO" scope="request" />
+		<jsp:useBean id="mvo" class="webex.vo.MemberVO" scope="request" />
+	<p class="msg">
+		<c:if test="${ !empty msg }">${msg}</c:if>
+	</p>
 	<%
 		//이거랑 같은 코드 >> MemberVO mvo = (MemberVO)request.getAttribute("mvo");
 		//요청객체의 mvo 속성의 값을 넘겨받아서 널이 아니면 화면에 회원 정보 출력
@@ -33,18 +40,9 @@
 	function deleteChk(gubun) {
 		var result = confirm("정말" + gubun + " 하시겠습니까?")
 		if (result) {
+			location.href="/webex/Member.do?flag=d&userId=${mvo.userId}";
 		}
 	}
-	
-	function deleteConfirm() {
-		var result = confirm("정말 삭제 하시겠습니까?")
-		location.href="/webex/Member.do?flag=d&userId=${mvo.userId}";
-	}
-	
-	function modify() {
-		location.herf="userInfoModify.jsp"
-	}
-	
 	
 </script>
 	<c:choose>
@@ -60,8 +58,7 @@
 		<c:param name="flag" value="uf"/>
 	</c:url>
  	<button type="button" onclick="history.back()">이전으로</button>
- 	<button type="button" onclick="deleteConfirm()">제발</button>
-	<button type="button" onclick="deleteChk(${ gubun })">${ gubun }</button>
+	<button type="button" onclick="deleteChk('${ gubun }')">${ gubun }</button>
 	<button type="button" id="deleteBtn" onclick="location.href='${ modify }'">수정</button>
 
 	<%

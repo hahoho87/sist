@@ -29,6 +29,10 @@ public class MemberServlet extends HttpServlet {
 
 	protected void service(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
 		String flag = request.getParameter("flag");
 		String userId = "";
 
@@ -59,6 +63,7 @@ public class MemberServlet extends HttpServlet {
 			request.setAttribute("mvo", mvo);
 			break;
 		case "u": // 회원 정보 수정 메서드 - update() 호출
+			update(request);
 			break;
 		}
 
@@ -68,7 +73,6 @@ public class MemberServlet extends HttpServlet {
 	}
 
 	// 회원 탈퇴 메서드
-
 	public void delete(HttpServletRequest request, boolean result) {
 		HttpSession session = request.getSession();
 		String sid = (String) session.getAttribute("sid");
@@ -92,6 +96,36 @@ public class MemberServlet extends HttpServlet {
 				url = "member/userMain.jsp";
 			}
 		}
+	}
+	
+	// 정보 수정 메서드
+	public String update(HttpServletRequest request) {
+		String photo = request.getParameter("photo");
+		String photoBefore = request.getParameter("photoBefore");
+		
+		if(photo.trim().length() < 1 || photo == null) {
+			photo = photoBefore;
+		}
+		
+		MemberVO mvo = new MemberVO();
+		//생성자를 새로 만들어서 insert() 메서드처럼 사용해도 되고
+		//setter를 불러서 아래처럼 처리해도 된다.
+		mvo.setUserId(request.getParameter("userId"));
+		mvo.setEmail1(request.getParameter("email1"));
+		mvo.setEmail2(request.getParameter("email2"));
+		mvo.setPhoto(request.getParameter("photo"));
+		
+		boolean result = mdao.update(mvo);
+
+		if (result) {
+			request.setAttribute("msg", "회원 정보가 수정되었습니다.");
+			request.setAttribute("mvo", mvo);
+			url = "member/userInfo.jsp";
+		} else {
+			request.setAttribute("msg", "회원 정보 수정이 실패했습니다.<br>다시 시도해 주세요.");
+			url = "member/userInfoModify.jsp";
+		}
+		return url;
 	}
 
 	// 회원 가입 메서드

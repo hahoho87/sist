@@ -1,0 +1,64 @@
+.msg {
+	color: red;
+}
+
+body {
+	margin: 50px auto;
+	width: 800px;
+	text-align: center;
+}
+
+header {
+	margin-left: 30px
+}
+
+#nav {
+	margin-left: 127px
+}
+
+#nav ul {
+	list-style: none;
+}
+
+#nav ul li {
+	float: left;
+	width: 147px;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	text-align: center;
+	padding: 10px;
+}
+
+#agree {
+	background: pink;
+}
+
+#nav ul li[id="agree"] {
+	font-weight: bold;
+}
+
+#nav ul li[id="signupcomplete"] {
+	border-right: 1px solid black;
+}
+
+#terms textarea {
+	width: 499px;
+	margin-left: 40px;
+	border-right: 1px solid black;
+	border-left: 1px solid black;
+	border-bottom: 1px solid black;
+	border-top: 1px solid black;
+}
+
+#confirm {
+	text-align: center;
+}
+
+#buttons {
+	margin-left: 340px;
+}
+
+#buttons input {
+	border-radius: 5px;
+	width: 100px;
+}

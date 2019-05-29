@@ -28,6 +28,7 @@ public class DBConnect {
 		}
 		return con;
 	}
+	
 	public static void close() {
 		try {
 			if(con != null) 	con.close();

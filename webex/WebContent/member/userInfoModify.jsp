@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%
+	request.setCharacterEncoding("UTF-8");
+	response.setContentType("text/html;charset=UTF-8");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,6 +23,11 @@ function setEmail2(email3Obj){
 	}
 }
 </script>
+<style>
+	.msg {
+		color: red;
+	}
+</style>
 </head>
 <body>
 	<h3>
@@ -30,9 +39,14 @@ function setEmail2(email3Obj){
 		//요청객체의 mvo 속성의 값을 넘겨받아서 널이 아니면 화면에 회원 정보 출력
 		if (mvo != null) {
 	%>
+	<p class="msg">
+		<c:if test="${ !empty msg }">${msg}</c:if>
+	</p>
+	
 	<form action="/webex/Member.do" method="post" id="frm" name="frm">
 		<input type="hidden" name="flag" value="u">
 		<input type="hidden" name="userId" value="${ mvo.userId }">
+		<input type="hidden" name="photoBefore" value="${mvo.photo }">
 	아이디 : ${ mvo.userId }<br> 
 	이름 : ${ mvo.userNm }<br> 
 	이메일 :	<input type="text" name="email1" value="${ mvo.email1 }">@
@@ -48,16 +62,11 @@ function setEmail2(email3Obj){
 	사진 : <img src="${ mvo.photo }">
 		  <input type="file" name="photo" value="${ mvo.photo }">
 	<hr>
-	</form>		
-	<script>
-	function modify() {
-		location.herf="userInfoModify.jsp"
-	}
-</script>
- 	<button type="button" onclick="history.back()">이전으로</button>
- 	<button type="reset" id="deleteBtn">다시쓰기</button>
+	<button type="button" onclick="history.back()">이전으로</button>
+ 	<button type="reset">다시쓰기</button>
 	<button type="submit">완료</button>
-
+	</form>		
+ 	
 	<%
 		}
 	%>

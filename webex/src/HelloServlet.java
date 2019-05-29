@@ -9,23 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- * Servlet implementation class HelloServlet
- */
 @WebServlet("/HelloServlet.do")
 public class HelloServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) 
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
-//		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
+
+//		request.setCharacterEncoding("UTF-8");
+//		response.setContentType("text/html;charset=UTF-8");
 		
 		String usernm = request.getParameter("usernm");
 		//index.html에서 querystring usernm의 값을 usernm에 저장
@@ -41,7 +33,6 @@ public class HelloServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 
 		req.setCharacterEncoding("UTF-8");
 		resp.setContentType("text/html;charset=UTF-8");
@@ -54,7 +45,4 @@ public class HelloServlet extends HttpServlet {
 		out.println("	<p>이름 : "+ usernm + "</p></body>");
 		out.println("</html>");
 	}
-
-
-
 }
