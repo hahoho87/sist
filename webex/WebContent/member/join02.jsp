@@ -119,7 +119,7 @@ legend {
 				<option value="direct" selected>직접입력</option>
 				<option value="gmail.com">gmail.com</option>
 				<option value="naver.com">naver.com</option>
-				<option value="daum.net">daum.net</option>
+				<option value="daum.net">daum.neㅇt</option>
 			</select>
 			<br> 생년월일 <input type="date" name="birthDate"><br> 
 			성별 <input id="female" type="radio" name="gender" value="F"> 
