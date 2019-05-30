@@ -50,15 +50,41 @@ header {
 	border-top: 1px solid black;
 }
 
-#confirm {
+#agreeConfirm {
 	text-align: center;
 }
 
-#buttons {
-	margin-left: 340px;
-}
-
-#buttons input {
+.buttons {
+	margin: auto;
 	border-radius: 5px;
 	width: 100px;
+}
+
+.divTag {
+	float: left;
+}
+
+#signUpFrm {
+	width: 500px;
+}
+
+#fieldset {
+	width: 500px;
+}
+
+
+#listTable {
+	margin: auto;
+	width: 500px;
+	margin-bottom: 5px;
+}
+
+#listTable, th, td {
+	border: 1px solid gray;
+	border-collapse: collapse;
+	padding: 3px;
+}
+
+#listTable.tr:hover {
+	background: lightgray;
 }

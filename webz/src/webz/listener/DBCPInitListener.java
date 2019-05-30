@@ -12,6 +12,7 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 import javax.sql.DataSource;
 
+
 @WebListener
 public class DBCPInitListener implements ServletContextListener {
 	private Connection con;
@@ -20,20 +21,22 @@ public class DBCPInitListener implements ServletContextListener {
 		Context initContext;
 		try {
 			initContext = new InitialContext();
-			Context context = (Context) initContext.lookup("java:comp/env/");
-			DataSource ds = (DataSource) context.lookup("jdbc/oracle");
-
+			Context context = (Context)initContext.lookup("java:comp/env/");
+			DataSource ds = (DataSource)context.lookup("jdbc/oracle");
+			
 			con = ds.getConnection();
-
-			if (con != null) {
+			
+			if( con != null ) {
 				ServletContext servletContext = sce.getServletContext();
 				servletContext.setAttribute("con", con);
 			}
+			
 		} catch (NamingException e) {
 			e.printStackTrace();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 	}
 
 	public void contextDestroyed(ServletContextEvent sce) {
@@ -42,8 +45,7 @@ public class DBCPInitListener implements ServletContextListener {
 				con.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}			
+			}
 		}
 	}
-
 }

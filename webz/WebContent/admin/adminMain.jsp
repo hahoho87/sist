@@ -8,5 +8,8 @@
 </head>
 <body>
 	<h3>ADMIN MAIN</h3>
+	<ul>
+		<li><a href="/webz/Main.do?flag=a">회원 목록</a></li>
+	</ul>
 </body>
 </html>
