@@ -8,7 +8,8 @@
 <link rel="stylesheet" href="/webz/style/style.css">
 </head>
 <body>
-	<h3>USER LIST PAGE</h3>
+	<h3>USER LIST PAGE
+	<jsp:include page="/common/logout.jsp" /></h3>
 	<c:if test="${ !empty msg }">
 		<script>
 			alert('${msg}');

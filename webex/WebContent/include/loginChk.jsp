@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!-- 	
-> 세션의 sid 속성에 값이 있으면
+   > 세션의 sid 속성에 값이 있으면
    > logout 버튼 출력하고,
    > logout 버튼이 눌리면 
    > 로그아웃 의사를 확인한 후 logout.jsp로 이동 -->

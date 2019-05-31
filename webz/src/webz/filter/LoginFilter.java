@@ -13,11 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-@WebFilter("/LoginFilter")
+@WebFilter(filterName = "/LoginFilter", urlPatterns = {"/admin/*", "/member/*"} )
 public class LoginFilter implements Filter {
-
-	public LoginFilter() {
-	}
 
 	public void destroy() {
 	}
@@ -25,7 +22,7 @@ public class LoginFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		// 로그인하지 않은 경우 걸러내기
-		System.out.println("LoginFilter Begin");
+		
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		HttpServletResponse httpRes = (HttpServletResponse) response;
 
@@ -36,16 +33,17 @@ public class LoginFilter implements Filter {
 		// 로그인 페이지로 이동
 		if (sid == null) {
 			httpReq.setAttribute("msg", "회원 전용 페이지입니다.<br>로그인 후 이용해주세요.");
-			String url = "/member/join03.jsp";
+			String url = "/common/join03.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 			dispatcher.forward(httpReq, httpRes);
-		}
+		} 
 		chain.doFilter(request, response);
-		System.out.println("LoginFilter Done");
 		// 로그인한 경우 화면 출력
+			
 	}
 
 	public void init(FilterConfig fConfig) throws ServletException {
+		System.out.println("login plz init");
 	}
 
 }

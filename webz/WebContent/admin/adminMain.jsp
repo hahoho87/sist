@@ -7,7 +7,8 @@
 <title>adminMain.jsp</title>
 </head>
 <body>
-	<h3>ADMIN MAIN</h3>
+	<h3>ADMIN MAIN
+		<jsp:include page="/common/logout.jsp" /></h3>
 	<ul>
 		<li><a href="/webz/Main.do?flag=a">회원 목록</a></li>
 	</ul>

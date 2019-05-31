@@ -19,7 +19,10 @@ import webz.dao.MemberDao;
 import webz.vo.MemberVO;
 
 @WebServlet("/Main.do")
-@MultipartConfig(location = "c://javawork", maxFileSize = 1024 * 100, maxRequestSize = -1, fileSizeThreshold = -1)
+@MultipartConfig(location = "c://javawork", 
+				 maxFileSize = 1024 * 100, 
+				 maxRequestSize = -1, 
+				 fileSizeThreshold = -1)
 
 public class MainController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -59,20 +62,28 @@ public class MainController extends HttpServlet {
 			delete(request, result);
 			break;
 		case "uf":
+			userId = request.getParameter("userId");
+			mvo = mdao.select(userId);
+			url = "member/userInfoModify.jsp";
+			request.setAttribute("mvo", mvo);
 			break;
 		case "u":
+			update(request);
 			break;
 		case "login":
-			login(request, response);
+			login(request);
 			break;
-
+		case "lo":
+			HttpSession session = request.getSession();
+			session.invalidate();
+			url = "common/join03.jsp";
 		}
 		RequestDispatcher dispatcher = request.getRequestDispatcher(url);
 		dispatcher.forward(request, response);
 	}
 
 	//
-	protected void login(HttpServletRequest request, HttpServletResponse response)
+	protected void login(HttpServletRequest request)
 			throws ServletException, IOException {
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
@@ -89,6 +100,7 @@ public class MainController extends HttpServlet {
 		if (result == true) { // userMain.jsp로 이동
 			HttpSession session = request.getSession();
 			session.setAttribute("sid", userId);
+
 			url = "member/userMain.jsp"; // url을 userMain.jsp로 지정
 			if (userId.equals("admin")) {
 				url = "admin/adminMain.jsp";
@@ -112,7 +124,7 @@ public class MainController extends HttpServlet {
 				request.setAttribute("msg", "회원 삭제에 실패했습니다.");
 			}
 			request.setAttribute("memberList", mdao.selectAll()); // 회원 목록을 요청 객체의 속성에 저장
-			url = "member/userList.jsp";
+			url = "admin/userList.jsp";
 		} else { // sid가 admin이 아닌 경우
 			if (result) {
 				request.setAttribute("msg", "회원 탈퇴가 완료되었습니다.");
@@ -126,33 +138,37 @@ public class MainController extends HttpServlet {
 	}
 
 	// 정보 수정 메서드
-	public String update(HttpServletRequest request) {
-		String photo = request.getParameter("photo");
+	public void update(HttpServletRequest request) throws IOException, ServletException {
+//		String photo = request.getParameter("photo");
 		String photoBefore = request.getParameter("photoBefore");
+		Part part = request.getPart("photo");
+		String file = part.getSubmittedFileName();
 
-		if (photo.trim().length() < 1 || photo == null) {
-			photo = photoBefore;
+		if (file.trim().length() < 1 || file == null) {
+			file = photoBefore;
+		} else {
+			upload(request);
 		}
-
+		
 		MemberVO mvo = new MemberVO();
 		// 생성자를 새로 만들어서 insert() 메서드처럼 사용해도 되고
 		// setter를 불러서 아래처럼 처리해도 된다.
 		mvo.setUserId(request.getParameter("userId"));
 		mvo.setEmail1(request.getParameter("email1"));
 		mvo.setEmail2(request.getParameter("email2"));
-		mvo.setPhoto(request.getParameter("photo"));
+		mvo.setPhoto(file);
 
 		boolean result = mdao.update(mvo);
 
 		if (result) {
 			request.setAttribute("msg", "회원 정보가 수정되었습니다.");
-			request.setAttribute("mvo", mvo);
 			url = "member/userInfo.jsp";
 		} else {
 			request.setAttribute("msg", "회원 정보 수정이 실패했습니다.<br>다시 시도해 주세요.");
 			url = "member/userInfoModify.jsp";
 		}
-		return url;
+		mvo = mdao.select(request.getParameter("userId"));
+		request.setAttribute("mvo", mvo);
 	}
 
 	// 회원 가입
@@ -164,17 +180,19 @@ public class MainController extends HttpServlet {
 		String email2 = request.getParameter("email2");
 		String birthDate = request.getParameter("birthDate");
 		String gender = request.getParameter("gender");
-		String photo = request.getParameter("photo");
-
+		// 사진 이름은 getParameter로 가지고 올 수 없기 때문에
+		// part객체로 getSubmittedFileName으로 이름을 받아온다
+//		String photo = request.getParameter("photo");
 		Part part = request.getPart("photo");
 		String file = part.getSubmittedFileName();
+
 		if (file.trim().length() < 1 || file == null) {
-			photo = "user.png";
+			file = "user.png";
 		} else {
 			upload(request);
 		}
 
-		MemberVO mvo = new MemberVO(userId, userPw, userNm, email1, email2, birthDate, gender, photo, null);
+		MemberVO mvo = new MemberVO(userId, userPw, userNm, email1, email2, birthDate, gender, file, null);
 		boolean result = mdao.insert(mvo); // DB 쿼리 실행 메서드 호출
 
 		if (result == true) {

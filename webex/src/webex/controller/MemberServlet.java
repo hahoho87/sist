@@ -98,8 +98,8 @@ public class MemberServlet extends HttpServlet {
 		}
 	}
 	
-	// 정보 수정 메서드
-	public String update(HttpServletRequest request) {
+	//회원 수정 메서드
+	public void update(HttpServletRequest request) {
 		String photo = request.getParameter("photo");
 		String photoBefore = request.getParameter("photoBefore");
 		
@@ -109,24 +109,24 @@ public class MemberServlet extends HttpServlet {
 		
 		MemberVO mvo = new MemberVO();
 		//생성자를 새로 만들어서 insert() 메서드처럼 사용해도 되고
-		//setter를 불러서 아래처럼 처리해도 된다.
+				//setter를 불러서 아래처럼 처리해도 된다.
 		mvo.setUserId(request.getParameter("userId"));
 		mvo.setEmail1(request.getParameter("email1"));
 		mvo.setEmail2(request.getParameter("email2"));
-		mvo.setPhoto(request.getParameter("photo"));
+		mvo.setPhoto(photo);
 		
-		boolean result = mdao.update(mvo);
-
-		if (result) {
+		boolean result = mdao.update(mvo);	//DB 쿼리 실행 메서드 호출
+		if(result == true) {	 
 			request.setAttribute("msg", "회원 정보가 수정되었습니다.");
-			request.setAttribute("mvo", mvo);
-			url = "member/userInfo.jsp";
-		} else {
-			request.setAttribute("msg", "회원 정보 수정이 실패했습니다.<br>다시 시도해 주세요.");
-			url = "member/userInfoModify.jsp";
+			url = "member/userInfo.jsp";	//결과를 출력할 페이지
+		} else {				 
+			request.setAttribute("msg", "회원 정보 수정에 실패하였습니다." +
+								 "<br>다시 시도해 주세요.");
+			url = "member/userInfoModify.jsp";	//결과를 출력할 페이지
 		}
-		return url;
-	}
+		mvo = mdao.select(request.getParameter("userId"));
+		request.setAttribute("mvo", mvo);
+	}//END update()
 
 	// 회원 가입 메서드
 	public String insert(HttpServletRequest request) {

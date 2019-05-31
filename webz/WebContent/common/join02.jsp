@@ -102,40 +102,30 @@ legend {
 		<li style="background: lightgray; border: 3px solid black; margin-bottom: -3px;">정보 입력</li>
 		<li>가입 완료</li>
 	</ul>
-	<!-- <form action="joinProc.jsp" method="post" name="frm"> -->
+
 	<form action="/webz/Main.do" method="post" name="frm" enctype="multipart/form-data">
-		<input type="hidden" name="flag" value="i"> <span class="msg"> <%
- 	String msg = (String) request.getAttribute("msg");
- 	if (msg != null) {
- 		out.print(msg);
- 	}
- %></span>
+		<input type="hidden" name="flag" value="i"> <span class="msg"> 
+
+ 	<span class="msg">
+ 	<c:if test="${ !empty msg }">
+		${ msg }
+	</c:if></span>
+	
+		</span>
 		<fieldset>
 			<legend>필수사항</legend>
-			아이디 <input type="text" name="userId" placeholder="10~15자 이내 영문과 숫자로"><br> 
-			비밀번호 <input type="password" name="userPw" placeholder="10~20자 이내 영문과 숫자로"><br> 
-			비밀번호 확인<input type="password" name="pwd2" placeholder="10~20자 이내 영문과 숫자로"><br> 
-			이름 <input type="text" name="userNm"><br> 
-			이메일 <input type="text" name="email1">@ <input type="text" name="email2">
+			아이디 <input type="text" name="userId" placeholder="10~15자 이내 영문과 숫자로"><br> 비밀번호 <input type="password" name="userPw" placeholder="10~20자 이내 영문과 숫자로"><br> 비밀번호 확인<input type="password" name="pwd2" placeholder="10~20자 이내 영문과 숫자로"><br> 이름 <input type="text" name="userNm"><br> 이메일 <input type="text" name="email1">@ <input type="text" name="email2">
 			<select name="email3" onchange="setEmail2(this)">
 				<option value="direct" selected>직접입력</option>
 				<option value="gmail.com">gmail.com</option>
 				<option value="naver.com">naver.com</option>
 				<option value="daum.net">daum.net</option>
 			</select>
-			<br> 생년월일 <input type="date" name="birthDate"><br> 
-			성별 <input id="female" type="radio" name="gender" value="F"> 
-				<label for="female">여자</label> 
-				<input id="male" type="radio" name="gender" value="M"> 
-				<label for="male">남자</label>
+			<br> 생년월일 <input type="date" name="birthDate"><br> 성별 <input id="female" type="radio" name="gender" value="F"> <label for="female">여자</label> <input id="male" type="radio" name="gender" value="M"> <label for="male">남자</label>
 		</fieldset>
 		<fieldset>
 			<legend>선택사항</legend>
 			사진 : <input type="file" name="photo">
-			<%	
-				String fileName = request.getParameter("file");
-				request.setAttribute("fileName", fileName);
-			%>
 		</fieldset>
 		<button type="submit">다음으로</button>
 		<button type="reset">취소</button>

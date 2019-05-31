@@ -34,5 +34,4 @@
 <% 
 	session.removeAttribute("msgSess");
 	application.removeAttribute("msgApp");
-	// 계속 남아있기 때문에 브라우저 종료시 제거
 %>

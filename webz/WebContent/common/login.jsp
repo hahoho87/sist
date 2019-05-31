@@ -10,9 +10,11 @@
 <body>
 	<h3>LOGIN PAGE</h3>
 	<div class="login">
+	<span class="msg">
 	<c:if test="${msg != null }">
 	${msg }
 	</c:if>
+	</span>
 		<form action="/webz/Main.do" method="post">
 		<input type="hidden" name="flag" value="login">
 			<label for="id">아이디&nbsp;&nbsp;&nbsp;</label> 
