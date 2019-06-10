@@ -10,4 +10,39 @@
 	SELECT * FROM tbl_board WHERE bno > 0
 	]]>
 	</select>
+	
+	<!-- insert만 처리되고 생성된 PK값을 알 필요가 없는 경우 -->
+	<insert id="insert">
+		INSERT INTO tbl_board (bno, title, content, writer)
+		VALUES (seq_board.nextval, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<!-- insert가 실행되고 생성된 PK값을 알아야 하는 경우 -->
+	<insert id="insertSelectKey">
+	
+		<selectKey keyProperty="bno" order="BEFORE" resultType="long">
+			SELECT seq_board.nextval FROM dual
+		</selectKey>
+		
+		INSERT INTO tbl_board (bno, title, content, writer)
+		VALUES (#{bno}, #{title}, #{content}, #{writer})
+	</insert>
+	
+	<!-- read -->
+	<select id="read" resultType="org.zerock.domain.BoardVO">
+		SELECT * FROM tbl_board WHERE bno = #{bno}
+	</select>
+	
+	<!-- delete -->
+	<delete id="delete">
+		DELETE tbl_board where bno = #{bno}
+	</delete>
+	
+	<!-- update -->
+	<update id="update">
+		UPDATE tbl_board
+		SET title = #{title}, content = #{content}, writer = #{writer}, updateDate = sysdate 
+		WHERE bno = #{bno}
+	</update>
+	
 </mapper>
