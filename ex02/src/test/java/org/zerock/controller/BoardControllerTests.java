@@ -78,11 +78,19 @@ public class BoardControllerTests {
 //		log.info(resultPage);
 //	}
 	
-	@Test 
-	public void testRemove() throws Exception {
-		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove")
-							.param("bno", "22"))
-							.andReturn().getModelAndView().getViewName();
-		log.info(resultPage);
+//	@Test 
+//	public void testRemove() throws Exception {
+//		String resultPage = mockMvc.perform(MockMvcRequestBuilders.post("/board/remove")
+//							.param("bno", "34"))
+//							.andReturn().getModelAndView().getViewName();
+//		log.info(resultPage);
+//	}
+	
+	@Test
+	public void testListPaging() throws Exception {
+		log.info(mockMvc.perform(MockMvcRequestBuilders.get("/board/list")
+				.param("pageNum", "3")
+				.param("amount", "5"))
+				.andReturn().getModelAndView().getModelMap());
 	}
 }
