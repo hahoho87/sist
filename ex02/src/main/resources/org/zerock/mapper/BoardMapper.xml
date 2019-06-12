@@ -59,5 +59,13 @@
 		#{content}, writer = #{writer}, updateDate = sysdate
 		WHERE bno = #{bno}
 	</update>
+	
+	<!-- getTotalCount -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM tbl_board WHERE bno > 0
+	</select>
+	
+	
+	
 
 </mapper>

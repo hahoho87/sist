@@ -26,7 +26,8 @@
 					</div>
 					<div class="form-group">
 						<label>Text area</label> 
-						<textarea class="form-control" rows="3" name="content" readonly="readonly"><c:out value="${board.content }" /></textarea>
+						<textarea class="form-control" rows="3" name="content" readonly="readonly">
+						<c:out value="${board.content }" /></textarea>
 					</div>
 					<div class="form-group">
 						<label>Writer</label> 
@@ -37,6 +38,9 @@
 					
 					<form id='operForm' action="/board/modify" method="get">
 						<input type="hidden" id="bno" name="bno" value='<c:out value="${board.bno }"/>'>
+						<!-- 페이지 번호와 페이지 당 표시 개수 파라미터 추가 -->
+						<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
+						<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'>
 					</form>
 			</div>
 			<!-- /.panel-body -->
@@ -51,7 +55,7 @@
 		var operForm = $("#operForm");
 		
 		$("button[data-oper='modify']").on("click", function(e){
-			operForm.attr("action", "/board/modify");
+			operForm.attr("action", "/board/modify").submit();
 		});
 		
 		$("button[data-oper='list']").on("click", function(e){

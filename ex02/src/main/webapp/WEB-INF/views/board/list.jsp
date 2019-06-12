@@ -36,7 +36,7 @@
 							</td>
 							<td>
 								<!-- 게시물 조회 페이지 이동 -->
-								<a href="/board/get?bno=<c:out value="${board.bno }"/>"> 
+								<a class="move" href="<c:out value="${board.bno }"/>"> 
 								<c:out value="${board.title}" />
 								</a>
 							</td>
@@ -56,19 +56,21 @@
 				<!-- start Pagination -->
 				<div class='pull-right'>
 					<ul class="pagination">
-						<!-- prev 버튼 표시 -->
-						<c:if test="${pageMaker.prev}">
-							<li class="paginate_button previous"><a href="${pageMaker.statPage -1 }">Privious</a></li>
-						</c:if>
+					<!-- previous 버튼 표시 -->
+						<c:if test="${pageMaker.prev }">
+				   			<li class="paginate_button previous">
+				   				<a href="${pageMaker.startPage - 1 }">
+				   					Previous</a></li>
+				   		</c:if>
 						<!-- 페이지 번호 표시 -->
 						<c:forEach var="num" begin="${pageMaker.startPage}" end="${pageMaker.endPage }">
 							<li class='paginate_button ${pageMaker.cri.pageNum == num ? "active" : "" }'>
 							<a href="${num }">${num }</a></li>
 						</c:forEach>
-						<!-- next 버튼 표시 -->
-						<c:if test="${pageMaker.next}">
-							<li class="paginate_button next"><a href="${pageMaker.endPage + 1}">Next</a></li>
-						</c:if>
+						<c:if test="${pageMaker.next }"><!-- next 버튼 표시 -->
+				   			<li class="paginate_button next">
+				   				<a href="${pageMaker.endPage + 1 }">Next</a></li>
+				   		</c:if>
 					</ul>
 				</div>
 				<!-- end Pagination -->
@@ -138,6 +140,16 @@
 			//폼 전송
 			actionForm.submit();
 		});
+		
+		//제목을 클릭햇을 때, bno를 가지고 갈 수 있도록 설정
+		$(".move").on("click", function(e){
+			e.preventDefault();
+			
+			actionForm.append("<input type='hidden' name='bno' value='"+$(this).attr("href")+"'>");
+			actionForm.attr("action", "/board/get");
+			actionForm.submit();
+		})
+		
 	});
 </script>
 

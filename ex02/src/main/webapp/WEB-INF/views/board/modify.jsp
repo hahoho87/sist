@@ -18,6 +18,10 @@
 			<div class="panel-body">
 			
 				<form role="form" action="/board/modify" method="post">
+					<!-- 페이지 번호와 페이지 당 표시 개수 파라미터 추가 -->
+					<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
+					<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'>
+					
 					<div class="form-group">
 						<label>Bno</label> 
 						<input type="text" class="form-control" name="bno" value='${board.bno }' readonly="readonly"/>
@@ -78,8 +82,15 @@
 				// return;
 				//form 태그에 있는 데이터가 list로 전송되지 않게 하기 위해 get method로 바꾼후 지워주는 방식
 				formObj.attr("action", "/board/list").attr("method", "get");
+				//목록 페이지는 pageNum과 amount만 필요하므로 다른 내용은 삭제하고 필요한 내용만을 다시 추가
+				//clone으로 필요한 내용만 잠시 복사
+				var pageNumTag = $("input[name='pageNum']").clone();
+				var amountTag = $("input[name='amount']").clone();
+				//form 태그 내의 모든 내용 삭제
 				formObj.empty();
-				
+				//필요한 태그들만 다시 추가 한 후 /board/list 호출
+				formObj.append(pageNumTag);
+				formObj.append(amountTag);
 			}
 			formObj.submit();
 		});
