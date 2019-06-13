@@ -21,6 +21,9 @@
 					<!-- 페이지 번호와 페이지 당 표시 개수 파라미터 추가 -->
 					<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum }"/>'>
 					<input type="hidden" name="amount" value='<c:out value="${cri.amount }"/>'>
+					<!-- 검색 키워드의 조건 파라미터 추가 -->
+					<input type="hidden" name="type" value='<c:out value="${cri.type }"/>'>
+					<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>'>
 					
 					<div class="form-group">
 						<label>Bno</label> 
@@ -86,11 +89,15 @@
 				//clone으로 필요한 내용만 잠시 복사
 				var pageNumTag = $("input[name='pageNum']").clone();
 				var amountTag = $("input[name='amount']").clone();
+				var typeTag = $("input[name='type']").clone();
+				var keywordTag = $("input[name='keyword']").clone();
 				//form 태그 내의 모든 내용 삭제
 				formObj.empty();
 				//필요한 태그들만 다시 추가 한 후 /board/list 호출
 				formObj.append(pageNumTag);
 				formObj.append(amountTag);
+				formObj.append(typeTag);
+				formObj.append(keywordTag);
 			}
 			formObj.submit();
 		});

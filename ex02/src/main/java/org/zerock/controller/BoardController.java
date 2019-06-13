@@ -71,14 +71,17 @@ public class BoardController {
 						 @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("modify : " + board);
 		
-		if(service.modify(board)) {
+		if(service.modify(board)) {	//수정에 성공한 경우
 			rttr.addFlashAttribute("reuslt", "success");
 		}
 		
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("pageNum", cri.getPageNum());	//페이지 번호 추가
+//		rttr.addAttribute("amount", cri.getAmount());	//게시물 표시 개수 추가
+//		rttr.addAttribute("type", cri.getType());		//검색 조건 추가
+//		rttr.addAttribute("keyword", cri.getKeyword());	//검색 키워드 추가
 		
-		return "redirect:/board/list";
+		// UriComponentsBuilder로 생성된 url 이용
+		return "redirect:/board/list" + cri.getListLink();
 	}
 	
 	@PostMapping("/remove")
@@ -90,9 +93,12 @@ public class BoardController {
 			rttr.addFlashAttribute("result", "seccess");
 		}
 		
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("pageNum", cri.getPageNum());	//페이지 번호 추가
+//		rttr.addAttribute("amount", cri.getAmount());	//게시물 표시 개수 추가
+//		rttr.addAttribute("type", cri.getType());		//검색 조건 추가
+//		rttr.addAttribute("keyword", cri.getKeyword());	//검색 키워드 추가
 		
-		return "redirect:/board/list";
+		// UriComponentsBuilder로 생성된 url 이용
+		return "redirect:/board/list" + cri.getListLink();
 	}
 }

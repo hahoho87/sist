@@ -36,10 +36,15 @@ public class BoardController {
 		return "redirect:/board/list";
 	}
 	
+	@GetMapping("/register")
+	public void register() {
+		
+	}
+	
 	@GetMapping("/get")
 	public void get(@RequestParam("bno") Long bno, Model model) {
 		log.info("/get");
-		service.get(bno);
+		model.addAttribute("board", service.get(bno));
 	}
 	
 	@GetMapping("/modify")
