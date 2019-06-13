@@ -8,6 +8,9 @@ import lombok.ToString;
 @Getter
 @ToString
 public class Criteria {
+	private String type;
+	private String keyword;
+	
 	private int pageNum;	//페이지 번호
 	private int amount;		//한 페이지  당 출력 개수
 	
