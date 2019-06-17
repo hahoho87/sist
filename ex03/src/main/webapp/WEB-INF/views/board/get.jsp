@@ -235,7 +235,7 @@
 						
 						modal.data('rno', data.rno);		//댓글 번호 추가
 						//불필요한 요소들 숨기기
-						modal.find("button[id= !- 'modalCloseBtn']").hide();
+						modal.find("button[id != 'modalCloseBtn']").hide();
 						modalModBtn.show();
 						modalRemoveBtn.show();
 						
@@ -248,24 +248,27 @@
 			
 			//댓글 수정 이벤트
 			 modalModBtn.on("click", function(e){
-				 var reply = {rno: modal.data("rno"), reply: modalInputReply.val()};
+				 var reply = {bno: bnoValue, rno: modal.data("rno"), reply: modalInputReply.val()};
 				 
 				 replyService.update(reply, function(result){
 					 alert(result);
 					 modal.modal("hide");
-					 showList(1);
+					 showList(pageNum);
 				 });
 			});
 			
-			//댓글 삭제 이벤트
-			modalRemoveBtn.on("click", function(e) {
-				var rno = modal.data("rno");
-				
-				replyService.remove(rno, function(result) {
-					alret(result);
-					modal.modal("hide");
-					showList(1);
-				});
+			//댓글 삭제 버튼 이벤트 처리
+			modalRemoveBtn.on('click', function(e){
+				replyService.remove( modal.data('rno'), 
+					function(result){	//삭제 성공
+						console.log('remove result : ' + result);
+						if(result === 'success') { alert("REMOVED!"); }
+
+						modal.modal('hide');//모달창 닫고
+						showList(1);		//신규 댓글 목록 가져오기
+					},
+					function(err){	alert("error!");	}
+				);//END remove() 호출
 			});
 			
 			//댓글 목록 페이징
