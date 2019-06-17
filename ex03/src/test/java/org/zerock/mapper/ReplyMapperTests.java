@@ -1,9 +1,6 @@
 package org.zerock.mapper;
 
 import java.util.List;
-import java.util.stream.IntStream;
-
-import javax.sql.DataSource;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,6 +23,15 @@ public class ReplyMapperTests {
 	
 	//기존 게시물 5개 bno를 배열로 저장
 	private Long[] bnoArr = { 51L, 52L, 53L, 54L, 55L };
+	
+	@Test 
+	public void testList2() {
+		Criteria cri = new Criteria(1, 5);
+		
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, 116L);
+		
+		replies.forEach(reply -> log.info(reply));
+	}
 //	
 //	@Test
 //	public void testList() {
@@ -36,15 +42,15 @@ public class ReplyMapperTests {
 //		replies.forEach(reply -> log.info(reply));
 //	}
 	
-	@Test
-	public void testUpdate() {
-		//10번 댓글 수정
-		Long targetRno = 10L;
-		ReplyVO vo = mapper.read(targetRno);
-		vo.setReply("댓글 수정 테스트 ");  //변경 댓글
-		int count = mapper.update(vo);
-		log.info("UPDATE COUNT : " + count);
-	}
+//	@Test
+//	public void testUpdate() {
+//		//10번 댓글 수정
+//		Long targetRno = 10L;
+//		ReplyVO vo = mapper.read(targetRno);
+//		vo.setReply("댓글 수정 테스트 ");  //변경 댓글
+//		int count = mapper.update(vo);
+//		log.info("UPDATE COUNT : " + count);
+//	}
 	
 //	@Test
 //	public void testDelete() {

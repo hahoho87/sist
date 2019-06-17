@@ -14,4 +14,5 @@ public interface ReplyMapper {
 	public int delete(Long bno);
 	public ReplyVO read(Long bno);
 	public int insert(ReplyVO vo);
+	public int getCountByBno(Long bno);
 }

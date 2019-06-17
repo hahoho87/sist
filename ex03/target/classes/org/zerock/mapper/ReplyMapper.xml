@@ -4,12 +4,24 @@
   
 <mapper namespace="org.zerock.mapper.ReplyMapper">
 
-	<select id="getListWithPaging"
-			resultType="org.zerock.domain.ReplyVO">
-		SELECT 		* 
-		FROM 		tbl_reply 
-		WHERE 		bno = #{bno}
-		ORDER BY	rno DESC
+	<select id="getListWithPaging" resultType="org.zerock.domain.ReplyVO">
+		<![CDATA[
+			SELECT	rn, bno, rno, reply, replyer, replyDate, updateDate
+ 			FROM	( SELECT /*+INDEX_DESC(tbl_reply idx_reply)*/
+ 					  rownum rn, bno, rno, reply, replyer, replyDate, updateDate 
+ 					  FROM tbl_reply
+ 					  WHERE	bno = #{bno}
+ 					  AND 	rno > 0
+					  AND   rownum <= #{cri.pageNum} * #{cri.amount}
+ 					)
+ 			WHERE rn > (#{cri.pageNum} -1) * #{cri.amount}	
+ 		]]>	
+	</select>
+	
+	<select id="getCountByBno" resultType="int">
+		<![CDATA[
+			SELECT COUNT(rno) FROM tbl_reply WHERE bno = #{bno}
+		]]>
 	</select>
 	
 	<update id="update">
