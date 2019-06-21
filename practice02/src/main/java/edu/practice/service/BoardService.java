@@ -3,6 +3,7 @@ package edu.practice.service;
 import java.util.List;
 
 import edu.practice.domain.BoardVO;
+import edu.practice.domain.Criteria;
 
 public interface BoardService {
 	
@@ -14,6 +15,8 @@ public interface BoardService {
 	
 	public boolean remove(Long bno);
 	
-	public List<BoardVO> getList();
+//	public List<BoardVO> getList();
+	
+	public List<BoardVO> getList(Criteria cri);
 
 }

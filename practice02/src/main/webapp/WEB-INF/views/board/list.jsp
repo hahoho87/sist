@@ -33,10 +33,12 @@
 								<th>Update Date</th>
 							</tr>
 						</thead>
+						<!-- Model Data -->
 						<c:forEach items="${list }" var="board">
 							<tr>
 								<td><c:out value="${board.bno }"/></td>
-								<td><a href="#"><c:out value="${board.title }"/></a></td>
+								<td><a href='/board/get?bno=<c:out value="${board.bno}"/>'>
+									<c:out value="${board.title }"/></a></td>
 								<td><c:out value="${board.writer }"/></td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
 									 value="${board.regDate }"/></td>
@@ -44,6 +46,41 @@
 									 value="${board.updateDate }"/></td>	 
 						</c:forEach>
 					</table>
+					
+                 <!-- 페이지 번호 출력 -->
+				   <div class="pull-right">
+				   		<ul class="pagination">
+				   		<c:if test="${pageMaker.prev }"><!-- previous 버튼 표시 -->
+				   			<li class="page-link paginate_button prev">
+				   				<a href="${pageMaker.startPage - 1 }">
+				   					Previous</a></li>
+				   		</c:if>
+				   						   		
+				   		<!-- 페이지 번호 표시 -->
+				   		<c:forEach begin="${pageMaker.startPage }"
+				   				   end="${pageMaker.endPage }" var="num">
+				   			<li class="page-link paginate_button"
+				   			           ${pageMaker.cri.pageNum == num ? 'active': '' }">
+				   				<a href="${num }">${num }</a></li>
+				   		</c:forEach>
+				   		
+				   		<c:if test="${pageMaker.next }"><!-- next 버튼 표시 -->
+				   			<li class="page-link paginate_button next">
+				   				<a href="${pageMaker.endPage + 1 }">Next</a></li>
+				   		</c:if>
+				   		</ul>
+				   </div>
+				   <!-- END 페이지 번호 출력 -->
+				   
+				   <form id="actionForm" action="/board/list">
+				   	   <!-- a 태그 대신 pageNum과 amount 파라미터로 전송 -->
+				   	   <input type="hidden" name="pageNum" 
+				   	   	      value="${pageMaker.cri.pageNum }">
+				   	   <input type="hidden" name="amount" 
+				   	   	      value="${pageMaker.cri.amount }">
+
+				   </form>
+					
 				</div>
 			</div>
 		</div>
@@ -55,7 +92,7 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">게시물 등록 완료</h4>
+						<h4 class="modal-title" id="myModalLabel">게시물 수정 및 삭제 완료</h4>
 					</div>
 					<div class="modal-body">처리가 완료되었습니다.</div>
 					<div class="modal-footer">
@@ -77,8 +114,11 @@
 		
 		checkModal(result);
 		
+		//뒤로가기 history 처리
+		history.replaceState({}, null, null);
+		
 		function checkModal(result) {
-			if(result == ''){
+			if(result === '' || history.state){
 				return;
 			}
 			if(parseInt(result) > 0) {
@@ -90,9 +130,17 @@
 		$("#regBtn").on("click", function(){
 			self.location = "/board/register";
 		});
+		
+		var actionForm = $("#actionForm");
+		
+		$(".paginate_button a").on("click", function(e){
+			e.preventDefault();
+			
+			console.log('click');
+			
+			actionForm.find("input[name='pageNum']").val($(this).attr("href"));
+		});
 	});
-	
-	
 	
 </script>
 		

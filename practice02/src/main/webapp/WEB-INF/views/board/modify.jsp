@@ -18,63 +18,74 @@
 		<!-- DataTables Example -->
 		<div class="card mb-3">
 			<div class="card-header">
-				<i class="fas fa-table"></i> Spring Register
+				<i class="fas fa-table"></i> Spring Modify
 			</div>
 			<div class="card-body">
 				<div class="table-responsive">
+				
+				<form role="form" action="/board/modify" method="post">
 					<div class="form-group">
 						<label>Bno</label> 
 						<input type="text" class="form-control" name="bno"
-							value='<c:out value="${board.bno }"/>' readonly="readonly"/>
+							value='<c:out value="${board.bno }"/>' readonly="readonly" />
 					</div>
+					
 					<div class="form-group">
 						<label>Title</label> 
 						<input type="text" class="form-control" name="title"
-							value='<c:out value="${board.title }"/>' readonly="readonly"/>
+							value='<c:out value="${board.title }"/>' />
 					</div>
+					
 					<div class="form-group">
 						<label>Text area</label> 
-						<textarea class="form-control" rows="3" name="content"
-						 readonly="readonly"><c:out value="${board.content }"/></textarea>
+						<textarea class="form-control" rows="3" name="content"><c:out value="${board.content }"/>
+						</textarea>
 					</div>
 					<div class="form-group">
 						<label>Writer</label>
 						<input type="text" class="form-control" name="writer"
 							value='<c:out value="${board.writer }"/>' readonly="readonly"/>
 					</div>
-					<button data-oper='modify' 
-						class="btn btn-default"
-						onclick="location.href='/board/modify?bno=<c:out value="${board.bno}"/>'">Modify</button>
-					<button data-oper='list' 
-						class="btn btn-info"
-						onclick="location.href='/board/list'">List</button>
-					
-					<form id='operForm' action="/board/modify" method="get">
-						<input type="hidden" name="bno"
-							value='<c:out value="${board.bno }"/>'/>
-					</form>
+ 
+					<button type='submit' data-oper='modify' 
+							class="btn btn-default">Modify
+					</button>
+					<button type='submit' data-oper='remove' 
+							class="btn btn-danger">Remove
+					</button>
+					<button
+						type='submit'   
+						data-oper='list' 
+						class="btn btn-info">
+							List
+					</button>
+				</form>
 				</div>
 			</div>
 		</div>
 		<!-- /.container-fluid -->
 
-<script type="text/javascript">
-
+<script>
+	//버튼 처리
 	$(function() {
-		var operForm = $("#operForm");
 		
-		$("button[data-oper='modify']").on("click", function(e){
-			operForm.attr("action", "/board/modify").submit();
-		});
+		var formObj = $("form");
 		
-		$("button[data-oper='list']").on("click", function(e){
-			//list로 이동하는 경우 bno값이 필요없기 때문에 삭ㅈ
-			operForm.find("#bno").remove();
-			operForm.attr("action", "/board/list");
-			operForm.submit();
+		$('button').on("click", function(e){
+			e.preventDefault();
+			
+			var operation = $(this).data("oper");
+			console.log(operation);
+			
+			if(operation === 'remove')	{
+				formObj.attr("action", "/board/remove");
+			} else if(operation ==='list') {
+				formObj.attr("action", "/board/list").attr("method", "get");
+				formObj.empty();
+			}
+			formObj.submit();
 		});
 	});
-	
 </script>
 
-		<%@include file="../includes/footer.jsp"%>
+<%@include file="../includes/footer.jsp"%>

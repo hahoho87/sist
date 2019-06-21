@@ -36,12 +36,9 @@
 					<button type="reset" class="btn btn-primary">Reset</button>
 				</form>
 					
-					
 				</div>
 			</div>
 		</div>
 		<!-- /.container-fluid -->
 
-
-
-		<%@include file="../includes/footer.jsp"%>
+<%@include file="../includes/footer.jsp"%>

@@ -3,6 +3,7 @@ package edu.practice.mapper;
 import java.util.List;
 
 import edu.practice.domain.BoardVO;
+import edu.practice.domain.Criteria;
 
 public interface BoardMapper {
 	public List<BoardVO> getList();
@@ -16,5 +17,7 @@ public interface BoardMapper {
 	public int delete(Long bno);
 
 	public int update(BoardVO board);
+	
+	public List<BoardVO> getListWithPaging(Criteria cri);
 	
 }
