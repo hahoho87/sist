@@ -14,12 +14,17 @@
 	
 	<form method="post" action="/login">
 		<div>
-			<input type="text" name="username" value="admin">
+			<input type="text" name="username" value="admin90">
 		</div>
 		<div>
-			<input type="password" name="password" value="1111">
+			<input type="password" name="password" value="pw90">
 		</div>
-		<div><input type="submit"></div>
+		<div>
+			<input type="checkbox" name="remember-me"> Rememeber Me
+		</div>
+		<div>
+			<input type="submit">
+		</div>
 		<input type="hidden"
 			   name="${_csrf.parameterName }"
 			   value="${_csrf.token }">

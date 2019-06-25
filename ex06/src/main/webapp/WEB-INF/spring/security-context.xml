@@ -9,8 +9,13 @@
 		  class="org.zerock.security.CustomAccessDeniedHandler"/>
 	<bean id="customLoginSuccess"
 		  class="org.zerock.security.CustomLoginSuccessHandler"/>
-	<bean id="customPasswordEncoder"
-		  class="org.zerock.security.CustomNoOpPasswordEncoder" />	  
+	<!-- Change to Bcrypt -->
+	<!-- <bean id="customPaswordEncoder"
+		  class="org.zerock.security.CustomNoOpPasswordEncoder"/> -->
+	<bean id="bcryptPasswordEncoder" 
+		  class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<bean id="customUserDetailsService"
+		  class="org.zerock.security.CustomUserDetailsService" />	  
 	
 	<security:http>
 		<security:intercept-url pattern="/sample/all" access="permitAll"/>
@@ -32,23 +37,54 @@
 		<!-- 로그아웃 처리 -->
 		<security:logout logout-url="/customLogout"
 						 invalidate-session="true"/>
+						 
+		<!-- Remember Me -->
+		<security:remember-me data-source-ref="dataSource" 
+							  token-validity-seconds="604800" />
+		<!-- Logout -->
+		<security:logout logout-url="/customLogout"
+						 invalidate-session="true"/>
+						 
+		<security:logout logout-url="/customLogout"
+						 invalidate-session="true" 
+						 delete-cookies="remember-me, JSESSION_ID" />						 					  						 
 		
 	</security:http>
 	
 	<security:authentication-manager>
-		<security:authentication-provider>
-		
-		
+		<security:authentication-provider 
+			user-service-ref="customUserDetailsService">
 <!-- 		<security:user-service>
 				<security:user name="member" password="{noop}1111" authorities="ROLE_MEMBER"/>
 				<security:user name="admin" 
 							   password="{noop}1111"
 							   authorities="ROLE_MEMBER, ROLE_ADMIN"/>
 			</security:user-service> -->
-			<security:jdbc-user-service 
-					data-source-ref="dataSource"/>
-			<security:password-encoder ref="customPasswordEncoder"/>
+			<!-- <security:jdbc-user-service 
+					data-source-ref="dataSource"/> -->
+			<!--
+			<security:jdbc-user-service data-source-ref="dataSource" 
+					  users-by-username-query="SELECT userid, userpw, enabled FROM tbl_member WHERE userid = ?" 
+					  authorities-by-username-query="SELECT userid, auth FROM tbl_member_auth WHERE userid = ?"/>
+			 -->					  
+			<!-- Change to Bcrypt -->
+			<!-- <security:password-encoder ref="customPaswordEncoder"/> -->
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+			
 		</security:authentication-provider>
 	</security:authentication-manager>
 
 </beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
