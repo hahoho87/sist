@@ -3,13 +3,12 @@ package edu.practice.service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
-import edu.practice.service.BoardServiceImpl;
 
+import edu.practice.domain.BoardVO;
+import edu.practice.domain.Criteria;
 import edu.practice.mapper.BoardMapper;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j;
-import edu.practice.domain.BoardVO;
-import edu.practice.domain.Criteria;
 
 @Log4j
 @Service
@@ -53,6 +52,12 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> getList(Criteria cri) {
 		log.info("get List with Criteria : " + cri);
 		return mapper.getListWithPaging(cri);
+	}
+	
+	@Override
+	public int getTotalCount(Criteria cri) {
+		log.info("get total count");
+		return mapper.getTotalCount(cri);
 	}
 
 }

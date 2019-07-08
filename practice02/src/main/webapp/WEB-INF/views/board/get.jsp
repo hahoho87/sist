@@ -52,13 +52,24 @@
 					<form id='operForm' action="/board/modify" method="get">
 						<input type="hidden" name="bno"
 							value='<c:out value="${board.bno }"/>'/>
+						<input type="hidden" name="pageNum"
+							value='<c:out value="${cri.pageNum }"/>'>
+						<input type="hidden" name="amount"
+							value='<c:out value="${cri.amount }"/>'>
+						<input type="hidden" name="type"
+							value='<c:out value="${cri.type }"/>'>	
+						<input type="hidden" name="keyword"
+							value='<c:out value="${cri.keyword }"/>'>		
 					</form>
 				</div>
 			</div>
 		</div>
 		<!-- /.container-fluid -->
-
+<script type="text/javascript" src="/resources/js/reply.js"></script>
 <script type="text/javascript">
+	$(function(){
+		console.log(replyService);
+	});
 
 	$(function() {
 		var operForm = $("#operForm");
@@ -68,7 +79,7 @@
 		});
 		
 		$("button[data-oper='list']").on("click", function(e){
-			//list로 이동하는 경우 bno값이 필요없기 때문에 삭ㅈ
+			//list로 이동하는 경우 bno값이 필요없기 때문에 삭제
 			operForm.find("#bno").remove();
 			operForm.attr("action", "/board/list");
 			operForm.submit();

@@ -11,17 +11,52 @@
 		]]>
 	</select>
 	
+	<!-- sql 보관 -->
+	<sql id="criteria">
+		<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+		 	<foreach item='type' collection="typeArr">
+		 		<trim prefix="OR">
+		 			<choose>
+		 				<when test="type == 'T'.toString()">
+		 					title like '%'||#{keyword}||'%'
+		 				</when>
+		 				<when test="type == 'C'.toString()">
+		 					content like '%'||#{keyword}||'%'
+		 				</when>
+		 				<when test="type == 'W'.toString()">
+		 					writer like '%'||#{keyword}||'%'
+		 				</when>
+		 			</choose>
+		 		</trim>
+		 	</foreach>
+		 </trim>
+	</sql>
+	
 	<!-- getListWithPaging -->
 	<select id="getListWithPaging" resultType="edu.practice.domain.BoardVO">
 		<![CDATA[
 		SELECT bno, title, content, writer, regDate, updateDate
-		FROM   (SELECT /*+INDEX_DESC(t_board pk_board) */
+		FROM   (SELECT /*+INDEX_DESC(t_board t_board_pk) */
 					   rownum rn, bno, title, content, writer, regDate, updateDate
 				FROM t_board
-				WHERE rownum <= #{pageNum} * #{amount}
-			   )
+				WHERE
+		]]>
+		
+	<include refid="criteria"></include>
+	
+	<![CDATA[
+		rownum <= #{pageNum} * #{amount}
+	   	)
 		WHERE rn > (#{pageNum} - 1) * #{amount}	   		
 		]]>
+	</select>
+	
+	<!-- getTotalCount -->
+	<select id="getTotalCount" resultType="int">
+		SELECT COUNT(*) FROM t_board 
+		WHERE 
+		<include refid="criteria"></include>
+		bno > 0
 	</select>
 	
 	<!-- insert만 처리되고 생성된 PK값을 알 필요가 없는 경우 -->
@@ -59,9 +94,4 @@
 		WHERE bno = #{bno}
 	</update>
 	
-	<!-- getTotalCount -->
-	<select id="getTotalCount" resultType="int">
-		SELECT COUNT(*) FROM t_board WHERE bno > 0
-	</select>
-
 </mapper>

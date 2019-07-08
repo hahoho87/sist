@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>  
 <%@ include file="../includes/header.jsp"%>
 
 <style>
@@ -72,6 +73,8 @@
 			<div class="panel-body">
 				<!-- 게시물 등록 폼 -->
 				<form role="form" method="post" action="/board/register">
+					<input type="hidden" name="${_csrf.parameterName }"
+						  				 value="${_csrf.token }">
 					<div class="form-group">
 						<label>Title</label> <input class="form-control" name="title">
 					</div>
@@ -80,7 +83,11 @@
 						<textarea rows="3" class="form-control" name="content"></textarea>
 					</div>
 					<div class="form-group">
-						<label>Writer</label> <input class="form-control" name="writer">
+						<label>Writer</label> 
+						<input class="form-control" name="writer"
+							   value='<sec:authentication 
+							   			property="principal.username"/>'		
+							   readonly="readonly">
 					</div>
 					<button type="submit" class="btn btn-default">Submit</button>
 					<button type="reset" class="btn btn-default">Reset</button>

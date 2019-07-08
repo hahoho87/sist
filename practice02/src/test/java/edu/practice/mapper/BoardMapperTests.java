@@ -7,8 +7,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import edu.practice.domain.BoardVO;
 
+import edu.practice.domain.BoardVO;
+import edu.practice.domain.Criteria;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
 
@@ -19,11 +20,20 @@ public class BoardMapperTests {
 
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper mapper;
-	
+
 	@Test
-	public void testGetList() {
-		mapper.getList().forEach(board -> log.info(board));
+	public void testSearch() {
+		Criteria cri = new Criteria();
+		cri.setKeyword("테스트");
+		cri.setType("TC");
+		
+		List<BoardVO> list = mapper.getListWithPaging(cri);
+		list.forEach(board -> log.info(board));
 	}
+//	@Test
+//	public void testGetList() {
+//		mapper.getList().forEach(board -> log.info(board));
+//	}
 //	
 //	@Test 
 //	public void testInsert() {

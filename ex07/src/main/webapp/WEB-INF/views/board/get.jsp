@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>   
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>     
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>   
+<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags"%>   
 <%@ include file="../includes/header.jsp" %>
 <style>
 .uploadResult { width:100%;	background-color:gray; }
@@ -54,9 +55,19 @@
 					<div class="form-group">
 						<label>Writer</label>
 						<input class="form-control" name="writer"
-							   readonly="readonly"  value="${board.writer}"></div>	
-					<button data-oper="modify" class="btn btn-default">
-						Modify</button>	<!-- 수정 페이지 이동 -->
+							   readonly="readonly"  value="${board.writer}"></div>
+							   
+					<!-- 로그인한 사용자가 작성한 글에만 수정 버튼 표시 -->	
+					<sec:authentication property="principal" var="pinfo"/>	   
+					<!-- 로그인 여부 확인 -->
+					<sec:authorize access="isAuthenticated()">
+						<!-- 로그인한 사용자가 작성자인지 확인 -->
+						<c:if test="${pinfo.username == board.writer }">
+							<button data-oper="modify" class="btn btn-default">
+								Modify</button>	<!-- 수정 페이지 이동 -->
+						</c:if>
+					</sec:authorize>
+							   	
 					<button data-oper='list' class="btn btn-info">
 						List</button>	<!-- 목록 페이지 이동 -->
 					<!-- 폼 태그 추가 -->
@@ -113,10 +124,14 @@
         <div class="panel panel-default">
             <div class="panel-heading">
 				<i class="fa fa-comments fa-fw"></i>Reply 
-				<button id='addReplyBtn'
-						class='btn btn-primary btn-xs pull-right'>
-					New Reply		
-				</button>
+				
+				<!-- 로그인 여부 확인 - 로그인한 경우에만 댓글 작성 가능 -->
+				<sec:authorize access="isAuthenticated()">
+					<button id='addReplyBtn'
+							class='btn btn-primary btn-xs pull-right'>
+						New Reply		
+					</button>
+				</sec:authorize>
             </div><!-- /.panel-heading -->
             
             <div class="panel-body">
@@ -505,18 +520,4 @@ $('.bigPictureWrapper').on('click', function(e){
 });//END 원본 이미지 숨기기 처리
 </script>
 <%@ include file="../includes/footer.jsp" %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
