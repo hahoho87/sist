@@ -44,6 +44,7 @@
 					alert("Uploaded");
 				}
 			}); //End ajax
+			
 		});
 	});
 </script>		
