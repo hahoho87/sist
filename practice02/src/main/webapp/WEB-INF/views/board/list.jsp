@@ -38,7 +38,7 @@
 							<tr>
 								<td><c:out value="${board.bno }"/></td>
 								<td><a class="move" href="${board.bno}">
-                   	   	   	   	${board.title }</a></td>
+                   	   	   	   	${board.title } <b>[ <c:out value="${board.replyCnt }" /> ]</b></a></td>
 								<td><c:out value="${board.writer }"/></td>
 								<td><fmt:formatDate pattern="yyyy-MM-dd"
 									 value="${board.regDate }"/></td>
@@ -130,7 +130,6 @@
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title" id="myModalLabel">게시물 수정 및 삭제 완료</h4>
 					</div>
 					<div class="modal-body">처리가 완료되었습니다.</div>
 					<div class="modal-footer">

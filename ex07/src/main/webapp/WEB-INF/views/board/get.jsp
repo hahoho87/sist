@@ -136,7 +136,7 @@
             
             <div class="panel-body">
 				<ul class="chat">
-				</ul>		
+				</ul>
             </div>	<!-- /.panel-body -->
             
             <!-- 댓글 목록 페이징 -->

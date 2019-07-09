@@ -35,9 +35,9 @@
 	<!-- getListWithPaging -->
 	<select id="getListWithPaging" resultType="edu.practice.domain.BoardVO">
 		<![CDATA[
-		SELECT bno, title, content, writer, regDate, updateDate
+		SELECT bno, title, content, writer, regDate, updateDate, replycnt
 		FROM   (SELECT /*+INDEX_DESC(t_board t_board_pk) */
-					   rownum rn, bno, title, content, writer, regDate, updateDate
+					   rownum rn, bno, title, content, writer, regDate, updateDate, replycnt
 				FROM t_board
 				WHERE
 		]]>
@@ -91,6 +91,11 @@
 		UPDATE t_board
 		SET title = #{title}, content = #{content}, 
 			writer = #{writer}, updateDate = sysdate
+		WHERE bno = #{bno}
+	</update>
+	
+	<update id="updateReplyCnt">
+		UPDATE t_board SET replycnt = replycnt + #{amount}
 		WHERE bno = #{bno}
 	</update>
 	

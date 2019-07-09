@@ -1,7 +1,5 @@
 package edu.practice.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -15,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.practice.domain.Criteria;
+import edu.practice.domain.ReplyPageDTO;
 import edu.practice.domain.ReplyVO;
 import edu.practice.service.ReplyService;
 import lombok.AllArgsConstructor;
@@ -48,14 +47,16 @@ public class ReplyController {
 	@GetMapping(value = "/pages/{bno}/{page}",
 			    produces = { MediaType.APPLICATION_XML_VALUE,
 			    		     MediaType.APPLICATION_JSON_UTF8_VALUE })
-	public ResponseEntity<List<ReplyVO>> getList(
+	public ResponseEntity<ReplyPageDTO> getList(
 							@PathVariable("page") int page,
 							@PathVariable("bno") Long bno){
-		log.info("getList...............");
+		
 		Criteria cri = new Criteria(page, 10);
+		
+		log.info("get Reply List bno..." + bno);
 		log.info("cri : " + cri);
 		
-		return  new ResponseEntity<>(service.getList(cri, bno), HttpStatus.OK);
+		return  new ResponseEntity<>(service.getListPage(cri, bno), HttpStatus.OK);
 	}
 	
 	//특정 댓글 조회

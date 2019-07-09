@@ -137,7 +137,8 @@
 			<artifactId>spring-webmvc</artifactId>
 			<version>${org.springframework-version}</version>
 		</dependency>
-				
+		
+		<!-- AOP 관련 -->		
 		<!-- AspectJ -->
 		<dependency>
 			<groupId>org.aspectj</groupId>

@@ -1,7 +1,6 @@
 package edu.practice.mapper;
 
 import java.util.List;
-import java.util.stream.IntStream;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -9,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
+import edu.practice.domain.Criteria;
 import edu.practice.domain.ReplyVO;
 import lombok.Setter;
 import lombok.extern.log4j.Log4j;
@@ -24,14 +24,14 @@ public class ReplyMapperTests {
 	//기존 게시물 5개 bno를 배열로 저장
 	private Long[] bnoArr = { 61L, 62L, 63L, 64L, 65L };
 	
-//	@Test 
-//	public void testList2() {
-//		Criteria cri = new Criteria(1, 5);
-//		
-//		List<ReplyVO> replies = mapper.getListWithPaging(cri, 116L);
-//		
-//		replies.forEach(reply -> log.info(reply));
-//	}
+	@Test 
+	public void testList2() {
+		Criteria cri = new Criteria(1, 5);
+		
+		List<ReplyVO> replies = mapper.getListWithPaging(cri, 116L);
+		
+		replies.forEach(reply -> log.info(reply));
+	}
 //	
 //	@Test
 //	public void testList() {
@@ -67,18 +67,18 @@ public class ReplyMapperTests {
 //		log.info(vo);
 //	}
 	
-	@Test
-	public void testCreate() {
-		//기존 게시물 5개에 댓글 등록 테스트
-		IntStream.rangeClosed(1, 10)
-				 .forEach(i -> {
-					 ReplyVO vo = new ReplyVO();
-					 vo.setBno(bnoArr[i % 5]);	//게시물 번호
-					 vo.setReply("댓글 테스트 " + i);  //댓글
-					 vo.setReplyer("replyer " + i);//작성자
-					 mapper.insert(vo);
-				 });
-	}
+//	@Test
+//	public void testCreate() {
+//		//기존 게시물 5개에 댓글 등록 테스트
+//		IntStream.rangeClosed(1, 10)
+//				 .forEach(i -> {
+//					 ReplyVO vo = new ReplyVO();
+//					 vo.setBno(bnoArr[i % 5]);	//게시물 번호
+//					 vo.setReply("댓글 테스트 " + i);  //댓글
+//					 vo.setReplyer("replyer " + i);//작성자
+//					 mapper.insert(vo);
+//				 });
+//	}
 	
 //	@Test
 //	public void testMapper() {

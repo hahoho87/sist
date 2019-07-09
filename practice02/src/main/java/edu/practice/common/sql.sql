@@ -11,11 +11,19 @@ CREATE TABLE t_reply(
 	replyer varchar2(50) NOT NULL,
 	replyDate DATE DEFAULT sysdate,
 	updateDate DATE DEFAULT sysdate
-)
+);
 
-CREATE SEQUENCE seq_t_reply
+CREATE SEQUENCE seq_t_reply;
 
-ALTER TABLE t_reply ADD CONSTRAINT t_reply_pk PRIMARY KEY(rno)
+ALTER TABLE t_reply ADD CONSTRAINT t_reply_pk PRIMARY KEY(rno);
 
 ALTER TABLE t_reply ADD CONSTRAINT t_reply_board_fk
-FOREIGN KEY (bno) REFERENCES t_board(bno)
+FOREIGN KEY (bno) REFERENCES t_board(bno);
+
+CREATE INDEX idx_t_reply ON t_reply (bno DESC, rno ASC);
+
+ALTER TABLE t_board ADD (replycnt NUMBER DEFAULT 0);
+
+UPDATE t_board SET replycnt = (SELECT COUNT(rno) FROM T_REPLY
+WHERE t_reply.bno = t_board.bno);
+
