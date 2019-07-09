@@ -49,7 +49,7 @@ public class UploadController {
 	public void uploadAjaxPost(MultipartFile[] uploadFile) {
 		log.info("update ajax post.......");
 		
-		String uploadFolder = "/User/bky/upload";
+		String uploadFolder = "/Users/bky/upload";
 		
 		for(MultipartFile multipartFile : uploadFile) {
 			log.info("-------------------");
@@ -57,7 +57,18 @@ public class UploadController {
 			log.info("Upload File Size : " + multipartFile.getSize());
 			
 			String uploadFileName = multipartFile.getOriginalFilename();
-			//504 page
+			
+			//IE has file path
+			uploadFileName = uploadFileName.substring(uploadFileName.lastIndexOf("\\") + 1);
+			log.info("only file name : " + uploadFileName);
+			
+			File saveFile = new File(uploadFolder, uploadFileName);
+			
+			try {
+				multipartFile.transferTo(saveFile);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			
 		}
 	}

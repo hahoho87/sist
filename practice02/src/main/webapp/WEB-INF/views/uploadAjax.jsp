@@ -28,9 +28,6 @@
 			//formData 객체에 선택한 파일 추가
 			for(var i=0 ; i<files.length ; i++){
 				//확장자 및 파일 크기 확인
-				if(!checkExension(files[i].name, files[i].size)){
-					return false;
-				}
 				formData.append("uploadFile", files[i]);
 			}
 			
