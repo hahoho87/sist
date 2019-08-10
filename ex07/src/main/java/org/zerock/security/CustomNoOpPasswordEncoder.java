@@ -20,8 +20,8 @@ public class CustomNoOpPasswordEncoder
 		log.warn("matches() : " + rawPassword + 
 				          " : " + encodedPassword);
 		return rawPassword.toString().equals(encodedPassword);
-	}
-
+	} 
+	
 }
 
 
